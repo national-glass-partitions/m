@@ -1,0 +1,41 @@
+# 2026-05-01 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+# https://stackoverflow.com/questions/987142
+# https://stackoverflow.com/questions/9162919
+# https://stackoverflow.com/questions/8024924#comment15884195_8025106
+*
+!*/
+!/.editorconfig
+!/.gitignore
+!/composer.json
+!/readme.md
+!/app/code/**/*
+# 2025-04-02 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+# https://gemini.google.com/u/1/app/6b203ee6c0eac7d7
+!/app/design/frontend/**/*
+/app/design/frontend/Magento/
+!/app/etc/config.php
+# 2023-07-22 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+# Today I noticed that `git add . && git commit -a -m refactoring && git push`
+# started to commit subfolders which are git repositories (for an unknown reason).
+# 2025-04-03 https://g.co/gemini/share/8935d11b67a5
+/_my
+/dev
+/update/
+# 2025-04-03 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+# https://g.co/gemini/share/8935d11b67a5
+# 2025-05-21 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+# 1) https://g.co/gemini/share/e0a1ce59ec79
+# 2) https://chatgpt.com/share/682d5158-5c18-8003-b315-57a4ae068d30
+# 2025-08-31
+# To find out why Git wants to commit the `vendor folder`:
+# 		git add .
+# 		git status
+# 		git restore --staged .
+#/vendor/*
+# 2025-08-31 https://g.co/gemini/share/ece13e39c278
+/vendor/**/tests/
+# 2025-05-23 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+/vendor/mage2pro
+/vendor/magento/framework/Test
+/vendor/magento/magento2-base
+/vendor/tubalmartin
