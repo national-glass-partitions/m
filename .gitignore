@@ -59,3 +59,8 @@
 # in lib\internal\Magento\Framework\Interception\PluginListGenerator.php on line 414»
 # in Magento 2.4-develop in Windows?" https://mage2.pro/t/6178
 !/vendor/magento/framework/Interception/PluginListGenerator.php
+# 2026-05-04 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+# 1) "Adapt the website to Windows-based servers": https://github.com/nationalglasspartitions/m/issues/2
+# 2) "How to fix the «Invalid template file» / «require_js.phtml» failure for Magento ≥ 2.4.5 in Windows?"
+# https://mage2.pro/t/6339
+!/vendor/magento/framework/View/Element/Template/File/Validator.php
