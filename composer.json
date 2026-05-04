@@ -15,7 +15,8 @@
         "amasty/feed": "^4.0",
         "amasty/module-product-feed-templates": "^1.1",
         "amasty/module-product-feed-subscription-package": "^3.1",
-        "magento/product-community-edition": "2.4.7-p4"
+        "magento/product-community-edition": "2.4.7-p4",
+        "mage2pro/core": "*"
     },
     "require-dev": {
         "allure-framework/allure-phpunit": "^2",
