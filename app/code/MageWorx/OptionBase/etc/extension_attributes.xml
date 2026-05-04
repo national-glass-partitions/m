@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductInterface">
+        <attribute code="absolute_cost" type="boolean"/>
+        <attribute code="absolute_price" type="boolean"/>
+        <attribute code="absolute_weight" type="boolean"/>
+        <attribute code="hide_additional_product_price" type="boolean"/>
+        <attribute code="shareable_link" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductCustomOptionInterface">
+        <attribute code="mageworx_title" type="string"/>
+        <attribute code="mageworx_option_price" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="MageWorx\OptionBase\Api\Data\ProductCustomOptionValuesInterface">
+        <attribute code="mageworx_title" type="string"/>
+        <attribute code="mageworx_option_type_price" type="string"/>
+    </extension_attributes>
+</config>

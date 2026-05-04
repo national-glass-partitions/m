@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+/** @var \MageWorx\DynamicOptionsBase\Block\DynamicOptions $block */
+$jsonData = $block->getJsonData();
+?>
+<script>
+    require([
+        'jquery',
+        'dynamicOptions',
+        'uiRegistry'
+    ], function ($, dynamicOptions, registry) {
+        var optionBase = registry.get('mageworxOptionBase');
+        if (optionBase) {
+            optionBase.addUpdater(
+                5,
+                dynamicOptions(<?= /* @noEscape */ $jsonData;?>)
+            );
+        } else {
+            var updaters = registry.get('mageworxOptionUpdaters');
+            if (!updaters) {
+                updaters = {};
+            }
+            updaters[5] = dynamicOptions(<?= /* @noEscape */ $jsonData;?>);
+            registry.set('mageworxOptionUpdaters', updaters);
+        }
+    });
+</script>
+<script type="text/x-magento-init">
+   {
+       "*": {
+           "dynamicOptionMinValueValidationRule": {
+               "config": <?= /* @noEscape */ $jsonData;?>
+           },
+            "dynamicOptionMaxValueValidationRule": {
+               "config": <?= /* @noEscape */ $jsonData;?>
+           },
+            "dynamicOptionStepValidationRule": {
+               "config": <?= /* @noEscape */ $jsonData;?>
+           }
+       }
+   }
+</script>

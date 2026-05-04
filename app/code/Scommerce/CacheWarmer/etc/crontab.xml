@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce Mage Cache Warmer Cron Schedule
+ * @category   Scommerce
+ * @package    Scommerce_CacheWarmer
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="index">
+        <job name="scommerce_cachewarmer" instance="Scommerce\CacheWarmer\Cron\CacheWarmer" method="execute">
+            <config_path>cachewarmer/cronsetting/cache_cron_schedule</config_path>
+        </job>
+    </group>
+</config>

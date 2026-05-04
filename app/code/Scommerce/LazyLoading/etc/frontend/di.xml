@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce LazyLoading dependency injection (di)file
+ * @category   Scommerce
+ * @package    Scommerce_LazyLoading
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Block\Product\Image">
+        <plugin sortOrder="1" name="scommerce_lazyloading_image" type="Scommerce\LazyLoading\Plugin\Block\Product\Image"/>
+    </type>
+    <type name="Magento\Cms\Model\Template\Filter">
+        <plugin name="lazyloading_filter" type="Scommerce\LazyLoading\Plugin\Model\Template\Filter" />
+    </type>
+
+</config>

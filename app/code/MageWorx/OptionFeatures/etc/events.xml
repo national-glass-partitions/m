@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_quote_item_set_product">
+        <observer name="mageworx_optionfeatures_collect_cost" instance="MageWorx\OptionFeatures\Observer\CollectQuoteItemCost"/>
+    </event>
+    <event name="sales_order_shipment_save_after">
+        <observer name="mageworx_optionfeatures_subtract" instance="MageWorx\OptionFeatures\Observer\SubtractQtyMultiplierQty"/>
+    </event>
+
+</config>

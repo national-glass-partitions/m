@@ -1,0 +1,25 @@
+"Option Inventory Report","Option Inventory Report"
+"Option Inventory","Option Inventory"
+"Please correct the data sent.","Please correct the data sent."
+"Something went wrong while saving the option value.","Something went wrong while saving the option value."
+"Out Of Stock","Out Of Stock"
+Hide,Hide
+Disable,Disable
+No,No
+Yes,Yes
+"We don't have as many  ""%1"" : ""%2"" - ""%3""  as you requested (available qty: ""%4"").","We don't have as many  ""%1"" : ""%2"" - ""%3""  as you requested (available qty: ""%4"")."
+Edit,Edit
+Quantity,Quantity
+"Manage Stock","Manage Stock"
+"Advanced Product Options","Advanced Product Options"
+"Display Option Inventory on Front-end","Display Option Inventory on Front-end"
+"Out-Of-Stock options","Out-Of-Stock options"
+"Display Out-Of-Stock message","Display Out-Of-Stock message"
+"Display Out-Of-Stock message on options level","Display Out-Of-Stock message on options level"
+"Show required 'Out of stock' options","Show required 'Out of stock' options"
+"Product Id","Product Id"
+"Product Name","Product Name"
+"Product Sku","Product Sku"
+"Option Name","Option Name"
+"Value Name","Value Name"
+Qty,Qty

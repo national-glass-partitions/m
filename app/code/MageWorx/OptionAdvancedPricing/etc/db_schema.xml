@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="mageworx_optionadvancedpricing_option_type_special_price" resource="default">
+        <column xsi:type="int" name="option_type_special_price_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Type Special Price ID"/>
+        <column xsi:type="int" name="option_type_id" padding="10" unsigned="true" nullable="false" comment="Option Type ID"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" comment="Customer Group ID"/>
+        <column xsi:type="decimal" name="price" scale="4" precision="12" nullable="false" default="0.0000" comment="Special Price"/>
+        <column xsi:type="varchar" name="price_type" length="40" nullable="false" default="fixed" comment="Special Price Type (fixed, percentage_discount)"/>
+        <column xsi:type="varchar" name="comment" length="255" nullable="false" default="" comment="Special Price Comment"/>
+        <column xsi:type="date" name="date_from" nullable="true" comment="Special Price Date From"/>
+        <column xsi:type="date" name="date_to" nullable="true" comment="Special Price Date To"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_special_price_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MW_OPTADVPRICING_OPT_TYPE_SPEC_PRICE_TYPE_ID_TYPE_VAL_TYPE_ID" table="mageworx_optionadvancedpricing_option_type_special_price" column="option_type_id" referenceTable="catalog_product_option_type_value" referenceColumn="option_type_id" onDelete="CASCADE"/>
+        <index referenceId="MAGEWORX_OPTADVANCEDPRICING_OPT_TYPE_SPECIAL_PRICE_OPT_TYPE_ID" indexType="btree">
+            <column name="option_type_id"/>
+        </index>
+    </table>
+    <table name="mageworx_optionadvancedpricing_option_type_tier_price" resource="default">
+        <column xsi:type="int" name="option_type_tier_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Type Special Price ID"/>
+        <column xsi:type="int" name="option_type_id" padding="10" unsigned="true" nullable="false" comment="Option Type ID"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" comment="Customer Group ID"/>
+        <column xsi:type="int" name="qty" nullable="false" padding="10" unsigned="true" comment="Tier Price Qty"/>
+        <column xsi:type="decimal" name="price" scale="4" precision="12" nullable="false" default="0.0000" comment="Special Price"/>
+        <column xsi:type="varchar" name="price_type" length="40" nullable="false" default="fixed" comment="Tier Price Type (fixed, percentage_discount)"/>
+        <column xsi:type="date" name="date_from" comment="Tier Price Date From"/>
+        <column xsi:type="date" name="date_to" comment="Tier Price Date To"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_tier_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MW_OPTADVPRICING_OPT_TYPE_TIER_PRICE_TYPE_ID_TYPE_VAL_TYPE_ID" table="mageworx_optionadvancedpricing_option_type_tier_price" column="option_type_id" referenceTable="catalog_product_option_type_value" referenceColumn="option_type_id" onDelete="CASCADE"/>
+        <index referenceId="MAGEWORX_OPTADVANCEDPRICING_OPT_TYPE_TIERL_PRICE_OPT_TYPE_ID" indexType="btree">
+            <column name="option_type_id"/>
+        </index>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_type_special_price" resource="default">
+        <column xsi:type="int" name="option_type_special_price_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Type Special Price ID"/>
+        <column xsi:type="int" name="option_type_id" padding="10" unsigned="true" nullable="false" comment="Option Type ID"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" comment="Customer Group ID"/>
+        <column xsi:type="decimal" name="price" scale="4" precision="12" nullable="false" default="0.0000" comment="Special Price"/>
+        <column xsi:type="varchar" name="price_type" length="40" nullable="false" default="fixed" comment="Special Price Type (fixed, percentage_discount)"/>
+        <column xsi:type="varchar" name="comment" length="255" nullable="false" default="" comment="Special Price Comment"/>
+        <column xsi:type="date" name="date_from" nullable="true" comment="Special Price Date From"/>
+        <column xsi:type="date" name="date_to" nullable="true" comment="Special Price Date To"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_special_price_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MW_OPTIONTEMPL_GROUP_OPT_TYPE_SPEC_PRICE_TYPE_ID_TYPE_VAL_TYPE_ID" table="mageworx_optiontemplates_group_option_type_special_price" column="option_type_id" referenceTable="mageworx_optiontemplates_group_option_type_value" referenceColumn="option_type_id" onDelete="CASCADE"/>
+        <index referenceId="MAGEWORX_OPTTEMPLATES_GR_OPT_TYPE_SPECIAL_PRICE_OPT_TYPE_ID" indexType="btree">
+            <column name="option_type_id"/>
+        </index>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_type_tier_price" resource="default">
+        <column xsi:type="int" name="option_type_tier_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Type Special Price ID"/>
+        <column xsi:type="int" name="option_type_id" padding="10" unsigned="true" nullable="false" comment="Option Type ID"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" comment="Customer Group ID"/>
+        <column xsi:type="int" name="qty" nullable="false" padding="10" unsigned="true" comment="Tier Price Qty"/>
+        <column xsi:type="decimal" name="price" scale="4" precision="12" nullable="false" default="0.0000" comment="Special Price"/>
+        <column xsi:type="varchar" name="price_type" length="40" nullable="false" default="fixed" comment="Special Price Type (fixed, percentage_discount)"/>
+        <column xsi:type="date" name="date_from" comment="Special Price Date From"/>
+        <column xsi:type="date" name="date_to" comment="Special Price Date To"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_tier_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MW_OPTIONTEMPL_GROUP_OPT_TYPE__TIER_PRICE_TYPE_ID_TYPE_VAL_TYPE_ID" table="mageworx_optiontemplates_group_option_type_tier_price" column="option_type_id" referenceTable="mageworx_optiontemplates_group_option_type_value" referenceColumn="option_type_id" onDelete="CASCADE"/>
+        <index referenceId="MAGEWORX_OPTTEMPLATES_GR_OPT_TYPE_TIER_PRICE_OPT_TYPE_ID" indexType="btree">
+            <column name="option_type_id"/>
+        </index>
+    </table>
+</schema>

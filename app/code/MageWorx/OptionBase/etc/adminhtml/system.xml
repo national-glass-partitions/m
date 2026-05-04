@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See https://www.mageworx.com/terms-and-conditions for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mageworx" sortOrder="2001">
+            <label>MageWorx</label>
+        </tab>
+        <section id="mageworx_apo" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label><![CDATA[Advanced Product Options]]></label>
+            <tab>mageworx</tab>
+            <resource>MageWorx_OptionBase::config_optionbase</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label><![CDATA[General]]></label>
+                <field id="use_option_value_collection_cache" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label><![CDATA[Enable Option Value Collection Cache]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

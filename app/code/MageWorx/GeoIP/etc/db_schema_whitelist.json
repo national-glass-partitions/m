@@ -1,0 +1,14 @@
+{
+    "maxmind_country_regions": {
+        "column": {
+            "relation_id": true,
+            "region_id": true,
+            "country_id": true,
+            "country_name": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAXMIND_COUNTRY_REGIONS_REGION_ID_COUNTRY_ID": true
+        }
+    }
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <referenceBlock name="product.composite.fieldset">
+        <block class="MageWorx\OptionFeatures\Block\Features"
+               name="mageworx.option.features"
+               template="MageWorx_OptionFeatures::catalog/product/options.phtml"/>
+    </referenceBlock>
+</layout>

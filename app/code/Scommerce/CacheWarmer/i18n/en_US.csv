@@ -1,0 +1,68 @@
+Page,Page
+"Add Reason","Add Reason"
+"The data has been deleted.","The data has been deleted."
+"We can't find a data to delete.","We can't find a data to delete."
+Cachewarmer,Cachewarmer
+"Manage Cache Warmer","Manage Cache Warmer"
+"Cache Warmer","Cache Warmer"
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"Cache has regenerated.","Cache has regenerated."
+"We can't find a data to edit","We can't find a data to edit"
+"The Data has been saved.","The Data has been saved."
+"Something went wrong while saving the data.","Something went wrong while saving the data."
+All,All
+"Product Pages","Product Pages"
+"Category Pages","Category Pages"
+"CMS Page","CMS Page"
+"Custom Page","Custom Page"
+Uncached,Uncached
+Cached,Cached
+Regenerate,Regenerate
+Delete,Delete
+"Delete page_type Cache","Delete page_type Cache"
+"Are you sure you wan't to delete page_type cache record?","Are you sure you wan't to delete page_type cache record?"
+"Scommerce Configuration","Scommerce Configuration"
+"General Setting","General Setting"
+Enabled,Enabled
+"This setting will be used to enable or disable module.","This setting will be used to enable or disable module."
+"License Key","License Key"
+"This setting will be used to verify your license key for the given domain <div style='color:#ff0000;font-size:10px;font-weight:bold'>N.B. License keys are domain specific so for your testing or staging sites please email us at core@scommerce-mage.com.</div>","This setting will be used to verify your license key for the given domain <div style='color:#ff0000;font-size:10px;font-weight:bold'>N.B. License keys are domain specific so for your testing or staging sites please email us at core@scommerce-mage.com.</div>"
+"Regenerate cache after page update","Regenerate cache after page update"
+"This setting will be used to regenerate cache for updated page.","This setting will be used to regenerate cache for updated page."
+"Select Pages","Select Pages"
+"This setting will allow to generate the cache again for selected page type only on page update.","This setting will allow to generate the cache again for selected page type only on page update."
+"Can Regenerate Cache Manually","Can Regenerate Cache Manually"
+"This setting will be used  to get the option to generate cache at catalog product grid.","This setting will be used  to get the option to generate cache at catalog product grid."
+"Cron Setting","Cron Setting"
+"Cache Cron Schedule","Cache Cron Schedule"
+"This setting will allow add  Cron expression to generate the cache for all non cached pages.
+<pre>
+* * * * *
+| | | | |
+| | | | +---- Day of the Week   (range: 1-7)
+| | | +------ Month of the Year (range: 1-12)
+| | +-------- Day of the Month  (range: 1-31)
+| +---------- Hour              (range: 0-23)
++------------ Minute            (range: 0-59)
+Example: 0 0 * * * Daily at midnight
+</pre>","This setting will allow add  Cron expression to generate the cache for all non cached pages.
+<pre>
+* * * * *
+| | | | |
+| | | | +---- Day of the Week   (range: 1-7)
+| | | +------ Month of the Year (range: 1-12)
+| | +-------- Day of the Month  (range: 1-31)
+| +---------- Hour              (range: 0-23)
++------------ Minute            (range: 0-59)
+Example: 0 0 * * * Daily at midnight
+</pre>"
+"Delay in Request","Delay in Request"
+"This setting will be used to apply delay between the concurrent request.","This setting will be used to apply delay between the concurrent request."
+"Number of Concurrent Regeneration request","Number of Concurrent Regeneration request"
+"This setting will be used to generate the cache of number of pages in single request.","This setting will be used to generate the cache of number of pages in single request."
+"Mass Delete","Mass Delete"
+ID,ID
+"Page type","Page type"
+"Page url","Page url"
+"Last Cache","Last Cache"
+Status,Status

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2017 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_catalog_product_validate">
+        <observer name="mageworx_optionbase_product_validate" instance="MageWorx\OptionBase\Observer\CheckProductMaxInputVars" />
+    </event>
+    <event name="catalog_product_save_after">
+        <observer name="mageworx_optionbase_product_save_after" instance="MageWorx\OptionBase\Observer\ProductSaveAfter" />
+    </event>
+    <event name="mageworx_optiontemplates_group_save_after">
+        <observer name="mageworx_optionbase_apply_attributes_on_group" instance="MageWorx\OptionBase\Observer\ApplyAttributesOnGroup" />
+    </event>
+    <event name="catalog_product_save_before">
+        <observer name="mageworx_optionbase_product_save_before" instance="MageWorx\OptionBase\Observer\EntitySaveBefore" />
+    </event>
+</config>

@@ -1,0 +1,22 @@
+Disabled,Disabled
+"Disabled by Values","Disabled by Values"
+"Manage Visibility","Manage Visibility"
+"Save & Close","Save & Close"
+"Visibility for","Visibility for"
+Visibility,Visibility
+"Customer Group","Customer Group"
+"Choose the customer groups the option should be available for.","Choose the customer groups the option should be available for."
+Stores,Stores
+"Choose the store views the option should be displayed on.","Choose the store views the option should be displayed on."
+"This setting disables the particular option with all its values 
+                                despite of the selected customer groups and the store views. If you need to 
+                                disable a particular option value, you should enable this setting for that value.","This setting disables the particular option with all its values 
+                                despite of the selected customer groups and the store views. If you need to 
+                                disable a particular option value, you should enable this setting for that value."
+"ALL GROUPS","ALL GROUPS"
+"All Stores","All Stores"
+"Advanced Product Options","Advanced Product Options"
+"Option Visibility","Option Visibility"
+"Enable 'Disable' Option Value","Enable 'Disable' Option Value"
+"Enable Visibility Customer Group","Enable Visibility Customer Group"
+"Enable Visibility Store View","Enable Visibility Store View"

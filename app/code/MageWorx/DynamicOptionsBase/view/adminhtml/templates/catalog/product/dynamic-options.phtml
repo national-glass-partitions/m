@@ -1,0 +1,59 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+/** @var \MageWorx\DynamicOptionsBase\Block\DynamicOptions $block */
+?>
+<?php
+$optionBaseWidget = $block->getOptionBaseWidget();
+$jsonData = $block->getJsonData();
+?>
+<script>
+    require([
+        'jquery',
+        'dynamicOptions',
+        'uiRegistry'
+    ], function ($, dynamicOptions, registry) {
+        var optionBase = registry.get('<?= /* @noEscape */ $optionBaseWidget ?>');
+        if (optionBase) {
+            optionBase.addUpdater(
+                5,
+                dynamicOptions(<?= /* @noEscape */ $jsonData;?>)
+            );
+        } else {
+            var updaters = registry.get('mageworxOptionUpdaters');
+            if (!updaters) {
+                updaters = {};
+            }
+            updaters[5] = dynamicOptions(<?= /* @noEscape */ $jsonData;?>);
+            registry.set('mageworxOptionUpdaters', updaters);
+        }
+    });
+</script>
+
+<?php if ($jsonData) : ?>
+    <?php $multiplier = time() . rand(0, 256000); ?>
+    <div class="mageworx-dynamic-options-validate-<?= $block->escapeHtmlAttr($multiplier); ?>" data-mage-init='
+        {
+            "dynamicOptionMinValueValidationRule": {
+               "config": <?= /* @noEscape */ $jsonData;?>
+           },
+            "dynamicOptionMaxValueValidationRule": {
+               "config": <?= /* @noEscape */ $jsonData;?>
+           },
+            "dynamicOptionStepValidationRule": {
+               "config": <?= /* @noEscape */ $jsonData;?>
+           }
+        }'
+    >
+    </div>
+    <script>
+        require([
+            "jquery"
+        ], function ($) {
+            var $element = $('.mageworx-dynamic-options-validate-<?= $block->escapeJs($multiplier); ?>');
+            $element.trigger('contentUpdated');
+        });
+    </script>
+<?php endif; ?>

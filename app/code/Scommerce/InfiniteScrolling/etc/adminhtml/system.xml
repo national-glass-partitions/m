@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce InfiniteScrolling Module configuration file for defining all configurations required for this module
+ * @category   Scommerce
+ * @package    Scommerce_InfiniteScrolling
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <!-- Add new Tab -->
+        <tab id="scommerce" translate="label comment" sortOrder="400">
+            <label>Scommerce Configuration</label>
+        </tab>
+        <section id="scommerce_infinitescrolling"
+                 translate="label comment"
+                 type="text"
+                 sortOrder="220"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <label>Infinite Scrolling</label>
+            <tab>scommerce</tab>
+            <!-- resource tag name which we have to defined in the acl.xml -->
+            <resource>Scommerce_InfiniteScrolling::config_infinitescrolling</resource>
+            <group id="general"
+                   translate="label comment"
+                   type="text"
+                   sortOrder="10"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>General</label>
+                <field id="enabled"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>This setting will be used to enable or disable module</comment>
+                </field>
+                <field id="loading_type"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="20"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1" 
+                       canRestore="1">
+                    <label>Loading Type</label>
+                    <source_model>Scommerce\InfiniteScrolling\Model\Config\Source\LoadingType</source_model>
+                    <comment><![CDATA[<b>Load Automatically-</b> Auto loading of the  next pages.
+<br><b>Load with Button-</b> The next pages loaded automatically but they will be displayed only after you click the button.]]></comment>
+                </field>
+                <field id="button_label"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="30"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1" 
+                       canRestore="1">
+                    <label>Button Label </label>
+                    <comment><![CDATA[This setting will be used for label text of the load next button on the frontend]]></comment>
+                    <depends>
+                        <field id="loading_type">1</field>
+                    </depends>
+                </field>                
+                <field id="button_label_font_color"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="40"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Button Label Font Color </label>
+                    <frontend_model>Scommerce\InfiniteScrolling\Block\Color</frontend_model>
+                    <comment><![CDATA[This setting will be used for the font colour of the load next button on the frontend]]></comment>
+                    <depends>
+                        <field id="loading_type">1</field>
+                    </depends>
+                </field>       
+                <field id="button_label_background_color"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="50"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Button Label Background Color </label>
+                    <frontend_model>Scommerce\InfiniteScrolling\Block\Color</frontend_model>  
+                    <comment><![CDATA[This setting will be used for the background colour of the load next button on the frontend]]></comment>
+                    <depends>
+                        <field id="loading_type">1</field>
+                    </depends>
+                </field>
+                <field id="button_label_size"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="60"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Button Label Size</label>
+                    <comment><![CDATA[This setting will be used for the font size of the load next button on the frontend]]></comment>
+                    <depends>
+                        <field id="loading_type">1</field>
+                    </depends>
+                </field>          
+                <field id="display_page_number"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="70"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Display Page Numbers </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting will be used to enable or disable page information on the frontend]]></comment>
+                </field>
+                <field id="grid_class"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="80"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Grid Dom Class  (for custom themes)</label>
+                    <comment><![CDATA[This setting will be used to determine the class for grid view of product listing pages]]></comment>
+                </field>
+                <field id="list_class"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="90"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>List Dom Class  (for custom themes)</label>
+                    <comment><![CDATA[This setting will be used to determine the class for list view of product listing pages]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

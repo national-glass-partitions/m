@@ -1,0 +1,28 @@
+{
+    "catalog_product_entity": {
+        "column": {
+            "mageworx_is_require": true
+        }
+    },
+    "mageworx_optionbase_product_attributes": {
+        "column": {
+            "entity_id": true,
+            "product_id": true,
+            "dependency_rules": true,
+            "hidden_dependents": true,
+            "absolute_price": true,
+            "absolute_weight": true,
+            "absolute_cost": true,
+            "hide_additional_product_price": true,
+            "shareable_link": true,
+            "sku_policy": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONBASE_PRODUCT_ATTRIBUTES_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_OPTIONBASE_PRODUCT_ATTRIBUTES_PRODUCT_ID": true
+        }
+    }
+}

@@ -1,0 +1,93 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php if ($_product->isSaleable()): ?>
+    <div class="box-tocart">
+        <div class="fieldset">
+            <?php if ($block->shouldRenderQuantity()): ?>
+                <div class="field qty">
+                    <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
+                    <div class="control">
+                        <input type="number"
+                               name="qty"
+                               id="qty"
+                               value="<?= $block->escapeHtml($block->getProductDefaultQty() * 1) ?>"
+                               title="<?= $block->escapeHtml(__('Qty')) ?>"
+                               class="input-text qty"
+                               data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                        />
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ($block->getData('show_additional_price')): ?>
+            <div class="product-info-price mageworx-product-final-price">
+                <div class="price-box price-final_price">
+                    <label class="label" for="mageworx-product-final-price">
+                            <span>
+                                <?= $block->escapeHtml(
+                                    $this->helper("MageWorx\OptionFeatures\Helper\Data")
+                                         ->getAdditionalProductPriceFieldLabel($_product->getStoreId())
+                                ) ?>
+                            </span>
+                    </label>
+                    <span class="price-container price-final_price tax weee" name="mageworx-product-final-price">
+                            <span class="price-wrapper" data-price-type="finalPrice">
+                                <span class="mageworx-additional-price-field price"></span>
+                            </span>
+                        </span>
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
+        <div class="actions">
+            <button type="submit"
+                    title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
+                    class="action primary tocart"
+                    id="product-addtocart-button" disabled>
+                <span><?= $block->escapeHtml($buttonTitle) ?></span>
+            </button>
+            <?= $block->getChildHtml('', true) ?>
+            <?php if ($block->getData('show_shareable_link')): ?>
+                <div class="mageworx-shareable-link-container">
+                    <div class="mageworx-shareable-link-icon">
+                        <img src="<?= $this->getViewFileUrl('MageWorx_OptionFeatures::image/shareable.png') ?>" />
+                    </div>
+                    <div class="mageworx-shareable-link-text" id="mageworx_shareable_link">
+                        <a>
+                            <span>
+                                <?= $block->escapeHtml($block->getData('shareable_link_text')) ?>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="mageworx-shareable-hint-icon" id="mageworx_shareable_hint_icon">
+                        <img src="<?= $this->getViewFileUrl('MageWorx_OptionFeatures::image/hint.png') ?>" />
+                    </div>
+                </div>
+                <div class="mageworx-shareable-link-success-container" style="display:none">
+                    <div class="mageworx-shareable-link-icon">
+                        <img src="<?= $this->getViewFileUrl('MageWorx_OptionFeatures::image/clipboard.png') ?>" />
+                    </div>
+                    <div class="mageworx-shareable-link-text">
+                        <span>
+                            <?= $block->escapeHtml($block->getData('shareable_link_success_text')) ?>
+                        </span>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>

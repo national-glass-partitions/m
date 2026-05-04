@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- MageWorx Tables -->
+    <table name="mageworx_dynamic_options" resource="default" engine="innodb" comment="Mageworx Dynamic Options Table">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Product ID"/>
+        <column xsi:type="int" name="option_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Option ID"/>
+        <column xsi:type="decimal" name="step" scale="2" precision="10" unsigned="true" nullable="true" comment="Step"/>
+        <column xsi:type="decimal" name="min_value" scale="2" precision="10" unsigned="true" nullable="true" comment="Min Value"/>
+        <column xsi:type="decimal" name="max_value" scale="2" precision="10" unsigned="true" nullable="true" comment="Max Value"/>
+        <column xsi:type="varchar" name="measurement_unit" nullable="false" length="255" default="meters" comment="Measurement Unit"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_DYNAMIC_OPTS_OPT_ID_CAT_PRD_OPT_OPT_ID" table="mageworx_dynamic_options" column="option_id" referenceTable="catalog_product_option" referenceColumn="option_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_DYNAMIC_OPTIONS_PRODUCT_ID_OPTION_ID">
+            <column name="product_id"/>
+            <column name="option_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_DYNAMIC_OPTS_OPT_ID_CAT_PRD_OPT_ID" indexType="btree">
+            <column name="option_id"/>
+        </index>
+    </table>
+</schema>

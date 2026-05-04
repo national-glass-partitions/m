@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce InfiniteScrolling Module default configuration file for setting all default values
+ * @category   Scommerce
+ * @package    Scommerce_InfiniteScrolling
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Core/etc/config.xsd">
+    <default>
+        <scommerce_infinitescrolling>
+            <general>
+                <enabled>0</enabled>
+                <loading_type>0</loading_type>
+                <button_label><![CDATA[Load Next]]></button_label>
+                <button_label_font_color><![CDATA[#ffffff]]></button_label_font_color>
+                <button_label_background_color><![CDATA[#000000]]></button_label_background_color>
+                <button_label_size><![CDATA[14px]]></button_label_size>
+                <display_page_number>1</display_page_number>
+                <grid_class><![CDATA[.products.products-grid]]></grid_class>
+                <list_class><![CDATA[.products.products-list]]></list_class>
+            </general>			
+        </scommerce_infinitescrolling>
+    </default>
+</config>

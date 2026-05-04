@@ -1,0 +1,78 @@
+{
+    "mageworx_optionadvancedpricing_option_type_special_price": {
+        "column": {
+            "option_type_special_price_id": true,
+            "option_type_id": true,
+            "customer_group_id": true,
+            "price": true,
+            "price_type": true,
+            "comment": true,
+            "date_from": true,
+            "date_to": true
+        },
+        "index": {
+            "MAGEWORX_OPTADVANCEDPRICING_OPT_TYPE_SPECIAL_PRICE_OPT_TYPE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_22F5BC49C97D769B8BC23E3B4B42BF1C": true
+        }
+    },
+    "mageworx_optionadvancedpricing_option_type_tier_price": {
+        "column": {
+            "option_type_tier_id": true,
+            "option_type_id": true,
+            "customer_group_id": true,
+            "qty": true,
+            "price": true,
+            "price_type": true,
+            "date_from": true,
+            "date_to": true
+        },
+        "index": {
+            "MAGEWORX_OPTADVANCEDPRICING_OPT_TYPE_TIER_PRICE_OPT_TYPE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_934663E91DD45B9A64075FDF3E9E73E3": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_type_special_price": {
+        "column": {
+            "option_type_special_price_id": true,
+            "option_type_id": true,
+            "customer_group_id": true,
+            "price": true,
+            "price_type": true,
+            "comment": true,
+            "date_from": true,
+            "date_to": true
+        },
+        "index": {
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_TYPE_SPECIAL_PRICE_OPT_TYPE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_B988D9F4DF3153448C14E4AF7EB95EBB": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_type_tier_price": {
+        "column": {
+            "option_type_tier_id": true,
+            "option_type_id": true,
+            "customer_group_id": true,
+            "qty": true,
+            "price": true,
+            "price_type": true,
+            "date_from": true,
+            "date_to": true
+        },
+        "index": {
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_TYPE_TIER_PRICE_OPT_TYPE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_DA19DBEE57764D5642212445FCFB79E5": true
+        }
+    }
+}

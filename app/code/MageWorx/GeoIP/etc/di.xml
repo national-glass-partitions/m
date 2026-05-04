@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MageWorx\GeoIP\Model\Geoip">
+        <arguments>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
+
+    <!-- Set sensitive information -->
+    <type name="Magento\Config\Model\Config\TypePool">
+        <arguments>
+            <argument name="sensitive" xsi:type="array">
+                <item name="mageworx_geoip/geoip_database/license_key" xsi:type="string">1</item>
+            </argument>
+            <argument name="environment" xsi:type="array">
+                <item name="mageworx_geoip/geoip_database/license_key" xsi:type="string">1</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="MageWorx\GeoIP\Api\RegionRelationsRepositoryInterface"
+                type="MageWorx\GeoIP\Model\RegionRelationsRepository"/>
+    <preference for="MageWorx\GeoIP\Api\Data\RegionRelationsInterface"
+                type="MageWorx\GeoIP\Model\RegionRelations"/>
+    <type name="MageWorx\GeoIP\Model\ResourceModel\RegionRelations\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">maxmind_country_regions</argument>
+            <argument name="eventPrefix" xsi:type="string">mageworx_geoip_relations_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">relations_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MageWorx\GeoIP\Model\ResourceModel\RegionRelations</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mageworx_geoip_relations_listing_data_source" xsi:type="string">MageWorx\GeoIP\Model\ResourceModel\RegionRelations\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

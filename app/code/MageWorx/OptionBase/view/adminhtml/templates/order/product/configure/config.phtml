@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/** @var \MageWorx\OptionBase\Block\Product\View\Options $block */
+?>
+<?php if (count($block->getOptions())) : ?>
+    <?php $multiplier = time() . rand(0, 256000); ?>
+    <div class="custom-mw-base-js-<?= $block->escapeHtmlAttr($multiplier); ?>" data-mage-init='
+        {
+            "MageWorx_OptionBase/js/catalog/product/base": {
+                    "optionConfig": <?= $block->escapeHtmlAttr($block->getJsonConfig()) ?>,
+                    "systemConfig": <?= $block->escapeHtmlAttr($block->getSystemJsonConfig('adminhtml')) ?>,
+                    "productConfig": <?= $block->escapeHtmlAttr($block->getProductJsonConfig()) ?>,
+                    "localePriceFormat": <?= $block->escapeHtmlAttr($block->getLocalePriceFormat()) ?>,
+                    "productFinalPriceExclTax": <?= (float)$block->getProductFinalPrice(false) ?>,
+                    "productRegularPriceExclTax": <?= (float)$block->getProductRegularPrice(false) ?>,
+                    "productFinalPriceInclTax": <?= (float)$block->getProductFinalPrice(true) ?>,
+                    "productRegularPriceInclTax": <?= (float)$block->getProductRegularPrice(true) ?>,
+                    "priceDisplayMode": "<?= (int)$block->getPriceDisplayMode() ?>",
+                    "catalogPriceContainsTax": "<?= (int)$block->getCatalogPriceContainsTax() ?>",
+                    "extendedOptionsConfig": <?= $block->escapeHtmlAttr($block->getExtendedOptionsConfig()) ?>,
+                    "configUrl": "<?= $block->escapeUrl($block->getUpdateUrl()) ?>",
+                    "productId": "<?= (int)$block->getProductId() ?>"
+                }
+        }
+'
+    >
+    </div>
+    <script>
+        require([
+            "jquery"
+        ], function ($) {
+            window.productId = "<?= (int)$block->getProductId() ?>";
+            var $element = $('.custom-mw-base-js-<?= $block->escapeJs($multiplier); ?>');
+            $element.trigger('contentUpdated');
+        });
+    </script>
+<?php endif; ?>

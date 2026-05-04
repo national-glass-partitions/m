@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="MageWorx\OptionBase\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="mageworx-option-visibility" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionVisibility\Ui\DataProvider\Product\Form\Modifier\Visibility</item>
+                    <item name="sortOrder" xsi:type="number">72</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

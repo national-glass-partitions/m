@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_mageworx_optiontemplates_group_save">
+        <observer name="mageworx_optiontemplates_product_validate" instance="MageWorx\OptionTemplates\Model\Observer\CheckProductMaxInputVars" />
+    </event>
+    <event name="controller_action_predispatch_catalog_product_save">
+        <observer 
+            name="mageworx_optiontemplates_add_group_options_to_product" 
+            instance="MageWorx\OptionTemplates\Model\Observer\AddGroupOptionToProductObserver" 
+        />
+    </event>   
+     <event name="catalog_product_save_commit_after">
+        <observer 
+            name="mageworx_optiontemplates_save_options_relation" 
+            instance="MageWorx\OptionTemplates\Model\Observer\SaveOptionRelationObserver" 
+        />
+    </event>
+    <event name="mageworx_optiontemplates_group_save_before">
+        <observer name="mageworx_optiontemplates_group_save_before" instance="MageWorx\OptionBase\Observer\EntitySaveBefore" />
+    </event>
+</config>

@@ -1,0 +1,31 @@
+<?php
+/**
+ * Scommerce InfiniteScrolling view template 
+ * 
+ * @category   Scommerce
+ * @package    Scommerce_InfiniteScrolling
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+/**
+ * @var Scommerce\InfiniteScrolling\Block\Infobar $block
+ */
+?>
+
+<?php
+$helper = $this->helper('Scommerce\InfiniteScrolling\Helper\Data');
+?>
+<?php if ($helper->isDisplayPageNumber() && $block->checkPage()): ?>  
+<div id ="infinite-scrolling-bar" class="infinite-scrolling-bar" style="background-color: <?php echo $helper->buttonLabelBackground(); ?>; color: <?php echo $helper->buttonLabelFontColor(); ?>" >   
+        <span class="infinite-scrolling-page"><?php echo __('PAGE') ?> <span id="navbar-current"><?php echo __(' 1') ?></span> <span class="navbar-link"></span></span>
+    </div>
+
+    <script>
+        require(['jquery', 'jquery/ui'], function ($) {
+            $(document).ready(function () {
+                $(".navbar-link").click(function () {
+                    $("html, body").animate({scrollTop: 0}, 500);
+                });
+            });
+        });
+    </script>
+<?php endif; ?>

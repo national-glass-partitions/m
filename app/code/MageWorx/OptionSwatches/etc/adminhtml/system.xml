@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mageworx" sortOrder="2001">
+            <label>MageWorx</label>
+        </tab>
+        <section id="mageworx_apo" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label><![CDATA[Advanced Product Options]]></label>
+            <tab>mageworx</tab>
+            <resource>MageWorx_OptionSwatches::config_optionswatches</resource>
+            <group id="optionswatches" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label><![CDATA[Option Swatches]]></label>
+                <field id="swatch_height" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label><![CDATA[Swatch Height]]></label>
+                </field>
+                <field id="swatch_width" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label><![CDATA[Swatch Width]]></label>
+                </field>
+                <field id="text_swatch_max_width" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label><![CDATA[Text Swatch Max Width]]></label>
+                </field>
+                <field id="show_swatch_title" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <label><![CDATA[Show Title Under Swatch]]></label>
+                </field>
+                <field id="show_swatch_price" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <label><![CDATA[Show Price Under Swatch]]></label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

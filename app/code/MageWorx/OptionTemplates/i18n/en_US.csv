@@ -1,0 +1,63 @@
+Back,Back
+Save,Save
+"Save & New","Save & New"
+"Save & Close","Save & Close"
+ID,ID
+Name,Name
+Type,Type
+"Attribute Set","Attribute Set"
+SKU,SKU
+Price,Price
+Visibility,Visibility
+Status,Status
+"If you need to apply the template to a large number of products, we recommend you to choose the products by small portions at once (example, by 200-500 products) and apply the template.","If you need to apply the template to a large number of products, we recommend you to choose the products by small portions at once (example, by 200-500 products) and apply the template."
+"The option template has been deleted.","The option template has been deleted."
+"Options Template","Options Template"
+"The options template no longer exists.","The options template no longer exists."
+"New Options Template","New Options Template"
+"Option Templates","Option Templates"
+"Please correct the data sent.","Please correct the data sent."
+"Something went wrong while saving the page.","Something went wrong while saving the page."
+"The options template has been saved.","The options template has been saved."
+"The template has been modified.","The template has been modified."
+"Something went wrong while saving the options template.","Something went wrong while saving the options template."
+"Product IDs","Product IDs"
+"Product SKUs","Product SKUs"
+Yes,Yes
+No,No
+"Can't get current auto_increment ID","Can't get current auto_increment ID"
+"The prepared option is not an instance of DataObject or array. %1 is received","The prepared option is not an instance of DataObject or array. %1 is received"
+Edit,Edit
+Delete,Delete
+"Are you sure you want to delete the Option Template ""${ $.$data.title }"" ?","Are you sure you want to delete the Option Template ""${ $.$data.title }"" ?"
+"Customizable Options","Customizable Options"
+%1,%1
+Id,Id
+Title,Title
+"Assign By","Assign By"
+"Keep Options on Unlink","Keep Options on Unlink"
+"MageWorx Option Templates","MageWorx Option Templates"
+Template,Template
+"Group ID","Group ID"
+"Delete Custom Option","Delete Custom Option"
+"Sort Custom Options","Sort Custom Options"
+"Option Title","Option Title"
+"Input Type","Input Type"
+Required,Required
+"Export to:","Export to:"
+"records found","records found"
+selected,selected
+"per page","per page"
+"Previous page","Previous page"
+"of %1","of %1"
+"Next page","Next page"
+"Assigned Products","Assigned Products"
+"Add New Option Template","Add New Option Template"
+"Store View","Store View"
+"Delete items","Delete items"
+"Are you sure you want to delete selected items?","Are you sure you want to delete selected items?"
+Products,Products
+"A total of %1 record(s) have been duplicated","A total of %1 record(s) have been duplicated"
+"An error occurred while duplicating record(s).","An error occurred while duplicating record(s)."
+"An error occurred while exporting template(s).","An error occurred while exporting template(s)."
+Export,Export

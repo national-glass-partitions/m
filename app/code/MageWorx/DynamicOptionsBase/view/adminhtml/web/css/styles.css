@@ -1,0 +1,53 @@
+.mageworx_admin__fieldset {
+    padding-top: 0px!important;
+}
+
+.mageworx_admin__field {
+    margin-top: 0px!important;
+    margin-bottom: 0px!important;
+}
+
+.mageworx_admin__field-control {
+    margin-top: 5px!important;
+}
+
+.mageworx_dynamic_option_title ,
+.mageworx_dynamic_option_measurement_unit,
+.mageworx_dynamic_option_min_value,
+.mageworx_dynamic_option_max_value,
+.mageworx_dynamic_option_step {
+    width: 19%;
+    padding-bottom: 30px!important;
+    margin:0!important;
+}
+
+.mageworx_dynamic_option_measurement_unit .admin__field-label,
+.mageworx_dynamic_option_min_value .admin__field-label,
+.mageworx_dynamic_option_max_value .admin__field-label,
+.mageworx_dynamic_option_step .admin__field-label {
+    width: 100%!important;
+    text-align: left;
+    float: none;
+}
+
+.mageworx_dynamic_option_title .admin__field-label {
+    width: 100%!important;
+    text-align: right;
+    float: none;
+    padding-right: 44px!important;
+}
+
+.mageworx_dynamic_option_measurement_unit .admin__field-control,
+.mageworx_dynamic_option_min_value .admin__field-control,
+.mageworx_dynamic_option_max_value .admin__field-control,
+.mageworx_dynamic_option_step .admin__field-control {
+    width: 80%!important;
+}
+
+.dynamic_option_hint_icon {
+    margin-bottom: -3px;
+}
+
+.dynamic_option_measurement_unit img{
+    margin-bottom: -3px;
+}

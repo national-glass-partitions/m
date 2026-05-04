@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce Image Optimiser Module ACL file for defining permission for menus, configuration and individual actions
+ * @category   Scommerce
+ * @package    Scommerce_ImageOptimiser
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Scommerce_OptimiserBase::config_optimiserbase" title="Scommerce Optimiser Base"
+                                      sortOrder="10">
+                                <resource id="Scommerce_ImageOptimiser::config_imageoptimiser" title="Image Optimiser" sortOrder="20" />
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

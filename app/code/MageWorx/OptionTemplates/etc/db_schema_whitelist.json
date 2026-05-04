@@ -1,0 +1,179 @@
+{
+    "catalog_product_option": {
+        "column": {
+            "group_option_id": true
+        }
+    },
+    "catalog_product_option_type_value": {
+        "column": {
+            "group_option_value_id": true
+        }
+    },
+    "mageworx_optiontemplates_group": {
+        "column": {
+            "dependency_rules": true,
+            "hidden_dependents": true,
+            "absolute_price": true,
+            "absolute_weight": true,
+            "absolute_cost": true,
+            "hide_additional_product_price": true,
+            "shareable_link": true,
+            "group_id": true,
+            "title": true,
+            "updated_at": true,
+            "is_active": true,
+            "sku_policy": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONTEMPLATES_GROUP_TITLE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "mageworx_optiontemplates_relation": {
+        "column": {
+            "id": true,
+            "group_id": true,
+            "product_id": true,
+            "option_id": true,
+            "is_changed": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_OPTIONTEMPLATES_RELATION_GROUP_ID_PRODUCT_ID": true,
+            "MAGEWORX_OPTTEMPLATES_RELATION_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true,
+            "FK_8020B13F0E7B338F40D654D6635A2BEB": true
+        }
+    },
+    "mageworx_optiontemplates_group_option": {
+        "column": {
+            "option_title_id": true,
+            "dependency_type": true,
+            "qty_input": true,
+            "one_time": true,
+            "div_class": true,
+            "mageworx_option_gallery": true,
+            "mageworx_option_image_mode": true,
+            "selection_limit_from": true,
+            "selection_limit_to": true,
+            "is_hidden": true,
+            "hide_product_page_value_price": true,
+            "group_option_id": true,
+            "option_id": true,
+            "group_id": true,
+            "type": true,
+            "is_require": true,
+            "sku": true,
+            "max_characters": true,
+            "file_extension": true,
+            "image_size_x": true,
+            "image_size_y": true,
+            "sort_order": true,
+            "sku_policy": true,
+            "is_swatch": true,
+            "is_all_groups": true,
+            "is_all_websites": true,
+            "disabled": true,
+            "disabled_by_values": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_GROUP_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_DC60D8B1D794DC19AB4DC78EAA931FC7": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_price": {
+        "column": {
+            "option_price_id": true,
+            "option_id": true,
+            "store_id": true,
+            "price": true,
+            "price_type": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_PRICE_OPTION_ID_STORE_ID": true,
+            "FK_00D4622D353DCA693DCF7D22F432250E": true,
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_PRICE_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_title": {
+        "column": {
+            "option_title_id": true,
+            "option_id": true,
+            "store_id": true,
+            "title": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_TITLE_OPTION_ID_STORE_ID": true,
+            "FK_004C7FAA0F575AFAFA2F57A46D8704EF": true,
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_TTL_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_type_value": {
+        "column": {
+            "option_type_title_id": true,
+            "dependency_type": true,
+            "cost": true,
+            "weight": true,
+            "weight_type": true,
+            "qty_multiplier": true,
+            "load_linked_product": true,
+            "group_option_value_id": true,
+            "option_type_id": true,
+            "option_id": true,
+            "sku": true,
+            "sort_order": true,
+            "manage_stock": true,
+            "qty": true,
+            "disabled": true,
+            "sku_is_valid": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_TYPE_VALUE_OPTION_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_2824EF45181E5380DD45A8FBE726180A": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_type_price": {
+        "column": {
+            "option_type_price_id": true,
+            "option_type_id": true,
+            "store_id": true,
+            "price": true,
+            "price_type": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_TYPE_PRICE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_TYPE_PRICE_OPT_TYPE_ID_STORE_ID": true,
+            "FK_398A135CCDF9AF3B2387D1790E1104BD": true,
+            "FK_7F1E68C9B19BB522C109EA8934F907F7": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_type_title": {
+        "column": {
+            "option_type_title_id": true,
+            "option_type_id": true,
+            "store_id": true,
+            "title": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_TYPE_TITLE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_TYPE_TTL_OPT_TYPE_ID_STORE_ID": true,
+            "FK_4C345341417258E6E959982F889747E3": true,
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_TYPE_TTL_STORE_ID_STORE_STORE_ID": true
+        }
+    }
+}

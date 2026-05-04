@@ -1,0 +1,28 @@
+"Load Automatically","Load Automatically"
+"Load With Button","Load With Button"
+PAGE,PAGE
+" 1"," 1"
+Scommerce,Scommerce
+"Scommerce Configuration","Scommerce Configuration"
+"Infinite Scrolling","Infinite Scrolling"
+General,General
+Enabled,Enabled
+"This setting will be used to enable or disable module","This setting will be used to enable or disable module"
+"Loading Type","Loading Type"
+"<b>Load Automatically-</b> Auto loading of the  next pages.
+<br><b>Load with Button-</b> The next pages loaded automatically but they will be displayed only after you click the button.","<b>Load Automatically-</b> Auto loading of the  next pages.
+<br><b>Load with Button-</b> The next pages loaded automatically but they will be displayed only after you click the button."
+"Button Label","Button Label"
+"This setting will be used for label text of the load next button on the frontend","This setting will be used for label text of the load next button on the frontend"
+"Button Label Font Color","Button Label Font Color"
+"This setting will be used for the font colour of the load next button on the frontend","This setting will be used for the font colour of the load next button on the frontend"
+"Button Label Background Color","Button Label Background Color"
+"This setting will be used for the background colour of the load next button on the frontend","This setting will be used for the background colour of the load next button on the frontend"
+"Button Label Size","Button Label Size"
+"This setting will be used for the font size of the load next button on the frontend","This setting will be used for the font size of the load next button on the frontend"
+"Display Page Numbers","Display Page Numbers"
+"This setting will be used to enable or disable page information on the frontend","This setting will be used to enable or disable page information on the frontend"
+"Grid Dom Class  (for custom themes)","Grid Dom Class  (for custom themes)"
+"This setting will be used to determine the class for grid view of product listing pages","This setting will be used to determine the class for grid view of product listing pages"
+"List Dom Class  (for custom themes)","List Dom Class  (for custom themes)"
+"This setting will be used to determine the class for list view of product listing pages","This setting will be used to determine the class for list view of product listing pages"

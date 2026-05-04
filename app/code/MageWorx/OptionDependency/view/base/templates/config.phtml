@@ -1,0 +1,29 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+?>
+<?php
+/** @var \MageWorx\OptionDependency\Block\Config $block */
+$jsonData = $block->getJsonData();
+?>
+<script>
+    require([
+        'jquery',
+        'optionDependency',
+        'uiRegistry'
+    ], function ($, optionDependency, registry) {
+        var optionBase = registry.get('mageworxOptionBase');
+        if (optionBase) {
+            optionBase.addUpdater(40, optionDependency(<?= /* @noEscape */ $jsonData;?>));
+        } else {
+            var updaters = registry.get('mageworxOptionUpdaters');
+            if (!updaters) {
+                updaters = {};
+            }
+            updaters[40] = optionDependency(<?= /* @noEscape */ $jsonData;?>);
+            registry.set('mageworxOptionUpdaters', updaters);
+        }
+    });
+</script>

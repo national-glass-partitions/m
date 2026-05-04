@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mageworx_apo>
+            <option_advanced_pricing>
+                <enable_special_price>0</enable_special_price>
+                <option_special_price_display_template>+{special_price} (Regular Price: {price}. {special_price_comment})</option_special_price_display_template>
+                <enable_tier_price>0</enable_tier_price>
+                <display_tier_price_table>0</display_tier_price_table>
+            </option_advanced_pricing>
+        </mageworx_apo>
+    </default>
+</config>

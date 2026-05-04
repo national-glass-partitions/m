@@ -1,0 +1,17 @@
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+
+<button type="button"
+        css="buttonClasses"
+        click="action"
+        disable="disabled"
+        attr="'data-index': index, 'data-name': name">
+    <span text="title"></span>
+    <span>
+        <render args="tooltipTpl" if="$data.tooltip"></render>
+    </span>
+</button>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Plugins -->
+    <type name="Magento\Wishlist\Model\Item">
+        <plugin name="mageworx-optionfeatures-modify-widhlist-item-price"
+                type="MageWorx\OptionFeatures\Plugin\ModifyWishlistItemPrice"
+                sortOrder="10"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\Catalog\Block\Product\View">
+        <plugin name="mageworx-optionfeatures-add-additional-product-price-field"
+                type="MageWorx\OptionFeatures\Plugin\AddAdditionalProductPriceField"
+                sortOrder="10"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\Catalog\Controller\Product\View">
+        <plugin name="mageworx-optionfeatures-shareable-link-collector"
+                type="MageWorx\OptionFeatures\Plugin\ShareableLinkCollector"
+                sortOrder="10"
+                disabled="false"
+        />
+    </type>
+</config>

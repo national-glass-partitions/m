@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- Magento Tables -->
+    <table name="catalog_product_option" resource="default">
+        <column xsi:type="varchar" name="option_title_id" length="255" nullable="false" comment="Option Title Identifier (added by MageWorx Option Dependency)"/>
+        <column xsi:type="smallint" name="dependency_type" padding="6" unsigned="false" nullable="false" default="0" comment="Option Dependency Type (added by MageWorx Option Dependency)"/>
+    </table>
+    <table name="catalog_product_option_type_value" resource="default">
+        <column xsi:type="varchar" name="option_type_title_id" length="255" nullable="false" comment="Option Type Title Identifier (added by MageWorx Option Dependency)"/>
+        <column xsi:type="smallint" name="dependency_type" padding="6" unsigned="false" nullable="false" default="0" comment="Option Type Dependency Type (added by MageWorx Option Dependency)"/>
+    </table>
+    <!-- MageWorx Tables -->
+    <table name="mageworx_option_dependency" resource="default">
+        <column xsi:type="int" name="dependency_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Dependency Id"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Product Id"/>
+        <column xsi:type="int" name="group_id" padding="10" unsigned="true" nullable="true" comment="Group Id"/>
+        <column xsi:type="int" name="dp_child_option_id" padding="11" unsigned="false" nullable="false" identity="false" default="0"/>
+        <column xsi:type="int" name="dp_child_option_type_id" padding="11" unsigned="false" nullable="false" identity="false" default="0"/>
+        <column xsi:type="int" name="dp_parent_option_id" padding="11" unsigned="false" nullable="false" identity="false" default="0"/>
+        <column xsi:type="int" name="dp_parent_option_type_id" padding="11" unsigned="false" nullable="false" identity="false" default="0"/>
+        <column xsi:type="smallint" name="is_processed_dp_columns" padding="5" unsigned="true" nullable="false" default="0" comment="Is Processed New Columns"/>
+        <column xsi:type="varchar" name="child_option_id" length="255" nullable="false" default="0" disabled="true"/>
+        <column xsi:type="varchar" name="child_mageworx_option_id" length="255" nullable="false" comment="Child MageWorx Option Id" disabled="true"/>
+        <column xsi:type="varchar" name="child_option_type_id" length="255" nullable="false" default="0" disabled="true"/>
+        <column xsi:type="varchar" name="child_mageworx_option_type_id" length="255" nullable="false" comment="Child MageWorx Option Type Id" disabled="true"/>
+        <column xsi:type="varchar" name="parent_option_id" length="255" nullable="false" default="0" disabled="true"/>
+        <column xsi:type="varchar" name="parent_mageworx_option_id" length="255" nullable="false" comment="Parent MageWorx Option Id" disabled="true"/>
+        <column xsi:type="varchar" name="parent_option_type_id" length="255" nullable="false" default="0" disabled="true"/>
+        <column xsi:type="varchar" name="parent_mageworx_option_type_id" length="255" nullable="false" comment="Parent MageWorx Option Type Id" disabled="true"/>
+        <column xsi:type="smallint" name="is_processed" padding="5" unsigned="true" nullable="false" default="0" comment="Is Processed" disabled="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="dependency_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTION_DEPENDENCY_DP_CHILD_OPTION_ID" indexType="btree">
+            <column name="dp_child_option_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTION_DEPENDENCY_DP_CHILD_OPTION_TYPE_ID" indexType="btree">
+            <column name="dp_child_option_type_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTION_DEPENDENCY_DP_PARENT_OPTION_ID" indexType="btree">
+            <column name="dp_parent_option_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTION_DEPENDENCY_DP_PARENT_OPTION_TYPE_ID" indexType="btree">
+            <column name="dp_parent_option_type_id"/>
+        </index>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_dependency" resource="default">
+        <column xsi:type="int" name="dependency_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Dependency Id"/>
+        <column xsi:type="int" name="group_id" padding="10" unsigned="true" nullable="true" comment="Group Id"/>
+        <column xsi:type="int" name="dp_child_option_id" padding="11" unsigned="false" nullable="false" identity="false" default="0"/>
+        <column xsi:type="int" name="dp_child_option_type_id" padding="11" unsigned="false" nullable="false" identity="false" default="0"/>
+        <column xsi:type="int" name="dp_parent_option_id" padding="11" unsigned="false" nullable="false" identity="false" default="0"/>
+        <column xsi:type="int" name="dp_parent_option_type_id" padding="11" unsigned="false" nullable="false" identity="false" default="0"/>
+        <column xsi:type="smallint" name="is_processed_dp_columns" padding="5" unsigned="true" nullable="false" default="0" comment="Is Processed New Columns"/>
+        <column xsi:type="varchar" name="child_option_id" length="255" nullable="false" default="0" disabled="true"/>
+        <column xsi:type="varchar" name="child_mageworx_option_id" length="255" nullable="false" comment="Child MageWorx Option Id" disabled="true"/>
+        <column xsi:type="varchar" name="child_option_type_id" length="255" nullable="false" default="0" disabled="true"/>
+        <column xsi:type="varchar" name="child_mageworx_option_type_id" length="255" nullable="false" comment="Child MageWorx Option Type Id" disabled="true"/>
+        <column xsi:type="varchar" name="parent_option_id" length="255" nullable="false" default="0" disabled="true"/>
+        <column xsi:type="varchar" name="parent_mageworx_option_id" length="255" nullable="false" comment="Parent MageWorx Option Id" disabled="true"/>
+        <column xsi:type="varchar" name="parent_option_type_id" length="255" nullable="false" default="0" disabled="true"/>
+        <column xsi:type="varchar" name="parent_mageworx_option_type_id" length="255" nullable="false" comment="Parent MageWorx Option Type Id" disabled="true"/>
+        <column xsi:type="smallint" name="is_processed" padding="5" unsigned="true" nullable="false" default="0" comment="Is Processed" disabled="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="dependency_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_DEPENDENCY_DP_CHILD_OPTION_ID" indexType="btree">
+            <column name="dp_child_option_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTTEMPLATES_GROUP_OPT_DEPENDENCY_DP_CHILD_OPT_TYPE_ID" indexType="btree">
+            <column name="dp_child_option_type_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTTEMPLATES_GROUP_OPT_DEPENDENCY_DP_PARENT_OPT_ID" indexType="btree">
+            <column name="dp_parent_option_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTTEMPLATES_GROUP_OPT_DEPENDENCY_DP_PARENT_OPT_TYPE_ID" indexType="btree">
+            <column name="dp_parent_option_type_id"/>
+        </index>
+    </table>
+</schema>

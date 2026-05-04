@@ -1,0 +1,52 @@
+.option-description-text {
+    font-size: 0.75em;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.qtip {
+    font-size: 12.5px;
+    line-height: 14px;
+}
+
+.mageworx-hidden {
+    display: none !important;
+}
+
+.mageworx-product-final-price{
+    min-height: 78px;
+    font-weight: 600;
+}
+
+.mageworx-shareable-link-container {
+    width: fit-content;
+    padding: 10px;
+}
+
+.mageworx-shareable-link-icon {
+    display: inline-block;
+}
+
+.mageworx-shareable-hint-icon {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.mageworx-shareable-link-text {
+    display: inline-block;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.mageworx-shareable-link-text a:hover {
+    cursor: pointer;
+}
+
+.mageworx-shareable-link-success-container {
+    width: fit-content;
+    padding: 10px;
+    background: #F7F7F7;
+    border-radius: 3px;
+}

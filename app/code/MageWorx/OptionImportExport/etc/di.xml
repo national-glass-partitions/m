@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Validation -->
+    <type name="Magento\CatalogImportExport\Model\Import\Product\Validator">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="mageworx_option_integrity" xsi:type="object">MageWorx\OptionImportExport\Model\Product\Validator\Option</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Sample -->
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="catalog_product_with_apo" xsi:type="string">MageWorx_OptionImportExport</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

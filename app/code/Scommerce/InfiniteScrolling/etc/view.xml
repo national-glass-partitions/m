@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce InfiniteScrolling viex.xml
+ 
+ * @category   Scommerce
+ * @package    Scommerce_InfiniteScrolling
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/view.xsd">
+    <exclude>
+        <item type="file">Scommerce_InfiniteScrolling::js/jquery-ias.min.js</item>
+    </exclude>
+</view>

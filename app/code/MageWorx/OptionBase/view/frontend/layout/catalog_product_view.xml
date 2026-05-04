@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.options.wrapper">
+            <container name="mageworx.base.option.container" after="product.info.options">
+                <block class="MageWorx\OptionBase\Block\Product\View\Options" name="mageworx.option.base" template="MageWorx_OptionBase::catalog/product/options.phtml"/>
+            </container>
+        </referenceBlock>
+    </body>
+</page>

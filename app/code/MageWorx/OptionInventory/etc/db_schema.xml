@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- Magento Tables -->
+    <table name="catalog_product_option_type_value" resource="default" engine="innodb" comment="Magento Catalog Product Option Type Value Table">
+        <column xsi:type="smallint" name="manage_stock" padding="5" unsigned="true" nullable="false" default="0" comment="Manage Stock (added by MageWorx OptionInventory)"/>
+        <column xsi:type="decimal" name="qty" scale="2" precision="10" unsigned="false" nullable="true" comment="Option Value Qty (added by MageWorx OptionInventory)"/>
+    </table>
+</schema>

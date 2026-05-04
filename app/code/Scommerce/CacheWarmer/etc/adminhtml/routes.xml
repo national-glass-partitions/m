@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/** CacheWarmer adminhtml routes xml
+ * @category   Scommerce
+ * @package    Scommerce_CacheWarmer
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="cachewarmer" frontName="cachewarmer">
+            <module name="Scommerce_CacheWarmer" />
+        </route>
+    </router>
+</config>

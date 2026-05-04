@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_load_after">
+        <observer name="MageWorxOptionAddProductBasedAttributes" instance="MageWorx\OptionBase\Observer\AddProductAttributes" />
+    </event>
+    <event name="mageworx_attributes_save_trigger">
+        <observer name="mageworx_optionbase_apply_attributes_on_product" instance="MageWorx\OptionBase\Observer\ApplyAttributesOnProduct" />
+    </event>
+    <event name="mw_optiontemplates_product_options_save_after">
+        <observer name="mageworx_optionbase_clear_option_value_cache_by_group" instance="MageWorx\OptionBase\Observer\ClearOptionValueCacheByGroupObserver" />
+    </event>
+    <event name="catalog_product_import_bunch_save_after">
+        <observer name="mageworx_optionbase_clear_option_value_cache_by_import" instance="MageWorx\OptionBase\Observer\ClearOptionValueCacheByImportObserver" />
+    </event>
+</config>

@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce Cache Warmer Module configuration file for defining all configurations required for this module
+ * @category   Scommerce
+ * @package    Scommerce_CacheWarmer
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="scommerce" translate="label comment" sortOrder="100">
+            <label>Scommerce Configuration</label>
+        </tab>
+        <section id="cachewarmer"
+                 translate="label comment"
+                 type="text"
+                 sortOrder="10"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <label>Cache Warmer</label>
+            <tab>scommerce</tab>
+            <!-- resource tag name which we have to defined in the acl.xml -->
+            <resource>Scommerce_CacheWarmer::config_cachewarmer</resource>
+            <group id="general"
+                   translate="label comment"
+                   type="text"
+                   sortOrder="10"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>General Settings</label>
+                <field id="enabled"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting will enable or disable the module.]]></comment>
+                </field>
+                <field id="regenerate_cache_after_page_update"
+                        translate="label comment"
+                        type="select"
+                        sortOrder="30"
+                        showInDefault="1"
+                        showInWebsite="1"
+                        showInStore="1" canRestore="1">
+                    <label>Regenerate cache after page update</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting will automatically regenerate cache on page update.]]></comment>
+                </field>
+                <field id="select_pages"
+                       translate="label comment"
+                       type="multiselect"
+                       sortOrder="40"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Select Pages</label>
+                    <source_model>Scommerce\CacheWarmer\Model\Config\Source\IncludePages</source_model>
+                    <comment><![CDATA[This setting will regenerate cache for selecteded page(s) on page update.]]></comment>
+                    <depends>
+                        <field id="cachewarmer/general/regenerate_cache_after_page_update">1</field>
+                    </depends>  
+                </field>   
+                <field id="can_regenerate_cache_manually"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="60"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Can Regenerate Cache Manually</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select "Yes" to regenerate the cache manually.]]></comment>
+                </field>
+                <field id="generate_log"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="80"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Generate Log</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting will be used to generate log file.]]></comment>
+                </field>
+            </group>
+            <group id="cronsetting"
+                   translate="label comment"
+                   type="text"
+                   sortOrder="20"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Cron Settings</label>
+                   <field id="cache_cron_schedule"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Cache Cron Schedule </label>
+                    <comment>
+                        <![CDATA[
+                    This setting will allow to add  cron expression to generate the cache for all non cached pages.
+<pre>
+* * * * *
+| | | | |
+| | | | +---- Day of the Week   (range: 1-7)
+| | | +------ Month of the Year (range: 1-12)
+| | +-------- Day of the Month  (range: 1-31)
+| +---------- Hour              (range: 0-23)
++------------ Minute            (range: 0-59)
+Example: 0 0 * * * Daily at midnight
+</pre>
+ 
+                    ]]>
+                    </comment>
+                </field>
+                <field id="concurrent_regeneration_request"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="30"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Number of Concurrent Regeneration request</label>
+                    <validate>validate-number</validate>
+                    <comment><![CDATA[In a single request it will process defined number of chunks(1000) to regenerate the cache.]]></comment>
+                </field>
+                
+            </group>
+            
+            
+        </section>
+    </system>
+</config>

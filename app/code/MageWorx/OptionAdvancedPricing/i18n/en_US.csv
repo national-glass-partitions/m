@@ -1,0 +1,28 @@
+"Special price's field '%1' not found","Special price's field '%1' not found"
+"Excl. Tax","Excl. Tax"
+"Buy %1 for %2 each and","Buy %1 for %2 each and"
+save,save
+"Manage Option Advanced Pricing","Manage Option Advanced Pricing"
+"Save & Close","Save & Close"
+"Option Advanced Pricing","Option Advanced Pricing"
+"Special Price","Special Price"
+"Customer Group Price","Customer Group Price"
+"Customer Group","Customer Group"
+Price,Price
+"Price Type","Price Type"
+From,From
+To,To
+Comment,Comment
+Qty,Qty
+"ALL GROUPS","ALL GROUPS"
+Fixed,Fixed
+"Percentage Discount","Percentage Discount"
+"Advanced Pricing","Advanced Pricing"
+"Advanced Product Options","Advanced Product Options"
+"Enable Special Price","Enable Special Price"
+"Option Special Price Display Template","Option Special Price Display Template"
+"Possible variables: {special_price}, {special_price_excl_tax}, {price}, {price_excl_tax}, {special_price_comment}<br /><br />
+                        For ""Including and Excluding Tax"" price display mode (Sales -> Tax -> Price Display Settings -> Display Product Prices In Catalog -> ""Including and Excluding Tax""), we recommend to use template ""+{special_price} (Excl. tax: {special_price_excl_tax}) (Regular Price: {price}. {special_price_comment})"".","Possible variables: {special_price}, {special_price_excl_tax}, {price}, {price_excl_tax}, {special_price_comment}<br /><br />
+                        For ""Including and Excluding Tax"" price display mode (Sales -> Tax -> Price Display Settings -> Display Product Prices In Catalog -> ""Including and Excluding Tax""), we recommend to use template ""+{special_price} (Excl. tax: {special_price_excl_tax}) (Regular Price: {price}. {special_price_comment})""."
+"Enable Tier Price","Enable Tier Price"
+"Display Tier Price Table","Display Tier Price Table"

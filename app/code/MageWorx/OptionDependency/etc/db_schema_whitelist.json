@@ -1,0 +1,55 @@
+{
+    "catalog_product_option": {
+        "column": {
+            "option_title_id": true,
+            "dependency_type": true
+        }
+    },
+    "catalog_product_option_type_value": {
+        "column": {
+            "option_type_title_id": true,
+            "dependency_type": true
+        }
+    },
+    "mageworx_option_dependency": {
+        "column": {
+            "dependency_id": true,
+            "product_id": true,
+            "group_id": true,
+            "dp_child_option_id": true,
+            "dp_child_option_type_id": true,
+            "dp_parent_option_id": true,
+            "dp_parent_option_type_id": true,
+            "is_processed_dp_columns": true
+        },
+        "index": {
+            "MAGEWORX_OPTION_DEPENDENCY_DP_CHILD_OPTION_ID": true,
+            "MAGEWORX_OPTION_DEPENDENCY_DP_CHILD_OPTION_TYPE_ID": true,
+            "MAGEWORX_OPTION_DEPENDENCY_DP_PARENT_OPTION_ID": true,
+            "MAGEWORX_OPTION_DEPENDENCY_DP_PARENT_OPTION_TYPE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_dependency": {
+        "column": {
+            "dependency_id": true,
+            "group_id": true,
+            "dp_child_option_id": true,
+            "dp_child_option_type_id": true,
+            "dp_parent_option_id": true,
+            "dp_parent_option_type_id": true,
+            "is_processed_dp_columns": true
+        },
+        "index": {
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_DEPENDENCY_DP_CHILD_OPT_ID": true,
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_DEPENDENCY_DP_CHILD_OPT_TYPE_ID": true,
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_DEPENDENCY_DP_PARENT_OPT_ID": true,
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_DEPENDENCY_DP_PARENT_OPT_TYPE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

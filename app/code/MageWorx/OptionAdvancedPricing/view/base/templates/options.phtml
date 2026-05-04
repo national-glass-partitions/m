@@ -1,0 +1,36 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+/** @var \MageWorx\OptionAdvancedPricing\Block\Config $block */
+$jsonData = $block->getJsonData();
+?>
+<script>
+    require([
+        'jquery',
+        'optionAdvancedPricing',
+        'uiRegistry'
+    ], function ($, optionAdvancedPricing, registry) {
+        var optionBase = registry.get('mageworxOptionBase');
+        if (optionBase) {
+            optionBase.addUpdater(
+                35,
+                optionAdvancedPricing(<?= /* @noEscape */ $jsonData;?>)
+            );
+        } else {
+            var updaters = registry.get('mageworxOptionUpdaters');
+            if (!updaters) {
+                updaters = {};
+            }
+            updaters[35] = optionAdvancedPricing(<?= /* @noEscape */ $jsonData;?>);
+            registry.set('mageworxOptionUpdaters', updaters);
+        }
+    });
+</script>
+<style>
+    .admin__field .note {
+        float: left;
+        margin-left: calc( (100%) * 0.25 + 30px );
+    }
+</style>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mageworx" sortOrder="2001">
+            <label>MageWorx</label>
+        </tab>
+        <section id="mageworx_apo" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label><![CDATA[Advanced Product Options]]></label>
+            <tab>mageworx</tab>
+            <resource>MageWorx_OptionVisibility::config_optionvisibility</resource>
+            <group id="optionvisibility" translate="label" type="text" sortOrder="30" showInDefault="1"
+                   showInWebsite="0" showInStore="0">
+                <label><![CDATA[Option Visibility]]></label>
+                <field id="use_is_disabled" translate="label" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label><![CDATA[Enable 'Disable' Option Value]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_visibility_customer_group" translate="label comment" type="select" sortOrder="20"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label><![CDATA[Enable Visibility Customer Group]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_visibility_store_view" translate="label comment" type="select" sortOrder="30"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label><![CDATA[Enable Visibility Store View]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

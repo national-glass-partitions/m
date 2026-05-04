@@ -1,0 +1,8 @@
+{
+    "name": "mageworx/module-geolockmeta",
+    "version": "1.1.4",
+    "type": "metapackage",
+    "require": {
+        "mageworx/module-geolock": "1.1.4"
+    }
+}

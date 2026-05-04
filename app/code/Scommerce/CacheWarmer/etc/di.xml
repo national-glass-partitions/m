@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce Cache Warmer Module configuration file for defining all configurations required for this module
+ * @category   Scommerce
+ * @package    Scommerce_CacheWarmer
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    
+    <virtualType name="Scommerce\CacheWarmer\Model\ResourceModel\Cachewarmer\Cachewarmer\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">cachewarmer</argument>
+            <argument name="resourceModel" xsi:type="string">Scommerce\CacheWarmer\Model\ResourceModel\Cachewarmer</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="cachewarmer_grid_list_data_source" xsi:type="string">Scommerce\CacheWarmer\Model\ResourceModel\Cachewarmer\Cachewarmer\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <!-- Command line for checking cms page cache -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="allcachewarmer" xsi:type="object">Scommerce\CacheWarmer\Console\Command\AllCacheWarmer</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <!-- Command line for checking cms page cache -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="cmspagecachewarmer" xsi:type="object">Scommerce\CacheWarmer\Console\Command\CmsPageCacheWarmer</item>
+            </argument>
+        </arguments>
+    </type>
+
+     <!-- Command line for checking category page cache -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="categorypagecachewarmer" xsi:type="object">Scommerce\CacheWarmer\Console\Command\CategoryPageCacheWarmer</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Command line for product page cache -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="productpagecachewarmer" xsi:type="object">Scommerce\CacheWarmer\Console\Command\ProductPageCacheWarmer</item>
+            </argument>
+        </arguments>
+    </type>
+
+  
+    
+     <!-- Command line for delete page cache -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="deletecache" xsi:type="object">Scommerce\CacheWarmer\Console\Command\DeleteCache</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Log generation process -->
+    <type name="Scommerce\CacheWarmer\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Scommerce\CacheWarmer\Logger\Logger">
+        <arguments>
+            <argument name="name"      xsi:type="string">Scommerce/CacheWarmer</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="debug"     xsi:type="object">Scommerce\CacheWarmer\Logger\Handler</item>
+            </argument>
+        </arguments>   
+    </type>
+    
+    <!-- Overwrite product save -->
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Save">
+        <plugin name="scommerce_CacheWarmer_catalog_product_save"
+                type="Scommerce\CacheWarmer\Plugin\Catalog\Model\ProductPageCache"
+                sortOrder="1" disabled="false" />
+    </type>
+
+    <!-- Overwrite category save -->
+    <type name="Magento\Catalog\Controller\Adminhtml\Category\Save">
+        <plugin name="scommerce_CacheWarmer_catalog_category_save"
+                type="Scommerce\CacheWarmer\Plugin\Catalog\Model\CategoryPageCache"
+                sortOrder="2" disabled="false" />
+    </type>
+    
+    <!-- Overwrite cms page save -->
+     <type name="Magento\Cms\Controller\Adminhtml\Page\Save">
+        <plugin name="scommerce_CacheWarmer_cms_page_save"
+                type="Scommerce\CacheWarmer\Plugin\Cms\Page\CmsPageCache"
+                sortOrder="2" disabled="false" />
+    </type>
+</config>

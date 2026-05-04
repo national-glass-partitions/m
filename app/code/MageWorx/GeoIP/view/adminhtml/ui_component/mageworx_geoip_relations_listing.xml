@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mageworx_geoip_relations_listing.mageworx_geoip_relations_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>mageworx_geoip_relations_columns</spinner>
+        <deps>
+            <dep>mageworx_geoip_relations_listing.mageworx_geoip_relations_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="mageworx_geoip_relations_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">relation_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>MageWorx_GeoIP::geoip_relations_grid</aclResource>
+        <dataProvider class="MageWorx\GeoIP\Ui\Component\DataProvider" name="mageworx_geoip_relations_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>relation_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="mageworx_geoip_relations_columns">
+        <column name="country_id" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="MageWorx\GeoIP\Model\Source\Country"/>
+                <dataType>select</dataType>
+                <filter>select</filter>
+                <label translate="true">Country</label>
+            </settings>
+        </column>
+        <column name="region_id">
+            <settings>
+                <label translate="true">Region</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

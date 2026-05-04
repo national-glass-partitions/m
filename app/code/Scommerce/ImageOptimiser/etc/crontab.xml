@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce Mage Image Optimiser for Cron Schedule
+ * @category   Scommerce
+ * @package    Scommerce_ImageOptimiser
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="index">
+        <job name="scommerce_image_optimiser" instance="Scommerce\ImageOptimiser\Cron\DownloadMedia" method="execute">
+            <config_path>imageoptimiser/general/image_optimiser_schedule</config_path>
+        </job>
+    </group>
+</config>

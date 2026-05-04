@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mageworx_apo>
+            <optionswatches>
+                <swatch_height>35</swatch_height>
+                <swatch_width>35</swatch_width>
+                <text_swatch_max_width>90</text_swatch_max_width>
+                <show_swatch_title>0</show_swatch_title>
+                <show_swatch_price>0</show_swatch_price>
+            </optionswatches>
+        </mageworx_apo>
+    </default>
+</config>

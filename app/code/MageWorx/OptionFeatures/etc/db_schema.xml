@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- Magento Tables -->
+    <table name="catalog_product_option" resource="default">
+        <column xsi:type="boolean" name="qty_input" nullable="false" default="0" comment="Qty Input Flag (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="boolean" name="one_time" nullable="false" default="0" comment="One Time Option Flag (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="varchar" name="div_class" length="255" nullable="false" comment="Option Div Class (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="smallint" name="mageworx_option_gallery" padding="6" nullable="false" default="0" comment="MageWorx option gallery display type (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="smallint" name="mageworx_option_image_mode" padding="6" nullable="false" default="0" comment="Option image mode (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="smallint" name="selection_limit_from" padding="6" nullable="false" default="0" comment="Option Selection Limit From (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="smallint" name="selection_limit_to" padding="6" nullable="false" default="0" comment="Option Selection Limit To (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="boolean" name="is_hidden" nullable="false" default="0" comment="Is Hidden Flag (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="int" name="hide_product_page_value_price" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Hide Value Price On Product Page (added by MageWorx_OptionFeatures)"/>
+    </table>
+    <table name="catalog_product_option_type_value" resource="default">
+        <column xsi:type="boolean" name="is_default" nullable="false" default="0" comment="Is Default Value Flag (added by MageWorx_OptionFeatures)" disabled="true"/>
+        <column xsi:type="decimal" name="cost" scale="2" precision="10" unsigned="false" nullable="true" comment="Cost (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="decimal" name="weight" scale="6" precision="20" unsigned="false" nullable="true" comment="Weight (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="varchar" name="weight_type" length="7" nullable="false" default="fixed" comment="Type weight (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="int" name="qty_multiplier" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Qty Multiplier (added by MageWorx_OptionFeatures)" onCreate="migrateDataFrom(qty_multiplier)"/>
+        <column xsi:type="int" name="load_linked_product" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Load Linked Product (added by MageWorx_OptionFeatures)"/>
+    </table>
+    <!-- MageWorx Tables -->
+    <table name="mageworx_optionfeatures_option_type_description" resource="default">
+        <column xsi:type="int" name="option_type_description_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Type Description ID"/>
+        <column xsi:type="int" name="option_type_id" padding="10" unsigned="true" nullable="true" comment="Option Type ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" default="0" comment="Store ID"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_description_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTFEATURES_OPT_TYPE_DESCRIPTION_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTFEATURES_OPT_TYPE_DESCRIPTION_OPT_TYPE_ID" indexType="btree">
+            <column name="option_type_id"/>
+        </index>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_OPTFEATURES_OPT_TYPE_DESCRIPTION_OPT_TYPE_ID_STORE_ID">
+            <column name="option_type_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MW_OPTFEATURES_OPT_TYPE_DESCR_STORE_ID_STORE_STORE_ID" table="mageworx_optionfeatures_option_type_description" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MW_OPTFEATURES_OPT_TYPE_DESCR_OPT_TYPE_ID_CAT_PROD_OPT_TYPE_VAL_OPT_TYPE_ID" table="mageworx_optionfeatures_option_type_description" column="option_type_id" referenceTable="catalog_product_option_type_value" referenceColumn="option_type_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optionfeatures_option_type_image" resource="default">
+        <column xsi:type="int" name="option_type_id" padding="10" unsigned="true" nullable="true" comment="Option Type ID"/>
+        <column xsi:type="int" name="option_type_image_id" padding="10" identity="true" unsigned="true" nullable="false" comment="Option Type Image ID"/>
+        <column xsi:type="varchar" name="media_type" length="32" nullable="true" default="image" comment="Media Type"/>
+        <column xsi:type="varchar" name="value" length="255" nullable="true" comment="Value"/>
+        <column xsi:type="varchar" name="title_text" length="255" nullable="true" comment="Title Text"/>
+        <column xsi:type="smallint" name="sort_order" unsigned="true" nullable="false" default="0" comment="Sort Order"/>
+        <column xsi:type="boolean" name="base_image" nullable="false" default="0" comment="Base Image"/>
+        <column xsi:type="boolean" name="tooltip_image" nullable="false" default="0" comment="Tooltip Image"/>
+        <column xsi:type="boolean" name="overlay_image" nullable="false" default="0" comment="Overlay Image"/>
+        <column xsi:type="varchar" name="color" length="6" nullable="true" comment="color"/>
+        <column xsi:type="smallint" name="replace_main_gallery_image" padding="6" nullable="true" default="0" comment="Use for replacement of the main image in the product gallery (product view page)"/>
+        <column xsi:type="smallint" name="disabled" padding="6" nullable="false" default="0" comment="Should be displayed this image in the Option Gallery or not?"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_image_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MW_OPTFEATURES_OPT_TYPE_IMG_OPT_TYPE_ID_CAT_PROD_OPT_TYPE_VAL_OPT_TYPE_ID" table="mageworx_optionfeatures_option_type_description" column="option_type_id" referenceTable="catalog_product_option_type_value" referenceColumn="option_type_id" onDelete="CASCADE"/>
+        <index referenceId="MAGEWORX_OPTFEATURES_OPT_TYPE_IMAGE_OPTION_TYPE_ID" indexType="btree">
+            <column name="option_type_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTFEATURES_OPT_TYPE_IMAGE_OPT_TYPE_ID_TOOLIP_IMG" indexType="btree">
+            <column name="option_type_id"/>
+            <column name="tooltip_image"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTFEATURES_OPT_TYPE_IMAGE_OPT_TYPE_ID_BASE_IMG" indexType="btree">
+            <column name="option_type_id"/>
+            <column name="base_image"/>
+        </index>
+    </table>
+    <table name="mageworx_optionfeatures_option_description" resource="default">
+        <column xsi:type="int" name="option_description_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Description ID"/>
+        <column xsi:type="int" name="option_id" padding="10" unsigned="true" nullable="true" comment="Option  ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" default="0" comment="Store ID"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_description_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTFEATURES_OPT_DESCRIPTION_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTFEATURES_OPT_DESCRIPTION_OPT_TYPE_ID" indexType="btree">
+            <column name="option_id"/>
+        </index>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_OPTFEATURES_OPT_DESCRIPTION_OPT_TYPE_ID_STORE_ID">
+            <column name="option_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTFEATURES_OPT_DESCR_STORE_ID_STORE_STORE_ID" table="mageworx_optionfeatures_option_description" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTFEATURES_OPT_DESCR_OPT_ID_CAT_PRD_OPT_OPT_ID" table="mageworx_optionfeatures_option_description" column="option_id" referenceTable="catalog_product_option" referenceColumn="option_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optionfeatures_option_type_is_default" resource="default">
+        <column xsi:type="int" name="option_type_id" padding="10" unsigned="true" nullable="true" comment="Option Type ID"/>
+        <column xsi:type="int" name="option_type_is_default_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Is Default ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" default="0" comment="Store ID"/>
+        <column xsi:type="smallint" name="is_default" unsigned="true" nullable="false" default="1" comment="Is Default"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_is_default_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTFEATURES_OPT_TYPE_IS_DEFAULT_OPT_TYPE_ID" indexType="btree">
+            <column name="option_type_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTFEATURES_OPT_TYPE_IS_DEFAULT_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_OPTFEATURES_OPT_TYPE_IS_DEFAULT_OPT_TYPE_ID_STORE_ID">
+            <column name="option_type_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MW_OPTFEATURES_OPT_TYPE_IS_DEFAULT_STORE_ID_STORE_STORE_ID" table="mageworx_optionfeatures_option_type_is_default" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MW_OPTFEATURES_OPT_TYPE_IS_DEFAULT_OPT_TYPE_ID_OPT_TYPE_ID" table="mageworx_optionfeatures_option_type_is_default" column="option_type_id" referenceTable="catalog_product_option_type_value" referenceColumn="option_type_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_description" resource="default">
+        <column xsi:type="int" name="option_description_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Description ID"/>
+        <column xsi:type="int" name="option_id" padding="10" unsigned="true" nullable="true" comment="Option  ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" default="0" comment="Store ID"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_description_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTTEMPLATES_GR_OPT_DESCRIPTION_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTTEMPLATES_GR_OPT_DESCRIPTION_OPT_TYPE_ID" indexType="btree">
+            <column name="option_id"/>
+        </index>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_OPTTEMPLATES_GR_OPT_DESCRIPTION_OPT_TYPE_ID_STORE_ID">
+            <column name="option_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MW_OPTTEMPL_GR_OPT_DESCR_STORE_ID_STORE_STORE_ID" table="mageworx_optiontemplates_group_option_description" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MW_OPTTEMPL_GR_OPT_DESCR_OPT_ID_MW_OPTTEMPL_GR_OPT_OPT_ID" table="mageworx_optiontemplates_group_option_description" column="option_id" referenceTable="mageworx_optiontemplates_group_option" referenceColumn="option_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_type_description" resource="default">
+        <column xsi:type="int" name="option_type_description_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Type Description ID"/>
+        <column xsi:type="int" name="option_type_id" padding="10" unsigned="true" comment="Option Type ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" default="0" comment="Store ID"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_description_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTTEMPLATES_GR_OPT_TYPE_DESCRIPTION_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTTEMPLATES_GR_OPT_TYPE_DESCRIPTION_OPT_TYPE_ID" indexType="btree">
+            <column name="option_type_id"/>
+        </index>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_OPTTEMPLATES_GR_OPT_TYPE_DESCRIPTION_OPT_TYPE_ID_STORE_ID">
+            <column name="option_type_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MW_OPTTEMPL_GR_OPT_TYPE_DESCR_STORE_ID_STORE_STORE_ID" table="mageworx_optiontemplates_group_option_type_description" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MW_OPTTEMPL_GR_OPT_TYPE_DESCR_OPT_TYPE_ID_OPT_TYPE_ID" table="mageworx_optiontemplates_group_option_type_description" column="option_type_id" referenceTable="mageworx_optiontemplates_group_option_type_value" referenceColumn="option_type_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_type_image" resource="default">
+        <column xsi:type="int" name="option_type_id" padding="10" unsigned="true" nullable="true" comment="Option Type ID"/>
+        <column xsi:type="int" name="option_type_image_id" padding="10" identity="true" unsigned="true" nullable="false" comment="Option Type Image ID"/>
+        <column xsi:type="varchar" name="media_type" length="32" nullable="true" default="image" comment="Media Type"/>
+        <column xsi:type="varchar" name="value" length="255" nullable="true" comment="Value"/>
+        <column xsi:type="varchar" name="title_text" length="255" nullable="true" comment="Title Text"/>
+        <column xsi:type="smallint" name="sort_order" unsigned="true" nullable="false" default="0" comment="Sort Order"/>
+        <column xsi:type="boolean" name="base_image" nullable="false" default="0" comment="Base Image"/>
+        <column xsi:type="boolean" name="tooltip_image" nullable="false" default="0" comment="Tooltip Image"/>
+        <column xsi:type="boolean" name="overlay_image" nullable="false" default="0" comment="Overlay Image"/>
+        <column xsi:type="varchar" name="color" length="6" nullable="true" comment="color"/>
+        <column xsi:type="smallint" name="replace_main_gallery_image" nullable="true" default="0" comment="Use for replacement of the main image in the product gallery (product view page)"/>
+        <column xsi:type="smallint" name="disabled" nullable="false" default="0" comment="Should be displayed this image in the Option Gallery or not?"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_image_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MW_OPTTEMPL_GR_OPT_TYPE_IMG_OPT_TYPE_ID_OPT_TYPE_ID" table="mageworx_optiontemplates_group_option_type_image" column="option_type_id" referenceTable="mageworx_optiontemplates_group_option_type_value" referenceColumn="option_type_id" onDelete="CASCADE"/>
+        <index referenceId="MAGEWORX_OPTTEMPLATES_GR_OPT_TYPE_IMAGE_OPTION_TYPE_ID" indexType="btree">
+            <column name="option_type_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTFEATURES_OPT_TYPE_IMAGE_OPT_TYPE_ID_TOOLIP_IMG" indexType="btree">
+            <column name="option_type_id"/>
+            <column name="tooltip_image"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTFEATURES_OPT_TYPE_IMAGE_OPT_TYPE_ID_BASE_IMG" indexType="btree">
+            <column name="option_type_id"/>
+            <column name="base_image"/>
+        </index>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_type_is_default" resource="default">
+        <column xsi:type="int" name="option_type_id" padding="10" unsigned="true" nullable="true" comment="Option Type ID"/>
+        <column xsi:type="int" name="option_type_is_default_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Is Default ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" default="0" comment="Store ID"/>
+        <column xsi:type="smallint" name="is_default" unsigned="true" nullable="false" default="1" comment="Is Default"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_is_default_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTTEMPLATES_GR_OPT_TYPE_IS_DEFAULT_OPT_TYPE_ID" indexType="btree">
+            <column name="option_type_id"/>
+        </index>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_OPTTEMPLATES_GR__OPT_TYPE_IS_DEFAULT_OPT_TYPE_ID_STORE_ID">
+            <column name="option_type_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MW_OPTTEMPL_GR_OPT_TYPE_IS_DEF_STORE_ID_STORE_STORE_ID" table="mageworx_optiontemplates_group_option_type_is_default" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MW_OPTTEMPL_GR_OPT_TYPE_IS_DEF_OPT_TYPE_ID_OPT_TYPE_ID" table="mageworx_optiontemplates_group_option_type_is_default" column="option_type_id" referenceTable="mageworx_optiontemplates_group_option_type_value" referenceColumn="option_type_id" onDelete="CASCADE"/>
+    </table>
+</schema>

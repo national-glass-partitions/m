@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_quote_product_add_after">
+        <observer name="mageworx_optionskupolicy_add_sku_policy_to_cart"
+                  instance="MageWorx\OptionSkuPolicy\Observer\AddSkuPolicyToCart"
+        />
+    </event>
+    <event name="sales_quote_item_set_product">
+        <observer name="mageworx_optionskupolicy_apply_custom_sku_to_quote_item"
+                  instance="MageWorx\OptionSkuPolicy\Observer\ApplyCustomSkuToQuoteItem"
+        />
+    </event>
+    <event name="sales_quote_address_collect_totals_before">
+        <observer name="mageworx_optionskupolicy_add_sku_policy_to_order"
+                  instance="MageWorx\OptionSkuPolicy\Observer\AddSkuPolicyToOrder"
+        />
+    </event>
+    <event name="checkout_submit_before">
+        <observer name="mageworx_optionskupolicy_check_quote_for_errors"
+                  instance="MageWorx\OptionSkuPolicy\Observer\CheckQuoteForErrors"
+        />
+    </event>
+</config>

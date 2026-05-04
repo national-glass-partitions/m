@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See https://www.mageworx.com/terms-and-conditions for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_save_after">
+        <observer name="mageworx_optionlink_update_price_type_option_value_attributes" instance="MageWorx\OptionLink\Observer\UpdatePriceTypeOptionValueAttributesObserver"/>
+    </event>
+    <event name="catalog_product_delete_before">
+        <observer
+                name="mageworx_optionlink_unset_sku_is_valid_attribute"
+                instance="MageWorx\OptionLink\Observer\UnsetSkuIsValidAttributeAfterProductDelete"
+        />
+    </event>
+    <event name="catalog_product_save_before">
+        <observer
+                name="mageworx_optionlink_unset_sku_is_valid_attribute"
+                instance="MageWorx\OptionLink\Observer\UpdateSkuIsValidAttributeAfterProductSave"
+        />
+    </event>
+</config>

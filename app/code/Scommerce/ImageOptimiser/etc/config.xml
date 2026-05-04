@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce Image Optimiser Module default configuration file for setting all default values
+ * @category   Scommerce
+ * @package    Scommerce_ImageOptimiser
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <imageoptimiser>
+            <general>
+                <enabled>1</enabled>
+                <number_of_images_to_processed>100</number_of_images_to_processed>
+                <minimum_size>10000</minimum_size>
+                <include_folders_to_compress>wysiwyg,catalog</include_folders_to_compress>
+                <compress_cached_product_images>0</compress_cached_product_images>
+                <image_compression_provider>resmush.it</image_compression_provider>
+                <provider_api_url>http://api.resmush.it/ws.php?img=</provider_api_url>
+                <backup_images>0</backup_images>
+                <debugging>1</debugging>
+                <image_optimiser_schedule>*/10 * * * *</image_optimiser_schedule>
+            </general>
+        </imageoptimiser>
+    </default>
+</config>

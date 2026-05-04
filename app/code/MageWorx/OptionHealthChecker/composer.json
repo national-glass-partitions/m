@@ -1,0 +1,22 @@
+{
+    "name": "mageworx/module-optionhealthchecker",
+    "description": "The extension is designed for analysis and clearing the tables of APO from the garbage data ",
+    "require": {
+        "magento/framework"      : ">=101.0.0 <104",
+        "magento/module-catalog" : ">=103.0.3 <105"
+    },
+    "type": "magento2-module",
+    "version": "1.0.1",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MageWorx\\OptionHealthChecker\\": ""
+        }
+    }
+}

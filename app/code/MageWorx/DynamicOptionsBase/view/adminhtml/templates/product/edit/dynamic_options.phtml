@@ -1,0 +1,101 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ *
+ * Dynamic options view template
+ *
+ * @var $block \MageWorx\DynamicOptionsBase\Block\Adminhtml\Catalog\Product\Edit\Tab\DynamicOptions
+ *
+ */
+?>
+    <div class="admin__fieldset mageworx_admin__fieldset">
+        <div class="admin__field mageworx_admin__field">
+            <div class="admin__field-label">
+                <?= $block->escapeHtml(__('Price Formula')) ?>
+            </div>
+            <div class="admin__field-control mageworx_admin__field-control" id="mw_dynamic_options_formula">
+                <span id="mw_first_option"><?= $block->escapeHtml(__('Length')) ?> * </span>
+                <span id="mw_second_option"><?= $block->escapeHtml(__('Width')) ?> * </span>
+                <span id="mw_third_option"><?= $block->escapeHtml(__('Height')) ?> * </span>
+                <span id="mw_currency_symbol"><?= $block->escapeHtml($block->getCurrencySymbol()) ?></span>
+                <span id="mw_dynamic_price"><?= $block->escapeHtml(__('Price')) ?></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        require([
+            "jquery",
+            "mage/adminhtml/form"
+        ], function (jQuery) {
+            var dynamicOptions = jQuery('select[name="product[mageworx_dynamic_options]"]');
+            var pricePerUnit = jQuery('input[name="product[<?= \MageWorx\DynamicOptionsBase\Api\Data\DynamicOptionInterface::PRICE_PER_UNIT; ?>]"]');
+            var OptionBlockTitle0 = jQuery('*[data-index="mageworx_dynamic_options_data][0][option_title"] label span');
+            var OptionBlockTitle1 = jQuery('*[data-index="mageworx_dynamic_options_data][1][option_title"] label span');
+            var OptionBlockTitle2 = jQuery('*[data-index="mageworx_dynamic_options_data][2][option_title"] label span');
+            updateFormula();
+            updateFormulaPrice();
+            updateDynamicOptionFields();
+
+            dynamicOptions.on('change', function () {
+                updateFormula();
+                updateDynamicOptionFields();
+            });
+
+            pricePerUnit.on('change', function () {
+                updateFormulaPrice();
+            });
+
+            /**
+             * Update on Dynamic Options changed
+             */
+            function updateFormula() {
+                if (!dynamicOptions.val()) {
+                    return;
+                }
+                updateTitle(dynamicOptions.val()[0], OptionBlockTitle0, '#mw_first_option');
+                updateTitle(dynamicOptions.val()[1], OptionBlockTitle1, '#mw_second_option');
+                updateTitle(dynamicOptions.val()[2], OptionBlockTitle2, '#mw_third_option');
+            }
+
+            function updateTitle(value, optionBlockTitle, selector) {
+                 if (value !== undefined) {
+                     var title = dynamicOptions.find("[value=" + value + "]").text();
+                     jQuery(selector).html(title + ' * ');
+                     optionBlockTitle.html(title);
+                 } else {
+                     jQuery(selector).html('');
+                 }
+            }
+
+            /**
+             * Update on Price Per Unit changed
+             */
+            function updateFormulaPrice() {
+                if (pricePerUnit.val()) {
+                    jQuery('#mw_dynamic_price').html(pricePerUnit.val());
+                } else {
+                    jQuery('#mw_dynamic_price').html('0');
+                }
+            }
+
+            /**
+             * Update Dynamic Option Fields on Dynamic Options changed
+             */
+            function updateDynamicOptionFields() {
+                jQuery('.mageworx_dynamic_option_0').hide();
+                jQuery('.mageworx_dynamic_option_1').hide();
+                jQuery('.mageworx_dynamic_option_2').hide();
+
+                if (dynamicOptions.val()) {
+                    dynamicOptions.val().each(function(element, index) {
+                        if (element !== undefined) {
+                            jQuery('.mageworx_dynamic_option_' + index).css('display', 'inline-block');
+                        } else {
+                            jQuery('.mageworx_dynamic_option_' + index).hide();
+                        }
+                    });
+                }
+            }
+        });
+    </script>

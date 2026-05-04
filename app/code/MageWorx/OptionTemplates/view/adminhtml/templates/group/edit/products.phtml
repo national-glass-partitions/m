@@ -1,0 +1,31 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/** @var \MageWorx\OptionTemplates\Block\Adminhtml\Group\Products $block */
+/** @var \MageWorx\OptionTemplates\Block\Adminhtml\Group\Tab\Products $blockGrid */
+$blockGrid = $block->getBlockGrid();
+$gridJsObjectName = $blockGrid->getJsObjectName();
+?>
+<?= $block->getGridHtml() ?>
+<input type="hidden" name="group_products"
+       id="<?= $block->escapeHtmlAttr($block->getFieldId()) ?>"
+       data-form-part="mageworx_optiontemplates_group_form"
+       value=""
+/>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "MageWorx_OptionTemplates/js/assign-products": {
+                "fieldId": "<?= $block->escapeHtml($block->getFieldId()) ?>",
+                "selectedProducts": <?= /* @noEscape */ $block->getProductsJson() ?>,
+                "gridJsObjectName": <?= '"' . $block->escapeJs($gridJsObjectName) . '"' ?: '{}' ?>
+            }
+        }
+    }
+</script>
+<script>
+    require('mage/apply/main').apply();
+</script>

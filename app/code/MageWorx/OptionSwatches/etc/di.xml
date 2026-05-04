@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Plugins -->
+    <type name="Magento\Catalog\Block\Product\View\Options\Type\Select">
+        <plugin name="aroundGetValuesHtml" type="MageWorx\OptionSwatches\Plugin\Product\View\Options\Type\Select" sortOrder="10" disabled="false"/>
+    </type>
+    <!-- Data -->
+    <type name="MageWorx\OptionBase\Model\Product\Option\Attributes">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="is_swatch" xsi:type="object">MageWorx\OptionSwatches\Model\Attribute\Option\IsSwatch</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Config param injection -->
+    <type name="MageWorx\OptionFeatures\Helper\Data">
+        <arguments>
+            <argument name="configPathSwatchHeight" xsi:type="string">mageworx_apo/optionswatches/swatch_height</argument>
+            <argument name="configPathSwatchWidth" xsi:type="string">mageworx_apo/optionswatches/swatch_width</argument>
+            <argument name="configPathTextSwatchMaxWidth" xsi:type="string">mageworx_apo/optionswatches/text_swatch_max_width</argument>
+            <argument name="configPathShowSwatchTitle" xsi:type="string">mageworx_apo/optionswatches/show_swatch_title</argument>
+            <argument name="configPathShowSwatchPrice" xsi:type="string">mageworx_apo/optionswatches/show_swatch_price</argument>
+        </arguments>
+    </type>
+</config>

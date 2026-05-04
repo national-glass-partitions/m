@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce InfiniteScrolling Module ACL file for defining permission for menus, configuration and individual actions
+ * @category   Scommerce
+ * @package    Scommerce_InfiniteScrolling
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Scommerce_OptimiserBase::config_optimiserbase" sortOrder="10">
+                                <resource id="Scommerce_InfiniteScrolling::config_infinitescrolling" title="Infinite Scrolling" sortOrder="10" />
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

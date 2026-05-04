@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- Magento Tables -->
+    <table name="catalog_product_entity" resource="default">
+        <column xsi:type="smallint" name="mageworx_is_require" padding="6" unsigned="false" nullable="false" identity="false" default="0" comment="MageWorx Is Required"/>
+    </table>
+    <!-- MageWorx Tables -->
+    <table name="mageworx_optionbase_product_attributes" resource="default">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" default="0" comment="Product ID"/>
+        <column xsi:type="mediumtext" name="dependency_rules" nullable="false" comment="Dependency Rules (Added by MageWorx_OptionDependency)"/>
+        <column xsi:type="text" name="hidden_dependents" nullable="false" comment="Precalculated Hidden Dependents (Added by MageWorx_OptionDependency)"/>
+        <column xsi:type="boolean" name="absolute_price" nullable="false" default="0" comment="Absolute Price Flag"/>
+        <column xsi:type="boolean" name="absolute_weight" nullable="false" default="0" comment="Absolute Weight Flag"/>
+        <column xsi:type="boolean" name="absolute_cost" nullable="false" default="0" comment="Absolute Cost Flag"/>
+        <column xsi:type="boolean" name="hide_additional_product_price" nullable="false" default="0" comment="Hide Additional Product Price Flag"/>
+        <column xsi:type="varchar" name="shareable_link" length="20" nullable="false" default="use_config" comment="Shareable Link (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="varchar" name="sku_policy" length="20" nullable="false" default="use_config" comment="SKU Policy (added by MageWorx Option Sku Policy)"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTIONBASE_PRODUCT_ATTRIBUTES_PRODUCT_ID" indexType="btree" disabled="true">
+            <column name="product_id"/>
+        </index>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_OPTIONBASE_PRODUCT_ATTRIBUTES_PRODUCT_ID">
+            <column name="product_id"/>
+        </constraint>
+   </table>
+</schema>

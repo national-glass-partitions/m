@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MageWorx_DynamicOptionsBase::styles.css"/>
+        <css src="MageWorx_DynamicOptionsBase::css/jquery.qtip.css"/>
+    </head>
+    <body>
+        <referenceBlock name="product.info.options.wrapper">
+            <container name="mageworx.dynamic.option.container" after="product.info.options">
+                <block class="MageWorx\DynamicOptionsBase\Block\DynamicOptions"
+                       name="mageworx.dynamic.option"
+                       template="MageWorx_DynamicOptionsBase::catalog/product/dynamic-options.phtml"/>
+            </container>
+        </referenceBlock>
+    </body>
+</page>

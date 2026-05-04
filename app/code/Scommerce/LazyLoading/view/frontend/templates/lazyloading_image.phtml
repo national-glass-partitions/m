@@ -1,0 +1,33 @@
+<?php
+/**
+ * Scommerce LazyLoading view template 
+ * 
+ * @category   Scommerce
+ * @package    Scommerce_LazyLoading
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+/**
+ * @var Scommerce\LazyLoading\Block\Image $block
+ */
+?>
+<?php $helper = $this->helper('Scommerce\LazyLoading\Helper\Data'); ?>
+
+<?php if ($helper->isEnabled()) : ?>
+    <style>
+        .lazy.swatch-option-loading {   
+            background-position: center;
+            content: url(<?php echo $helper->getLazyImage(); ?>);
+
+        }
+    </style>
+    <script type="text/x-magento-init">
+        {
+        "*": {
+        "Scommerce_LazyLoading/js/lazyload": {
+        "isPreLoadImage": "<?= $helper->isPreLoadImage(); ?>",
+        "imageUrl": "<?= $helper->getLazyImage(); ?>"
+        }
+        }
+        }
+    </script>
+<?php endif; ?>

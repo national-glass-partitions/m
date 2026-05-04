@@ -1,0 +1,13 @@
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="mageworx-optionswatches-option-gallery mageworx-optionswatches-option-gallery-type_radio">
+    <% _.each(images, function(image) { %>
+    <% if (image.disabled == 0) { %>
+    <img src="<%= image.url %>" alt="<%= image.label %>" class="mageworx-optionswatches-option-gallery_image"/>
+    <% } %>
+    <% }); %>
+</div>

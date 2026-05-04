@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mageworx_apo>
+            <optioninventory>
+                <enable>1</enable>
+                <display_option_inventory_on_frontend>1</display_option_inventory_on_frontend>
+                <display_out_of_stock_message>1</display_out_of_stock_message>
+                <disable_out_of_stock_options>1</disable_out_of_stock_options>
+                <display_out_of_stock_message_on_options_level>0</display_out_of_stock_message_on_options_level>
+                <require_hidden_out_of_stock_options>1</require_hidden_out_of_stock_options>
+            </optioninventory>
+        </mageworx_apo>
+    </default>
+</config>

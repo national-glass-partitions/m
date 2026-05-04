@@ -1,0 +1,21 @@
+{
+    "name": "mageworx/module-optionimportexport",
+    "description": "N/A",
+    "require": {
+        "mageworx/module-optionbase": ">=2.16.3"
+    },
+    "type": "magento2-module",
+    "version": "2.3.12",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MageWorx\\OptionImportExport\\": ""
+        }
+    }
+}

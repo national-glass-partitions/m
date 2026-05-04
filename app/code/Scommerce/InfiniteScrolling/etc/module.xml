@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce InfiniteScrolling Module module file for define module name and version of the module
+ * @category   Scommerce
+ * @package    Scommerce_InfiniteScrolling
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Module/etc/module.xsd">
+    <module name="Scommerce_InfiniteScrolling" setup_version="2.0.4">
+        <sequence>
+            <module name="Scommerce_OptimiserBase"/>      
+        </sequence>
+    </module>
+</config>

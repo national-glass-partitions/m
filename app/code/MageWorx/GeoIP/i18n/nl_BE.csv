@@ -1,0 +1,65 @@
+Update Database,Database bijwerken
+Store &amp; Currency Switcher Relations,Winkel- en valutaschakelrelaties
+Region,Regio
+Relations,Relaties
+Can't create new file. Check that folder %s has write permissions,Kan geen nieuw bestand maken. Controleer of map %s schrijfrechten heeft
+DataBase source is temporary unavailable,Databasebron is tijdelijk niet beschikbaar
+We can't extract archive from MaxMind,We kunnen het archief van MaxMind niet uitpakken
+Could not save the region relation: %1,Kon de regiorelatie niet opslaan: %1
+GeoIP Country,GeoIP Land
+GeoIP City,GeoIP Stad
+Region de Arica y Parinacota,Regio van Arica y Parinacota
+Region de Magallanes y de la Antartica Chilena,Regio van Magallanes y de la Antartica Chilena
+Region del Libertador General Bernardo O'Higgins,Regio van Libertador General Bernardo O'Higgins
+Amazonas,Amazonas
+Antioquia,Antioquia
+Atlántico,Atlántico
+Bogota D.C.,Bogota D.C.
+Cundinamarca,Cundinamarca
+Departamento de Bolivar,Departamento de Bolivar
+Departamento de Boyaca,Departamento de Boyaca
+Departamento de Caldas,Departamento de Caldas
+Departamento de Casanare,Departamento de Casanare
+Departamento de Cordoba,Departamento de Cordoba
+Departamento de La Guajira,Departamento de La Guajira
+Departamento de Narino,Departamento de Narino
+Departamento de Norte de Santander,Departamento de Norte de Santander
+Departamento de Risaralda,Departamento de Risaralda
+Departamento de Santander,Departamento de Santander
+Departamento de Sucre,Departamento de Sucre
+Departamento de Tolima,Departamento de Tolima
+Departamento del Caqueta,Departamento del Caqueta
+Departamento del Cauca,Departamento del Cauca
+Departamento del Cesar,Departamento del Cesar
+Departamento del Choco,Departamento del Choco
+Departamento del Guainia,Departamento del Guainia
+Departamento del Guaviare,Departamento del Guaviare
+Departamento del Huila,Departamento del Huila
+Departamento del Magdalena,Departamento del Magdalena
+Departamento del Meta,Departamento del Meta
+Departamento del Valle del Cauca,Departamento del Valle del Cauca
+Departamento del Vichada,Departamento del Vichada
+"Providencia y Santa Catalina, Departamento de Archipielago de San Andres","Providencia y Santa Catalina, Departamento de Archipielago de San Andres"
+Quindio Department,Quindio Department
+Provincia de Francisco de Orellana,Provincia de Francisco de Orellana
+Provincia de Santo Domingo de los Tsachilas,Provincia de Santo Domingo de los Tsachilas
+"Southern Nations, Nationalities, and People's Region","Southern Nations, Nationalities, and People's Region"
+National Capital Territory of Delhi,National Capital Territory of Delhi
+Union Territory of Andaman and Nicobar Islands,Union Territory of Andaman and Nicobar Islands
+Unitatea Teritoriala din Stinga Nistrului,Unitatea Teritoriala din Stinga Nistrului
+Khanty-Mansiyskiy Avtonomnyy Okrug-Yugra,Khanty-Mansiyskiy Avtonomnyy Okrug-Yugra
+Central Singapore Community Development Council,Central Singapore Community Development Council
+North East Community Development Region,North East Community Development Region
+North West Community Development Council,North West Community Development Council
+South West Community Development Council,South West Community Development Council
+Create backup,Backup maken
+Last update,Laatste update
+n/a,n/v
+GeoIP Extensions,GeoIP-uitbreidingen
+GeoIP DataBase,GeoIP-database
+Database Type,Database Type
+MaxMind License Key,MaxMind-licentiesleutel
+Please specify the MaxMind License Key to be able to update GeoIP database.,Geef de MaxMind-licentiesleutel op om de GeoIP-database bij te werken.
+Update Current Database,Huidige database bijwerken
+Remember that http://maxmind.com has limits on downloads of GeoIP database per day.,Onthoud dat http://maxmind.com beperkingen heeft voor het downloaden van de GeoIP-database per dag.
+Country,Land

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce SpeedOptimiser dependency injection (di)file
+ * @category   Scommerce
+ * @package    Scommerce_SpeedOptimiser
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Controller\ResultInterface">
+        <plugin name="speedoptimiser_move_javascript_pagebottom " type="Scommerce\SpeedOptimiser\Plugin\Framework\Controller\Result" sortOrder="99999" />
+    </type>
+</config>

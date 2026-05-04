@@ -1,0 +1,44 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+/** @var \MageWorx\OptionFeatures\Block\Features $block */
+?>
+<script>
+    require([
+        'jquery',
+        'optionFeatures',
+        'optionFeaturesIsDefault',
+        'uiRegistry'
+    ], function ($, optionFeatures, optionFeaturesIsDefault, registry) {
+        var optionBase = registry.get('mageworxOptionBase');
+        if (optionBase) {
+            optionBase.addUpdater(
+                10,
+                optionFeatures(<?= /* @noEscape */ $block->getJsonData();?>)
+            );
+            optionBase.addUpdater(
+                50,
+                optionFeaturesIsDefault(<?= /* @noEscape */ $block->getIsDefaultJsonData();?>)
+            );
+        } else {
+            var updaters = registry.get('mageworxOptionUpdaters');
+            if (!updaters) {
+                updaters = {};
+            }
+            updaters[10] = optionFeatures(<?= /* @noEscape */ $block->getJsonData();?>);
+            updaters[50] = optionFeaturesIsDefault(<?= /* @noEscape */ $block->getIsDefaultJsonData();?>);
+            registry.set('mageworxOptionUpdaters', updaters);
+        }
+    });
+</script>
+<script type="text/x-magento-init">
+   {
+       "*": {
+           "selectionLimitValidationRule": {
+               "config": <?= /* @noEscape */ $block->getSelectionLimitJsonData();?>
+           }
+       }
+   }
+</script>

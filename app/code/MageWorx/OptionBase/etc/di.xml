@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- API -->
+    <preference for="MageWorx\OptionBase\Api\Data\ProductCustomOptionValuesInterface"
+                type="MageWorx\OptionBase\Model\Product\Option\Value"/>
+    <preference for="Magento\Catalog\Model\Product\Option\Value"
+                type="MageWorx\OptionBase\Model\Product\Option\Value"/>
+
+    <!-- Data -->
+    <type name="MageWorx\OptionBase\Model\Product\Option\Attributes">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="option_title" xsi:type="object">MageWorx\OptionBase\Model\Attribute\Option\Title</item>
+                <item name="option_price" xsi:type="object">MageWorx\OptionBase\Model\Attribute\Option\Price</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\Option\Value\Attributes">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="option_type_title" xsi:type="object">MageWorx\OptionBase\Model\Attribute\Value\Title</item>
+                <item name="option_type_price" xsi:type="object">MageWorx\OptionBase\Model\Attribute\Value\Price</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\Option\CollectionUpdaters">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="option_title" xsi:type="object">MageWorx\OptionBase\Model\CollectionUpdater\Option\Title</item>
+                <item name="option_price" xsi:type="object">MageWorx\OptionBase\Model\CollectionUpdater\Option\Price</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\Option\Value\CollectionUpdaters">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="option_type_title" xsi:type="object">MageWorx\OptionBase\Model\CollectionUpdater\Value\Title</item>
+                <item name="option_type_price" xsi:type="object">MageWorx\OptionBase\Model\CollectionUpdater\Value\Price</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Option\Value\Collection">
+        <arguments>
+            <argument name="fetchStrategy" xsi:type="object">MageWorx\OptionBase\Model\ResourceModel\Product\Option\Value\Collection\CacheFetchStrategy</argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\ResourceModel\Product\Option\Value\Collection\CacheFetchStrategy">
+        <arguments>
+            <argument name="cache" xsi:type="object">Magento\Framework\App\Cache\Type\Collection</argument>
+            <argument name="cacheIdPrefix" xsi:type="string">collection_</argument>
+            <argument name="cacheLifetime" xsi:type="string">432000</argument>
+            <argument name="cacheTags" xsi:type="array">
+                <item name="allTag" xsi:type="string">mw_p_o_v</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Plugins -->
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Option\Collection">
+        <plugin name="mageworx_optionbase_collect_product_option_conditions"
+                type="MageWorx\OptionBase\Plugin\CollectProductOptionConditions"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
+        <plugin name="mageworx_optionbase_collect_product_conditions"
+                type="MageWorx\OptionBase\Plugin\CollectProductConditions"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product\Option\Repository">
+        <plugin name="mageworx_optionbase_collect_enterprise_product_conditions"
+                type="MageWorx\OptionBase\Plugin\CollectEnterpriseProductConditions"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
+        <plugin name="mageworx_optionbase_extend_product_collection"
+                type="MageWorx\OptionBase\Plugin\ExtendProductCollection"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Option\Collection">
+        <plugin name="mageworx_optionbase_extend_option_collection"
+                type="MageWorx\OptionBase\Plugin\ExtendOptionCollection"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Option\Value\Collection">
+        <plugin name="mageworx_optionbase_extend_option_value_collection"
+                type="MageWorx\OptionBase\Plugin\ExtendOptionValueCollection"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+
+    <type name="Magento\Catalog\Block\Product\View\Options">
+        <plugin name="mageworx_optionbase_around_options_html"
+                type="MageWorx\OptionBase\Plugin\AroundOptionsHtml"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Options\Type\Select">
+        <plugin name="mageworx_optionbase_around_option_values_html"
+                type="MageWorx\OptionBase\Plugin\AroundOptionValuesHtml"
+                sortOrder="5"
+                disabled="false"/>
+        <plugin name="mageworx_optionbase_replace_option_type_select_template"
+                type="MageWorx\OptionBase\Plugin\ChangeTemplateForOptionTypeSelect"
+                sortOrder="10"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Options\Type\File">
+        <plugin name="mageworx_optionbase_replace_option_type_file"
+                type="MageWorx\OptionBase\Plugin\ChangeTemplateForOptionTypeFile"
+                sortOrder="10"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\Catalog\Model\Product\Option\Type\DefaultType">
+        <plugin name="mageworx_optionbase_validate_add_to_cart"
+                type="MageWorx\OptionBase\Plugin\ValidateAddToCart"
+                sortOrder="10"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\Catalog\Model\Product\Type\AbstractType">
+        <plugin name="mageworx_optionbase_validate_cart_checkout"
+                type="MageWorx\OptionBase\Plugin\ValidateCartCheckout"
+                sortOrder="10"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="mageworx_optiontemplates_is_require_checker_aftersave"
+                type="MageWorx\OptionBase\Plugin\IsRequireChecker"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+
+    <!-- API Plugins -->
+    <type name="Magento\Catalog\Model\ProductRepository">
+        <plugin name="mageworx_optionbase_api-get-product-repository"
+                type="MageWorx\OptionBase\Plugin\Api\Product\GetProductAttributes"
+                sortOrder="10"
+                disabled="false"/>
+        <plugin name="mageworx_optionbase_api-set-product-repository"
+                type="MageWorx\OptionBase\Plugin\Api\Product\SetProductAttributes"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product\Option\Repository">
+        <plugin name="mageworx_optionbase_api-get-option-repository"
+                type="MageWorx\OptionBase\Plugin\Api\Product\Option\GetOptionAttributes"
+                sortOrder="10"
+                disabled="false"/>
+        <plugin name="mageworx_optionbase_api-set-option-repository"
+                type="MageWorx\OptionBase\Plugin\Api\Product\Option\SetOptionAttributes"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Options">
+        <plugin name="mageworx_optionbase_extend_price_config"
+                type="MageWorx\OptionBase\Plugin\ExtendPriceConfig"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <!-- Save product in admin area, save product option by API -->
+    <type name="Magento\Catalog\Api\ProductCustomOptionRepositoryInterface">
+        <plugin
+            name="mageworx_optionbase_clear_option_value_cache_on_option_saving"
+            type="MageWorx\OptionBase\Plugin\ClearOptionValueCacheByOptionPlugin"
+        />
+    </type>
+    <type name="Magento\Framework\Reflection\MethodsMap">
+        <plugin name="mageworx_optionbase_api-methodsmap-replace-value-interface"
+                type="MageWorx\OptionBase\Plugin\ReplaceProductOptionValueInterface"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Framework\Webapi\ServiceInputProcessor">
+        <plugin name="mageworx_optionbase_api-serviceinputprocessor-replace-value-interface"
+                type="MageWorx\OptionBase\Plugin\ReplaceProductOptionValueInterface"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+
+    <!-- Magento bug -->
+    <type name="Magento\Tax\Pricing\Render\Adjustment">
+        <plugin name="mageworx_optionbase_around_get_data_price_type"
+                type="MageWorx\OptionBase\Plugin\AroundGetDataPriceType"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+</config>

@@ -1,0 +1,278 @@
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="mageworx-dynamic-options">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Dynamic Options</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">40</item>
+            </item>
+        </argument>
+        <field name="mageworx_dynamic_options" formElement="multiselect" sortOrder="1">
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Dynamic Options</label>
+                <dataScope>mageworx_dynamic_options</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="MageWorx\DynamicOptionsBase\Model\Source\ProductOptions"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="mageworx_dynamic_options_data][0][option_title" formElement="input">
+            <settings>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Length</label>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_title">true</class>
+                    <class name="mageworx_dynamic_option_0">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+        <field name="mageworx_dynamic_options_data][0][min_value" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_min_value">true</class>
+                    <class name="mageworx_dynamic_option_0">true</class>
+                </additionalClasses>
+                <dataType>text</dataType>
+                <label translate="true">Min Value</label>
+                <visible>true</visible>
+                <dataScope>mageworx_dynamic_options_data][0][min_value</dataScope>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="mageworx_dynamic_options_data][0][max_value" formElement="input">
+            <settings>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_max_value">true</class>
+                    <class name="mageworx_dynamic_option_0">true</class>
+                </additionalClasses>
+                <dataType>text</dataType>
+                <label translate="true">Max Value</label>
+                <visible>true</visible>
+                <dataScope>mageworx_dynamic_options_data][0][max_value</dataScope>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="mageworx_dynamic_options_data][0][step" formElement="input">
+            <settings>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_step">true</class>
+                    <class name="mageworx_dynamic_option_0">true</class>
+                </additionalClasses>
+                <dataType>text</dataType>
+                <label translate="true">Step</label>
+                <visible>true</visible>
+                <dataScope>mageworx_dynamic_options_data][0][step</dataScope>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="mageworx_dynamic_options_data][0][measurement_unit" formElement="select">
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Measurement Unit</label>
+                <dataScope>mageworx_dynamic_options_data][0][measurement_unit</dataScope>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_measurement_unit">true</class>
+                    <class name="mageworx_dynamic_option_0">true</class>
+                </additionalClasses>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="MageWorx\DynamicOptionsBase\Model\Source\MeasurementUnits"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="mageworx_dynamic_options_data][1][option_title" formElement="input">
+            <settings>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Width</label>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_title">true</class>
+                    <class name="mageworx_dynamic_option_1">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+        <field name="mageworx_dynamic_options_data][1][min_value" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_min_value">true</class>
+                    <class name="mageworx_dynamic_option_1">true</class>
+                </additionalClasses>
+                <dataType>text</dataType>
+                <label translate="true">Min Value</label>
+                <visible>true</visible>
+                <dataScope>mageworx_dynamic_options_data][1][min_value</dataScope>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="mageworx_dynamic_options_data][1][max_value" formElement="input">
+            <settings>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_max_value">true</class>
+                    <class name="mageworx_dynamic_option_1">true</class>
+                </additionalClasses>
+                <dataType>text</dataType>
+                <label translate="true">Max Value</label>
+                <visible>true</visible>
+                <dataScope>mageworx_dynamic_options_data][1][max_value</dataScope>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="mageworx_dynamic_options_data][1][step" formElement="input">
+            <settings>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_step">true</class>
+                    <class name="mageworx_dynamic_option_1">true</class>
+                </additionalClasses>
+                <dataType>text</dataType>
+                <label translate="true">Step</label>
+                <visible>true</visible>
+                <dataScope>mageworx_dynamic_options_data][1][step</dataScope>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="mageworx_dynamic_options_data][1][measurement_unit" formElement="select">
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Measurement Unit</label>
+                <dataScope>mageworx_dynamic_options_data][1][measurement_unit</dataScope>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_measurement_unit">true</class>
+                    <class name="mageworx_dynamic_option_1">true</class>
+                </additionalClasses>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="MageWorx\DynamicOptionsBase\Model\Source\MeasurementUnits"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="mageworx_dynamic_options_data][2][option_title" formElement="input">
+            <settings>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Height</label>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_title">true</class>
+                    <class name="mageworx_dynamic_option_2">true</class>
+                </additionalClasses>
+            </settings>
+        </field>
+        <field name="mageworx_dynamic_options_data][2][min_value" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_min_value">true</class>
+                    <class name="mageworx_dynamic_option_2">true</class>
+                </additionalClasses>
+                <dataType>text</dataType>
+                <label translate="true">Min Value</label>
+                <visible>true</visible>
+                <dataScope>mageworx_dynamic_options_data][2][min_value</dataScope>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="mageworx_dynamic_options_data][2][max_value" formElement="input">
+            <settings>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_max_value">true</class>
+                    <class name="mageworx_dynamic_option_2">true</class>
+                </additionalClasses>
+                <dataType>text</dataType>
+                <label translate="true">Max Value</label>
+                <visible>true</visible>
+                <dataScope>mageworx_dynamic_options_data][2][max_value</dataScope>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="mageworx_dynamic_options_data][2][step" formElement="input">
+            <settings>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_step">true</class>
+                    <class name="mageworx_dynamic_option_2">true</class>
+                </additionalClasses>
+                <dataType>text</dataType>
+                <label translate="true">Step</label>
+                <visible>true</visible>
+                <dataScope>mageworx_dynamic_options_data][2][step</dataScope>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="mageworx_dynamic_options_data][2][measurement_unit" formElement="select">
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Measurement Unit</label>
+                <dataScope>mageworx_dynamic_options_data][2][measurement_unit</dataScope>
+                <additionalClasses>
+                    <class name="mageworx_dynamic_option_measurement_unit">true</class>
+                    <class name="mageworx_dynamic_option_2">true</class>
+                </additionalClasses>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="MageWorx\DynamicOptionsBase\Model\Source\MeasurementUnits"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <container name="price_formula_container">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>
+            <htmlContent name="price_formula_content">
+                <argument name="block" xsi:type="object">MageWorx\DynamicOptionsBase\Block\Adminhtml\Catalog\Product\Edit\Tab\DynamicOptions</argument>
+            </htmlContent>
+        </container>
+    </fieldset>
+</form>

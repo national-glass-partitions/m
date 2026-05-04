@@ -1,0 +1,21 @@
+<?php
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+?>
+<?php /** @var $block \MageWorx\OptionBase\Block\Adminhtml\Product\Edit\Tab\Options\Type\Select\Container */ ?>
+<td class="mageworx-optionbase">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <?php echo $block->getTitlesHtml() ?>
+            </tr>
+        </thead>
+        <tbody id="select_option_type_row_<%- data.option_id %>_options">
+            <tr>
+                <?php echo $block->getOptionsHtml() ?>
+            </tr>
+        </tbody>
+    </table>
+</td>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="MageWorx\OptionBase\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="mageworx-option-features" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionFeatures\Ui\DataProvider\Product\Form\Modifier\Features</item>
+                    <item name="sortOrder" xsi:type="number">72</item>
+                </item>
+                <item name="mageworx-option-features-description" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionFeatures\Ui\DataProvider\Product\Form\Modifier\Description</item>
+                    <item name="sortOrder" xsi:type="number">72</item>
+                </item>
+                <item name="mageworx-option-features-option-settings" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionFeatures\Ui\DataProvider\Product\Form\Modifier\OptionSettings</item>
+                    <item name="sortOrder" xsi:type="number">72</item>
+                </item>
+                <item name="mageworx-option-features-value-settings" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionFeatures\Ui\DataProvider\Product\Form\Modifier\ValueSettings</item>
+                    <item name="sortOrder" xsi:type="number">72</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!--MSI Plugins-->
+    <type name="Magento\InventorySourceDeductionApi\Model\SourceDeductionService">
+        <plugin name="mageworx-optionfeatures-qty-multiplier-back-to-stock"
+                type="MageWorx\OptionFeatures\Plugin\MultiSourceInventory\BeforeSourceDeductionService"
+                sortOrder="10"
+                disabled="false"
+        />
+    </type>
+</config>

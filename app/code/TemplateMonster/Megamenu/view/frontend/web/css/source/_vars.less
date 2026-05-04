@@ -1,0 +1,32 @@
+
+// Grid system
+
+@mega-menu_column__count: 12;
+@mega-menu_column__width: 70px;
+@mega-menu_gutter__width: 30px;
+
+@mega-menu_container__xxs: @screen__xs - @mega-menu_gutter__width;
+@mega-menu_container__xs: @screen__s - @mega-menu_gutter__width;
+@mega-menu_container__s: @screen__m - @mega-menu_gutter__width;
+@mega-menu_container__m: @screen__l - @mega-menu_gutter__width;
+@mega-menu_container__l: @screen__xl - @mega-menu_gutter__width;
+@mega-menu_container__xl: @mega-menu_column__width*@mega-menu_column__count + @mega-menu_gutter__width*(@mega-menu_column__count - 1);
+
+@mega-menu_screen__names: xs, m, l, xl;
+
+// Colors
+@mega-menu_menu-bg:           #ffffff;
+@mega-menu_menu-border:       #c9c9c9;
+@mega-menu_menu-color:       #575757;
+@mega-menu_menu-line-height:   47px;
+@mega-menu_label-bg:          #c02a2a;
+@mega-menu_label-color:       #ffffff;
+@mega-menu_label-font-size:   11px;
+
+//Product
+@mega-menu_name-color: @mega-menu_menu-color;
+@mega-menu_name-color-hover: #b9b9b9;
+
+// Shadows
+@mega-menu_shadow-medium: 0 3px 5px 0 rgba(0, 0, 0, .25);
+

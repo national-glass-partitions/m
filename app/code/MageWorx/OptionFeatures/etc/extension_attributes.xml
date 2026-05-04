@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductCustomOptionInterface">
+        <attribute code="qty_input" type="boolean" />
+        <attribute code="one_time" type="boolean" />
+        <attribute code="div_class" type="string" />
+        <attribute code="mageworx_option_image_mode" type="int" />
+        <attribute code="selection_limit_from" type="int" />
+        <attribute code="selection_limit_to" type="int" />
+        <attribute code="is_hidden" type="boolean" />
+        <attribute code="shareable_link" type="string" />
+        <attribute code="description" type="string" />
+        <attribute code="option_value_description" type="string" />
+        <attribute code="is_default" type="int" />
+        <attribute code="is_hidden" type="boolean" />
+        <attribute code="mageworx_option_gallery" type="int" />
+        <attribute code="mageworx_option_image_mode" type="int" />
+        <attribute code="hide_product_page_value_price" type="boolean" />
+    </extension_attributes>
+    <extension_attributes for="MageWorx\OptionBase\Api\Data\ProductCustomOptionValuesInterface">
+        <attribute code="cost" type="float" />
+        <attribute code="description" type="string" />
+        <attribute code="images_data" type="string" />
+        <attribute code="is_default" type="boolean" />
+        <attribute code="load_linked_product" type="boolean" />
+        <attribute code="qty_multiplier" type="int" />
+        <attribute code="weight" type="float" />
+        <attribute code="weight_type" type="string" />
+    </extension_attributes>
+</config>

@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="catalog_product_option" resource="default">
+        <column xsi:type="int" name="group_option_id" padding="10" nullable="true" unsigned="true" comment="Group Option Id (added by MageWorx OptionTemplates)"/>
+    </table>
+    <table name="catalog_product_option_type_value" resource="default" engine="innodb" comment="Magento Catalog Product Option Type Value Table">
+        <column xsi:type="int" name="group_option_value_id" padding="10" nullable="true" unsigned="true" comment="Group Option Value Id (added by MageWorx OptionTemplates)"/>
+    </table>
+    <table name="mageworx_optiontemplates_group" resource="default">
+        <column xsi:type="mediumtext" name="dependency_rules" nullable="false" comment="Dependency Rules (Added by MageWorx_OptionDependency)"/>
+        <column xsi:type="text" name="hidden_dependents" nullable="false" comment="Precalculated Hidden Dependents (Added by MageWorx_OptionDependency)"/>
+        <column xsi:type="boolean" name="absolute_price" nullable="false" default="0" comment="Absolute Price Flag"/>
+        <column xsi:type="boolean" name="absolute_weight" nullable="false" default="0" comment="Absolute Weight Flag"/>
+        <column xsi:type="boolean" name="absolute_cost" nullable="false" default="0" comment="Absolute Cost Flag"/>
+        <column xsi:type="boolean" name="hide_additional_product_price" nullable="false" default="0" comment="Hide Additional Product Price Flag"/>
+        <column xsi:type="varchar" name="shareable_link" length="20" nullable="false" default="use_config" comment="Shareable Link (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="int" name="group_id" padding="10" nullable="false" unsigned="true" identity="true" comment="Group ID"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" default="" comment="Title"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="true" comment="Last Modify Date"/>
+        <column xsi:type="smallint" name="is_active" nullable="false" unsigned="true" default="0" comment="Is Active"/>
+        <column xsi:type="varchar" name="sku_policy" length="20" nullable="false" default="use_config" comment="SKU Policy (added by MageWorx Option Sku Policy)"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="group_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_TITLE" indexType="fulltext">
+            <column name="title"/>
+        </index>
+    </table>
+    <table name="mageworx_optiontemplates_relation" resource="default">
+        <column xsi:type="int" name="id" padding="10" nullable="false" unsigned="true" identity="true" comment="ID"/>
+        <column xsi:type="int" name="group_id" padding="10" nullable="false" unsigned="true" comment="Group ID"/>
+        <column xsi:type="int" name="product_id" padding="10" nullable="false" unsigned="true" comment="Product ID"/>
+        <column xsi:type="int" name="option_id" padding="10" nullable="false" unsigned="true" comment="Option ID"/>
+        <column xsi:type="boolean" name="is_changed" nullable="false" default="0" comment="Is Changed Flag"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_OPTIONTEMPLATES_RELATION_GROUP_ID_PRODUCT_ID">
+            <column name="group_id"/>
+            <column name="product_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONTEMPLATES_RELATION_PRD_ID_CAT_PRD_ENTT_ENTT_ID" table="mageworx_optiontemplates_relation" column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONTEMPLATES_RELATION_GRP_ID_MW_OPT_GRP_GRP_ID" table="mageworx_optiontemplates_relation" column="group_id" referenceTable="mageworx_optiontemplates_group" referenceColumn="group_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optiontemplates_group_option" resource="default">
+        <column xsi:type="varchar" name="option_title_id" length="255" nullable="false" comment="Option Title Identifier (added by MageWorx Option Dependency)"/>
+        <column xsi:type="smallint" name="dependency_type" padding="6" unsigned="false" nullable="false" default="0" comment="Option Dependency Type (added by MageWorx Option Dependency)"/>
+        <column xsi:type="boolean" name="qty_input" nullable="false" default="0" comment="Qty Input Flag (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="boolean" name="one_time" nullable="false" default="0" comment="One Time Option Flag (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="varchar" name="div_class" length="255" nullable="false" comment="Option Div Class (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="smallint" name="mageworx_option_gallery" padding="6" nullable="false" default="0" comment="MageWorx option gallery display type (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="smallint" name="mageworx_option_image_mode" padding="6" nullable="false" default="0" comment="Option image mode (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="smallint" name="selection_limit_from" padding="6" nullable="false" default="0" comment="Option Selection Limit From (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="smallint" name="selection_limit_to" padding="6" nullable="false" default="0" comment="Option Selection Limit To (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="boolean" name="is_hidden" nullable="false" default="0" comment="Is Hidden Flag (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="int" name="hide_product_page_value_price" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Hide Value Price On Product Page(added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="int" name="group_option_id" padding="10" nullable="true" unsigned="true" comment="Group Option Id (added by MageWorx OptionTemplates)"/>
+        <column xsi:type="int" name="option_id" padding="10" nullable="false" unsigned="true" identity="true" comment="Option ID"/>
+        <column xsi:type="int" name="group_id" padding="10" nullable="false" unsigned="true" default="0" comment="Group ID"/>
+        <column xsi:type="varchar" name="type" nullable="false" default="0" length="50" comment="Type"/>
+        <column xsi:type="int" name="is_require" padding="10" nullable="false" unsigned="true" default="1" comment="Is Required"/>
+        <column xsi:type="varchar" name="sku" length="64" comment="SKU"/>
+        <column xsi:type="int" name="max_characters" padding="10" unsigned="true" comment="Max Characters"/>
+        <column xsi:type="varchar" name="file_extension" length="50" comment="File Extension"/>
+        <column xsi:type="smallint" name="image_size_x" unsigned="true" comment="Image Size X"/>
+        <column xsi:type="smallint" name="image_size_y" unsigned="true" comment="Image Size Y"/>
+        <column xsi:type="int" name="sort_order" padding="10" nullable="false" unsigned="true" default="0" comment="Sort Order"/>
+        <column xsi:type="varchar" name="sku_policy" length="20" nullable="false" default="use_config" comment="SKU Policy (added by MageWorx Option Sku Policy)"/>
+        <column xsi:type="boolean" name="is_swatch" nullable="false" default="0" comment="Is Swatch Flag (added by MageWorx Option Swatches)"/>
+        <column xsi:type="boolean" name="is_all_groups" nullable="false" default="1" comment="ALL Customer Group ID (added by MageWorx Option Visibility)"/>
+        <column xsi:type="boolean" name="is_all_websites" nullable="false" default="1" comment="ALL Store ID (added by MageWorx Option Visibility)"/>
+        <column xsi:type="smallint" name="disabled" unsigned="true" nullable="false" default="0" comment="Disabled (added by MageWorx Option Visibility)"/>
+        <column xsi:type="smallint" name="disabled_by_values" unsigned="true" nullable="false" default="0" comment="Disabled by values (added by MageWorx Option Visibility)"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTFEATURES_GROUP_OPTION_GROUP_ID" indexType="btree">
+            <column name="group_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_GRP_ID_MW_OPT_GRP_GRP_ID" table="mageworx_optiontemplates_group_option" column="group_id" referenceTable="mageworx_optiontemplates_group" referenceColumn="group_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_price" resource="default">
+        <column xsi:type="int" name="option_price_id" padding="10" nullable="false" unsigned="true" identity="true" comment="Option Price ID"/>
+        <column xsi:type="int" name="option_id" padding="10" nullable="false" unsigned="true" default="0" comment="Option ID"/>
+        <column xsi:type="smallint" name="store_id" nullable="false" unsigned="true" default="0" comment="Store ID"/>
+        <column xsi:type="decimal" name="price" scale="4" precision="12" nullable="false" default="0.0000" comment="Price"/>
+        <column xsi:type="varchar" name="price_type" nullable="false" default="fixed" length="7" comment="Price Type"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_price_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_PRICE_OPTION_ID_STORE_ID">
+            <column name="option_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPT_PRICE_OPT_ID_GRP_OPT_OPT_ID" table="mageworx_optiontemplates_group_option_price" column="option_id" referenceTable="mageworx_optiontemplates_group_option" referenceColumn="option_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPT_PRICE_STORE_ID_STORE_STORE_ID" table="mageworx_optiontemplates_group_option_price" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_title" resource="default">
+        <column xsi:type="int" name="option_title_id" padding="10" nullable="false" unsigned="true" identity="true" comment="Option Title ID"/>
+        <column xsi:type="int" name="option_id" padding="10" nullable="false" unsigned="true" default="0" comment="Option ID"/>
+        <column xsi:type="smallint" name="store_id" nullable="false" unsigned="true" default="0" comment="Store ID"/>
+        <column xsi:type="varchar" name="title" nullable="false" default="" length="255" comment="Title"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_title_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_TITLE_OPTION_ID_STORE_ID">
+            <column name="option_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPT_TTL_OPT_ID_GRP_OPT_OPT_ID" table="mageworx_optiontemplates_group_option_title" column="option_id" referenceTable="mageworx_optiontemplates_group_option" referenceColumn="option_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPT_TTL_STORE_ID_STORE_STORE_ID" table="mageworx_optiontemplates_group_option_title" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_type_value" resource="default">
+        <column xsi:type="varchar" name="option_type_title_id" length="255" nullable="false" comment="Option Type Title Identifier (added by MageWorx Option Dependency)"/>
+        <column xsi:type="smallint" name="dependency_type" padding="6" unsigned="false" nullable="false" default="0" comment="Option Type Dependency Type (added by MageWorx Option Dependency)"/>
+        <column xsi:type="decimal" name="cost" scale="2" precision="10" unsigned="false" nullable="true" comment="Cost (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="decimal" name="weight" scale="6" precision="20" unsigned="false" nullable="true" comment="Weight (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="varchar" name="weight_type" length="7" nullable="false" default="fixed" comment="Type weight (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="int" name="qty_multiplier" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Qty Multiplier (added by MageWorx_OptionFeatures)" onCreate="migrateDataFrom(qty_multiplier)"/>
+        <column xsi:type="int" name="load_linked_product" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Load Linked Product (added by MageWorx_OptionFeatures)"/>
+        <column xsi:type="int" name="group_option_value_id" padding="10" nullable="true" unsigned="true" comment="Group Option Value Id (added by MageWorx OptionTemplates)"/>
+        <column xsi:type="int" name="option_type_id" padding="10" nullable="false" unsigned="true" identity="true" comment="Option Type ID"/>
+        <column xsi:type="int" name="option_id" padding="10" nullable="false" unsigned="true" default="0" comment="Option ID"/>
+        <column xsi:type="varchar" name="sku" length="64" comment="SKU"/>
+        <column xsi:type="int" name="sort_order" padding="10" nullable="false" unsigned="true" default="0" comment="Sort Order"/>
+        <column xsi:type="smallint" name="manage_stock" unsigned="true" nullable="false" default="0" comment="Manage Stock (added by MageWorx OptionInventory)"/>
+        <column xsi:type="decimal" name="qty" scale="2" precision="10" unsigned="false" nullable="true" comment="Option Value Qty (added by MageWorx OptionInventory)"/>
+        <column xsi:type="smallint" name="disabled" unsigned="true" nullable="false" default="0" comment="Disabled (added by MageWorx Option Visibility)"/>
+        <column xsi:type="smallint" name="sku_is_valid" padding="5" unsigned="true" nullable="false" default="0" comment="Sku Is Valid (added by MageWorx OptionLink)"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_TYPE_VALUE_OPTION_ID" indexType="btree">
+            <column name="option_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPT_TYPE_VALUE_OPT_ID_GRP_OPT_OPT_ID" table="mageworx_optiontemplates_group_option_type_value" column="option_id" referenceTable="mageworx_optiontemplates_group_option" referenceColumn="option_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_type_price" resource="default">
+        <column xsi:type="int" name="option_type_price_id" padding="10" nullable="false" unsigned="true" identity="true" comment="Option Type Price ID"/>
+        <column xsi:type="int" name="option_type_id" padding="10" nullable="false" unsigned="true" default="0" comment="Option Type ID"/>
+        <column xsi:type="smallint" name="store_id" nullable="false" unsigned="true" default="0" comment="Store ID"/>
+        <column xsi:type="decimal" name="price" scale="4" precision="12" nullable="false" default="0.0000" comment="Price"/>
+        <column xsi:type="varchar" name="price_type" nullable="false" default="fixed" length="7" comment="Price Type"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_price_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_TYPE_PRICE_OPT_TYPE_ID_STORE_ID">
+            <column name="option_type_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_TYPE_PRICE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPT_TYPE_PRICE_TYPE_ID_TYPE_VAL_TYPE_ID" table="mageworx_optiontemplates_group_option_type_price" column="option_type_id" referenceTable="mageworx_optiontemplates_group_option_type_value" referenceColumn="option_type_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPT_TYPE_PRICE_STORE_ID_STORE_STORE_ID" table="mageworx_optiontemplates_group_option_type_price" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_type_title" resource="default">
+        <column xsi:type="int" name="option_type_title_id" padding="10" nullable="false" unsigned="true" identity="true" comment="Option Type Title ID"/>
+        <column xsi:type="int" name="option_type_id" padding="10" nullable="false" unsigned="true" default="0" comment="Option Type ID"/>
+        <column xsi:type="smallint" name="store_id" nullable="false" unsigned="true" default="0" comment="Store ID"/>
+        <column xsi:type="varchar" name="title" nullable="false" default="" length="255" comment="Title"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_title_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_TYPE_TITLE_OPT_TYPE_ID_STORE_ID">
+            <column name="option_type_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_TYPE_TITLE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPT_TYPE_TTL_OPT_TYPE_ID_OPT_TYPE_VAL_OPT_TYPE_ID" table="mageworx_optiontemplates_group_option_type_title" column="option_type_id" referenceTable="mageworx_optiontemplates_group_option_type_value" referenceColumn="option_type_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPT_TYPE_TTL_STORE_ID_STORE_STORE_ID" table="mageworx_optiontemplates_group_option_type_title" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    </table>
+</schema>

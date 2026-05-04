@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce Mage Speed Optimiser for di xml
+ * @category   Scommerce
+ * @package    Scommerce_SpeedOptimiser
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Deploy\Config\BundleConfig">
+        <plugin name="speedoptimiser_bundle_max_filesize"
+                type="Scommerce\SpeedOptimiser\Plugin\Deploy\Config\BundleConfigPlugin" sortOrder="10" />
+    </type>
+
+</config>

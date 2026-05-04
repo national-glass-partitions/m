@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mageworx" sortOrder="2001">
+            <label>MageWorx</label>
+        </tab>
+        <section id="mageworx_dynamic_options" translate="label" type="text" sortOrder="140" showInDefault="1"
+                 showInWebsite="1" showInStore="1">
+            <label>Dynamic Options</label>
+            <tab>mageworx</tab>
+            <resource>MageWorx_DynamicOptionsBase::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>General</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting allows you to enable/disable the price per measurement functionality on the front-end. If disabled, all configurations will be kept in the back-end.]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

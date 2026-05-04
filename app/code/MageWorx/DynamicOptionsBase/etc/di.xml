@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MageWorx\DynamicOptionsBase\Api\Data\DynamicOptionInterface" type="MageWorx\DynamicOptionsBase\Model\DynamicOption" />
+    <preference for="MageWorx\DynamicOptionsBase\Api\CalculateDynamicOptionsPriceInterface" type="MageWorx\DynamicOptionsBase\Model\CalculateDynamicOptionsPrice" />
+    <preference for="MageWorx\DynamicOptionsBase\Api\DynamicOptionRepositoryInterface" type="MageWorx\DynamicOptionsBase\Model\DynamicOptionRepository" />
+    <preference for="MageWorx\DynamicOptionsBase\Api\Data\DynamicOptionsConfigReaderInterface" type="MageWorx\DynamicOptionsBase\Model\DynamicOptionsConfigReader" />
+
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+    <arguments>
+        <argument name="extensionActions" xsi:type="array">
+            <item name="Magento\Catalog\Api\Data\ProductInterface" xsi:type="array">
+                <item name="read" xsi:type="array">
+                    <item name="mageworxDynamicOptionDataReader" xsi:type="string">MageWorx\DynamicOptionsBase\Model\ReadHandler</item>
+                </item>
+                <item name="create" xsi:type="array">
+                    <item name="mageworxDynamicOptionDataSave" xsi:type="string">MageWorx\DynamicOptionsBase\Model\SaveHandler</item>
+                </item>
+                <item name="update" xsi:type="array">
+                    <item name="mageworxDynamicOptionDataSave" xsi:type="string">MageWorx\DynamicOptionsBase\Model\SaveHandler</item>
+                </item>
+            </item>
+        </argument>
+    </arguments>
+    </type>
+
+    <type name="MageWorx\OptionBase\Model\Product\Option\AdditionalHtmlData">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="dynamic_options" xsi:type="object">MageWorx\DynamicOptionsBase\Model\Product\Option\AdditionalHtml</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="MageWorx\DynamicOptionsBase\Model\CalculateDynamicOptionsPriceFactory">
+        <arguments>
+            <argument name="map" xsi:type="array">
+                <item name="default" xsi:type="string">MageWorx\DynamicOptionsBase\Model\CalculateDynamicOptionsPrice</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Api\ProductCustomOptionRepositoryInterface">
+        <plugin name="mageworx_dynamic_options_option_repository_plugin" type="MageWorx\DynamicOptionsBase\Plugin\Catalog\Product\OptionRepositoryPlugin"/>
+    </type>
+    <type name="Magento\Catalog\Api\Data\ProductCustomOptionInterface">
+        <plugin name="mageworx_dynamic_options_get_option_price_plugin" type="MageWorx\DynamicOptionsBase\Plugin\Catalog\Product\CalculateDynamicOptionsPlugin"/>
+    </type>
+
+</config>

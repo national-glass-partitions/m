@@ -1,0 +1,8 @@
+{
+    "catalog_product_option_type_value": {
+        "column": {
+            "manage_stock": true,
+            "qty": true
+        }
+    }
+}

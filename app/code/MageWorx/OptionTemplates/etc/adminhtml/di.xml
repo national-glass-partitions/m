@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Plugins -->
+    <virtualType name="MageWorx\OptionBase\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="mageworx-option-templates" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionTemplates\Ui\DataProvider\Product\Form\Modifier\Templates</item>
+                    <item name="sortOrder" xsi:type="number">71</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="MageWorx\OptionTemplates\Ui\DataProvider\Group\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="general" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionTemplates\Ui\DataProvider\Group\Form\Modifier\General</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+                <item name="products" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionTemplates\Ui\DataProvider\Group\Form\Modifier\Products</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+                <item name="custom_options" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionTemplates\Ui\DataProvider\Group\Form\Modifier\CustomOptions</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                </item>
+                <item name="mageworx-option-base-all" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionBase\Ui\DataProvider\Product\Form\Modifier\All</item>
+                    <item name="sortOrder" xsi:type="number">71</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- The Group Data Provider, extends the Product Data Provider except the collection and modifiers pool -->
+    <type name="MageWorx\OptionTemplates\Ui\DataProvider\Group\Form\GroupDataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">MageWorx\OptionTemplates\Ui\DataProvider\Group\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+</config>

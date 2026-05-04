@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\AdvancedPricingImportExport\Controller\Adminhtml\Export\GetFilter">
+        <plugin name="mageworx-optionimportexport-use-default-export-product-filter"
+                type="MageWorx\OptionImportExport\Plugin\UseDefaultExportProductFilter"
+                sortOrder="5"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\ImportExport\Model\Export\Config">
+        <plugin name="mageworx-optionimportexport-extend-export-entities-config"
+                type="MageWorx\OptionImportExport\Plugin\ExtendExportEntitiesConfig"
+                sortOrder="5"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\ImportExport\Model\Import\Config">
+        <plugin name="mageworx-optionimportexport-extend-import-entities-config"
+                type="MageWorx\OptionImportExport\Plugin\ExtendImportEntitiesConfig"
+                sortOrder="5"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\ImportExport\Model\ResourceModel\Import\Data">
+        <plugin name="mageworx-optionimportexport-skip-rows-for-import-mage-two"
+                type="MageWorx\OptionImportExport\Plugin\SkipRowsForImportMageTwo"
+                sortOrder="5"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\ImportExport\Model\Import">
+        <plugin name="mageworx-optionimportexport-set-import-entity-type"
+                type="MageWorx\OptionImportExport\Plugin\SetImportEntityType"
+                sortOrder="5"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\CatalogImportExport\Model\Import\Product\Option">
+        <plugin name="mageworx-optionimportexport-set-product-import-flag"
+                type="MageWorx\OptionImportExport\Plugin\SetProductImportFlag"
+                sortOrder="5"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\ImportExport\Model\Import\Entity\AbstractEntity">
+        <plugin name="mageworx-optionimportexport-set-import-validation-flag"
+                type="MageWorx\OptionImportExport\Plugin\SetImportValidationFlag"
+                sortOrder="5"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\ImportExport\Controller\Adminhtml\Export\Export">
+        <plugin name="mageworx-optionimportexport-fix-export-controller"
+                type="MageWorx\OptionImportExport\Plugin\FixExportController"
+                sortOrder="5"
+                disabled="false"
+        />
+    </type>
+    <type name="Magento\CatalogImportExport\Model\StockItemImporterInterface">
+        <plugin name="mageworx-optionimportexport-fix-stock-import"
+                type="MageWorx\OptionImportExport\Plugin\FixStockImport"
+                sortOrder="5"
+                disabled="false"
+        />
+    </type>
+</config>

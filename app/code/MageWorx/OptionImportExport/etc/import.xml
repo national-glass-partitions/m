@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/import.xsd">
+    <entity name="catalog_product_with_apo"
+            label="Products + Advanced Product Options"
+            model="MageWorx\OptionImportExport\Model\MageTwo\Import\Product"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"
+    />
+    <relatedIndexer entity="catalog_product_with_apo" name="catalog_product_price" />
+    <relatedIndexer entity="catalog_product_with_apo" name="catalogsearch_fulltext" />
+    <relatedIndexer entity="catalog_product_with_apo" name="catalog_product_flat" />
+</config>

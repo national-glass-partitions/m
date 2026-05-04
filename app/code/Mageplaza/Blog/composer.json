@@ -1,0 +1,34 @@
+{
+  "name": "mageplaza/magento-2-blog-extension",
+  "description": "Magento 2 Blog extension",
+  "require": {
+    "mageplaza/module-core": "^1.5.10",
+    "mageplaza/facebook-graph-sdk": "^1.0.1"
+  },
+  "type": "magento2-module",
+  "version": "4.2.7",
+  "license": "proprietary",
+  "keywords": [
+    "magento 2",
+    "mageplaza",
+    "blog",
+    "magento 2 blog",
+    "magento2"
+  ],
+  "authors": [
+    {
+      "name": "Mageplaza",
+      "email": "support@mageplaza.com",
+      "homepage": "https://www.mageplaza.com",
+      "role": "Technical Support"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Mageplaza\\Blog\\": ""
+    }
+  }
+}

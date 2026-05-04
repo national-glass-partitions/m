@@ -1,0 +1,79 @@
+{
+    "catalog_product_option": {
+        "column": {
+            "is_all_groups": true,
+            "is_all_websites": true,
+            "disabled": true,
+            "disabled_by_values": true
+        }
+    },
+    "catalog_product_option_type_value": {
+        "column": {
+            "disabled": true
+        }
+    },
+    "mageworx_optionvisibility_option_customer_group": {
+        "column": {
+            "visibility_customer_group_id": true,
+            "option_id": true,
+            "customer_group_id": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONVISIBILITY_OPTION_CUSTOMER_GROUP_OPTION_ID": true,
+            "MAGEWORX_OPTVISIBILITY_OPT_CSTR_GROUP_CSTR_GROUP_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_B800BD1C991F6DB7E66B7201531A8FC4": true,
+            "MAGEWORX_OPTVISIBILITY_OPT_CSTR_GROUP_OPT_ID_CAT_PRD_OPT_OPT_ID": true
+        }
+    },
+    "mageworx_optionvisibility_option_store_view": {
+        "column": {
+            "visibility_store_view_id": true,
+            "option_id": true,
+            "customer_store_id": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONVISIBILITY_OPTION_STORE_VIEW_OPTION_ID": true,
+            "MAGEWORX_OPTIONVISIBILITY_OPTION_STORE_VIEW_CUSTOMER_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_8672FBF782C85D4318BC6611709598CD": true,
+            "MAGEWORX_OPTVISIBILITY_OPT_STORE_VIEW_OPT_ID_CAT_PRD_OPT_OPT_ID": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_customer_group": {
+        "column": {
+            "visibility_customer_group_id": true,
+            "option_id": true,
+            "customer_group_id": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_CUSTOMER_GROUP_OPTION_ID": true,
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_CSTR_GROUP_CSTR_GROUP_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_40667043B67EFCB20405D0A50A33E6F6": true,
+            "FK_5BE4FABB3D14EB28DABA32BF243D7558": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_store_view": {
+        "column": {
+            "visibility_store_view_id": true,
+            "option_id": true,
+            "customer_store_id": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_STORE_VIEW_OPTION_ID": true,
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_STORE_VIEW_CSTR_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_1100129657A3EE2C2C213C9DC14C1B6B": true,
+            "FK_A4C45D05B947889BEF1D1ED6F4945011": true
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "name": "mageworx/module-optioninventory",
+    "description": "N/A",
+    "require": {
+        "magento/framework"         : ">=101.0.0 <104",
+        "magento/module-catalog"    : ">=103.0.3 <105",
+        "magento/module-quote"      : ">=101.1.3 <102",
+        "magento/module-store"      : ">=101.0.3 <102",
+        "magento/module-ui"         : ">=101.1.3 <102",
+        "magento/module-backend"    : ">=101.0.3 <103",
+        "magento/module-config"     : ">=101.1.3 <102",
+        "mageworx/module-optionbase": ">=2.16.6"
+    },
+    "type": "magento2-module",
+    "version": "2.9.18",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MageWorx\\OptionInventory\\": ""
+        }
+    }
+}

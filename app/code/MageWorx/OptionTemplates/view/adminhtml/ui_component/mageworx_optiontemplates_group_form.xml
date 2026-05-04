@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">mageworx_optiontemplates_group_form.mageworx_optiontemplates_group_form_data_source</item>
+            <item name="deps" xsi:type="string">mageworx_optiontemplates_group_form.mageworx_optiontemplates_group_form_data_source</item>
+            <item name="namespace" xsi:type="string">mageworx_optiontemplates_group_form</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">MageWorx\OptionTemplates\Block\Adminhtml\Group\Edit\Button\Back</item>
+            <item name="save" xsi:type="string">MageWorx\OptionTemplates\Block\Adminhtml\Group\Edit\Button\Save</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="childrenFromMeta" xsi:type="boolean">true</item>
+    </argument>
+    <dataSource name="mageworx_optiontemplates_group_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">MageWorx\OptionTemplates\Ui\DataProvider\Group\Form\GroupDataProvider</argument>
+            <argument name="name" xsi:type="string">mageworx_optiontemplates_group_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">group_id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="assign_products">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Assigned Products</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <container name="assign_products_container">
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">MageWorx\OptionTemplates\Block\Adminhtml\Group\Products</argument>
+            </htmlContent>
+        </container>
+    </fieldset>
+</form>

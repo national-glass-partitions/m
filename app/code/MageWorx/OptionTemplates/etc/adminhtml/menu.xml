@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MageWorx_OptionTemplates::options"   title="MageWorx Option Templates" module="MageWorx_OptionTemplates" sortOrder="50" parent="Magento_Backend::stores"  resource="MageWorx_OptionTemplates::groups" />
+        <add id="MageWorx_OptionTemplates::groups"  title="Manage Option Templates" module="MageWorx_OptionTemplates" sortOrder="65" parent="MageWorx_OptionTemplates::options" action="mageworx_optiontemplates/group/index" dependsOnModule="Magento_Catalog" resource="MageWorx_OptionTemplates::groups" />
+    </menu>
+</config>

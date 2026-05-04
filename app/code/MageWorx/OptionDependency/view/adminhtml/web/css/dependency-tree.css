@@ -1,0 +1,11 @@
+/**
+ * Copyright © 2018 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+.dependency-tree-remove-item {
+    padding: 0 !important;
+}
+.dependency-tree-remove-item:before {
+    font-size: 1rem !important;
+}

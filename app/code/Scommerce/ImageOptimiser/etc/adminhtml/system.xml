@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce Image Optimiser configuration file for defining all configurations required for this module
+ * @category   Scommerce
+ * @package    Scommerce_ImageOptimiser
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="scommerce" translate="label" sortOrder="400">
+            <label>Scommerce Configuration</label>
+        </tab>
+        <section id="imageoptimiser"
+                 translate="label"
+                 type="text"
+                 sortOrder="10"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <label>Image Optimiser</label>
+            <tab>scommerce</tab>
+            <!-- resource tag name which we have to defined in the acl.xml -->
+            <resource>Scommerce_ImageOptimiser::config_imageoptimiser</resource>
+            <group id="general"
+                   translate="label"
+                   type="text"
+                   sortOrder="20"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>General</label>
+                <field id="enabled"
+                       translate="label"
+                       type="select"
+                       sortOrder="30"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting will be used to enable or disable module]]>
+                    </comment>
+                </field>
+                <field id="compress_images_while_uploading"
+                       translate="label comment"
+                       type="multiselect"
+                       sortOrder="40"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Compress Images while uploading</label>
+                    <source_model>Scommerce\ImageOptimiser\Model\Config\Source\Pages</source_model>
+                    <comment><![CDATA[This setting will be used to enable compression for new images as soon as they are uploaded via Magento admin]]>
+                    </comment>
+                </field>
+                <field id="number_of_images_to_processed"
+                       type="text"
+                       translate="label comment"
+                       sortOrder="50"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Number of images to processed</label>
+                    <comment><![CDATA[This setting will be used to define how many number of images you want to process when the cron job runs. <strong>Please note
+                        this number should be reasonable especially when you have multiple stores and many additional
+                        product images</strong>]]>
+                    </comment>
+                </field>
+                
+                <field id="minimum_size"
+                       type="text"
+                       translate="label comment"
+                       sortOrder="55"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <validate>required-entry validate-length minimum-length-5 validate-number</validate>
+                    <label>Minimum image size required after optimisation</label>
+                    <comment><![CDATA[This setting will be used to make sure you have minimum file size after optimisation of your image. This will be in bytes and our minimum recommendation is 10000 bytes which is equal to 10kb</strong>]]>
+                    </comment>
+                </field>
+
+                <field id="include_folders_to_compress"
+                       translate="label comment"
+                       type="multiselect"
+                       sortOrder="60"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Include folders</label>
+                    <source_model>Scommerce\ImageOptimiser\Model\Config\Source\Media</source_model>
+                    <comment><![CDATA[This setting will be used to include list of folders you want to include for compressing the images]]></comment>
+                </field>
+                <field id="compress_cached_product_images"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="70"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Compress Cached Product Images</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[This setting will be used to further compress cached product images generated by Magento.
+                        <strong>We would recommend to leave this setting turned off especially when you clear your cached images
+                        frequently and you have more than 5 additional images on the product page.</strong>]]></comment>
+                </field>
+                <field id="image_compression_provider"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="80"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Image Compression Provider</label>
+                    <source_model>Scommerce\ImageOptimiser\Model\Config\Source\Providers</source_model>
+                    <comment><![CDATA[This setting will be used to define which image compression provider should be used]]></comment>
+                </field>
+                <field id="provider_api_url"
+                       type="text"
+                       translate="label comment"
+                       sortOrder="90"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Provider API URL</label>
+                    <comment>
+                        <![CDATA[This setting will be used to define API url for your image compression provider as shown below <br/>Resmush.it - <strong>http://api.resmush.it/ws.php?img=</strong> <br/>ImageOptim - <strong>https://im2.io/{{username}}/full/</strong> <br/>Kraken.io - <strong>https://api.kraken.io/v1/url</strong>]]></comment>
+                </field>
+                <field id="api_key"
+                       type="text"
+                       translate="label comment"
+                       sortOrder="100"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>API Key</label>
+                    <comment>
+                        <![CDATA[API Key (This setting will be required for certain providers like <a href="https://kraken.io/" target="_blank">Kraken.io</a>) ]]></comment>
+                </field>
+                <field id="api_secret_key"
+                       type="text"
+                       translate="label comment"
+                       sortOrder="110"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>API Secret Key</label>
+                    <comment>
+                        <![CDATA[This setting will be required for certain providers like <a href="https://kraken.io/" target="_blank">Kraken.io</a>]]></comment>
+                </field>
+                <field id="exclude_folders"
+                       type="text"
+                       translate="label comment"
+                       sortOrder="120"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Exclude folders</label>
+                    <comment>
+                        <![CDATA[This setting will be used to exclude list of folders you want to exclude for compressing the images from media directory (comma separated) <br/><strong>for example foldername1, foldername2, /foldername/subfolder1, foldername/subfolder2</strong>]]></comment>
+                </field>
+                <field id="backup_images"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="130"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Backup Images</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting will be used to enable backup original images before compression]]></comment>
+                </field>
+                <field id="debugging"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="140"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Debugging</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting will be used to log information to the log file under <strong>/var/log/image_optimiser-yyyymmdd.log</strong>]]></comment>
+                </field>
+                <field id="image_optimiser_schedule"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="150"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Image Optimiser Schedule</label>
+                    <comment>
+                        <![CDATA[
+                    This setting will be used to allow you to define schedule how often you
+want to optimise images
+ 
+<pre>
+* * * * *
+| | | | |
+| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)
+| | | +------ Month of the Year (range: 1-12)
+| | +-------- Day of the Month  (range: 1-31)
+| +---------- Hour              (range: 0-23)
++------------ Minute            (range: 0-59)
+Example: 0 0 * * * Daily at midnight
+</pre>
+ 
+                    ]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="MageWorx\OptionBase\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="mageworx-option-advanced-pricing" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionAdvancedPricing\Ui\DataProvider\Product\Form\Modifier\OptionAdvancedPricing</item>
+                    <item name="sortOrder" xsi:type="number">72</item>
+                </item>
+                <item name="mageworx-option-advanced-price-type" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionAdvancedPricing\Ui\DataProvider\Product\Form\Modifier\OptionPriceType</item>
+                    <item name="sortOrder" xsi:type="number">150</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magento\CatalogStaging\Ui\DataProvider\Product\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="mageworx-option-advanced-price-type" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionAdvancedPricing\Ui\DataProvider\Product\Form\Modifier\OptionPriceType</item>
+                    <item name="sortOrder" xsi:type="number">150</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="mageworx-option-advanced-price-type" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionAdvancedPricing\Ui\DataProvider\Product\Form\Modifier\OptionPriceType</item>
+                    <item name="sortOrder" xsi:type="number">150</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

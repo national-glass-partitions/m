@@ -1,0 +1,38 @@
+"Unit doesn't exist: %1","Unit doesn't exist: %1"
+"Could not save the dynamic option: %1","Could not save the dynamic option: %1"
+"Could not delete the dynamic option: %1","Could not delete the dynamic option: %1"
+"Max Value: %1","Max Value: %1"
+"Min Value: %1","Min Value: %1"
+"Step: %1","Step: %1"
+Meter,Meter
+Centimeter,Centimeter
+Millimeter,Millimeter
+Foot,Foot
+Inch,Inch
+Liter,Liter
+Milliliter,Milliliter
+Gallon,Gallon
+Gram,Gram
+Kilogram,Kilogram
+Ton,Ton
+Pound,Pound
+"Mageworx Dynamic Options","Mageworx Dynamic Options"
+"Choose the options you want to apply the dynamic pricing functionality to. Selected options will be used to calculate the final price. You can select up to thee options","Choose the options you want to apply the dynamic pricing functionality to. Selected options will be used to calculate the final price. You can select up to thee options"
+"The price for 1 measurement unit","The price for 1 measurement unit"
+"Please, create custom options and save product to set up dynamic options.","Please, create custom options and save product to set up dynamic options."
+"Price Formula","Price Formula"
+Length,Length
+Width,Width
+Height,Height
+Price,Price
+"Value is too big","Value is too big"
+"Value is too small","Value is too small"
+"Step is incorrect","Step is incorrect"
+"Dynamic Options","Dynamic Options"
+General,General
+Enable,Enable
+Min,Min
+"Max Value","Max Value"
+Step,Step
+"Measurement Unit","Measurement Unit"
+"Min Value","Min Value"

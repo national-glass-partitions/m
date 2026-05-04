@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="mageworx_optioninventory_linked_qty_source_update">
+        <observer name="LinkedQtySourceUpdate" instance="MageWorx\OptionInventory\Observer\LinkedQtySourceUpdate"/>
+    </event>
+    <event name="catalog_product_save_after">
+        <observer name="LinkedQtySourceUpdateAfterSaveProduct" instance="MageWorx\OptionInventory\Observer\UpdateLinkedValueQtyAfterSaveProduct"/>
+    </event>
+</config>

@@ -1,0 +1,34 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Blog
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+use Mageplaza\Blog\Helper\Data;
+use Magento\Framework\Escaper;
+
+/** @var Escaper $escaper */
+$helper = $this->helper(Data::class);
+
+if ($helper->isEnabled() && $helper->getBlogConfig('display/toplinks')) : ?>
+    <li class="ui-menu-item level0 fullwidth">
+        <a href="<?= $escaper->escapeUrl($helper->getBlogUrl('')) ?>" class="level-top">
+            <span><?= $helper->getBlogConfig('display/name') ?: $escaper->escapeHtml(__('Blog')) ?></span>
+        </a>
+    </li>
+<?php endif; ?>

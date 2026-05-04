@@ -1,0 +1,125 @@
+"Add New Images","Add New Images"
+"Images (.gif, .jpg, .png)","Images (.gif, .jpg, .png)"
+"Save & Close","Save & Close"
+"Per Item","Per Item"
+"Final Price","Final Price"
+"Plain Text Beside Option","Plain Text Beside Option"
+Tooltip,Tooltip
+No,No
+Fixed,Fixed
+Percent,Percent
+Disabled,Disabled
+"Use Config","Use Config"
+Enabled,Enabled
+"The requested qty is not available","The requested qty is not available"
+"Please, choose required number of values for option '%1'.","Please, choose required number of values for option '%1'."
+"(Incl. Tax","(Incl. Tax"
+"Some of the selected item options are not currently available.","Some of the selected item options are not currently available."
+"Manage Descriptions","Manage Descriptions"
+"Descriptions for","Descriptions for"
+"Use Global Description","Use Global Description"
+Description,Description
+"Is Default","Is Default"
+"Is Hidden","Is Hidden"
+"Qty Input","Qty Input"
+"One Time","One Time"
+"Due to Magento calculations, the one-time option price is divided by the added quantity to get the final price.","Due to Magento calculations, the one-time option price is divided by the added quantity to get the final price."
+"Note: the final price may possibly differ by 1-2 cents.","Note: the final price may possibly differ by 1-2 cents."
+"Absolute Cost","Absolute Cost"
+"Absolute Weight","Absolute Weight"
+"Absolute Price","Absolute Price"
+"Hide Additional Product Price Field","Hide Additional Product Price Field"
+"Shareable Link","Shareable Link"
+"Manage Images","Manage Images"
+Images,Images
+"Option Settings","Option Settings"
+"Option Settings Management","Option Settings Management"
+"Option Settings For ","Option Settings For "
+"Option Gallery Display Mode","Option Gallery Display Mode"
+"Beside Option","Beside Option"
+"Once Selected","Once Selected"
+"Image Mode","Image Mode"
+Replace,Replace
+"Div Class","Div Class"
+"Selection Limit From","Selection Limit From"
+"These settings allow you to limit the number of values your customers can select within the particular option.","These settings allow you to limit the number of values your customers can select within the particular option."
+"Selection Limit To","Selection Limit To"
+"Value Settings","Value Settings"
+"Option Value Settings","Option Value Settings"
+"Option Value Settings For ","Option Value Settings For "
+Cost,Cost
+"Qty Multiplier","Qty Multiplier"
+"This setting defines the number that will be deducted from the stock of the main product once the order is placed with the particular option value.","This setting defines the number that will be deducted from the stock of the main product once the order is placed with the particular option value."
+"The Qty multiplier will be multiplied by the product Qty, specified manually in the Qty field on the front-end.","The Qty multiplier will be multiplied by the product Qty, specified manually in the Qty field on the front-end."
+"Leave ""0"" to disable this feature.","Leave ""0"" to disable this feature."
+Weight,Weight
+"Weight Type","Weight Type"
+"Browse to find or drag image here","Browse to find or drag image here"
+"Click here to select a color...","Click here to select a color..."
+"Delete image","Delete image"
+Hidden,Hidden
+Text,Text
+Role,Role
+"Image Size","Image Size"
+{size},{size}
+"Image Resolution","Image Resolution"
+"{width}^{height} px","{width}^{height} px"
+"Hide from Option Gallery","Hide from Option Gallery"
+"Add to Cart","Add to Cart"
+Qty,Qty
+"Something goes wrong","Something goes wrong"
+Option,Option
+"Please, choose required number of values.","Please, choose required number of values."
+"Advanced Product Options","Advanced Product Options"
+"Option Features","Option Features"
+"Product Price Display Mode","Product Price Display Mode"
+"This setting allows you to choose how the price of the main product is shown on the product page.<br />
+                        ""Disabled"" - disable any product price updates if product Qty is changed.<br />
+                        ""Per Item"" - display the price per 1 item, including the product tier prices.<br />
+                        ""Final Price"" - display the final product price, multiplying the product price by the added Qty.<br />
+                        Note: Does not work for Configurable and Bundle products","This setting allows you to choose how the price of the main product is shown on the product page.<br />
+                        ""Disabled"" - disable any product price updates if product Qty is changed.<br />
+                        ""Per Item"" - display the price per 1 item, including the product tier prices.<br />
+                        ""Final Price"" - display the final product price, multiplying the product price by the added Qty.<br />
+                        Note: Does not work for Configurable and Bundle products"
+"Add Total Product Price Field","Add Total Product Price Field"
+"If enabled, the additional total product price will be shown above the “add-to-cart” button.","If enabled, the additional total product price will be shown above the “add-to-cart” button."
+"Total Product Price Field Label","Total Product Price Field Label"
+"Total Product Price Field Mode","Total Product Price Field Mode"
+"The additional price can show the final product price including selected custom options, tier & special prices, added product & options quantity.<br />
+                        The ""Per Item"" mode will show the final product price per 1 item including selected custom options, tier & special prices.<br />
+                        Note: Does not work for Configurable and Bundle products","The additional price can show the final product price including selected custom options, tier & special prices, added product & options quantity.<br />
+                        The ""Per Item"" mode will show the final product price per 1 item including selected custom options, tier & special prices.<br />
+                        Note: Does not work for Configurable and Bundle products"
+"Enable Custom Options Weight","Enable Custom Options Weight"
+"Enable Custom Options Absolute Weight","Enable Custom Options Absolute Weight"
+"Enable Custom Options Cost","Enable Custom Options Cost"
+"Enable Custom Options Absolute Cost","Enable Custom Options Absolute Cost"
+"Enable Custom Options Absolute Price","Enable Custom Options Absolute Price"
+"Enable Absolute Price By Default","Enable Absolute Price By Default"
+"Enable One Time Custom Options","Enable One Time Custom Options"
+"Enable Custom Options Quantity Input","Enable Custom Options Quantity Input"
+"Default Option Qty Field Label","Default Option Qty Field Label"
+"Enable Option's Value Description","Enable Option's Value Description"
+"Enable Option Description","Enable Option Description"
+"Enable WYSIWYG Editor For Descriptions","Enable WYSIWYG Editor For Descriptions"
+"Selection Limit From-To Message Template","Selection Limit From-To Message Template"
+"Selection Limit From Message Template","Selection Limit From Message Template"
+"Selection Limit To Message Template","Selection Limit To Message Template"
+"Option Gallery Thumbnail Image Height Size","Option Gallery Thumbnail Image Height Size"
+"Option Gallery Thumbnail Image Width Size","Option Gallery Thumbnail Image Width Size"
+"Option Value Tooltip Image Size","Option Value Tooltip Image Size"
+"Enable Shareable Link","Enable Shareable Link"
+"This setting allows you to display the shareable link on the product pages on the front-end and to allow your customers to get the product links with selected options.<br />
+                        These links will open the products with pre-selected options. The existing links will be still available even if this setting is disabled.","This setting allows you to display the shareable link on the product pages on the front-end and to allow your customers to get the product links with selected options.<br />
+                        These links will open the products with pre-selected options. The existing links will be still available even if this setting is disabled."
+"Shareable Link Title","Shareable Link Title"
+"This setting allows you to change the title of the link visible for your customers.","This setting allows you to change the title of the link visible for your customers."
+"Shareable Link Description","Shareable Link Description"
+"This setting allows you to specify the text, which appears in the tooltip.","This setting allows you to specify the text, which appears in the tooltip."
+"Shareable Link Success Message","Shareable Link Success Message"
+"This setting allows you to change the text, which appears when the link is copied to the clipboard.","This setting allows you to change the text, which appears when the link is copied to the clipboard."
+"Images Information","Images Information"
+"If enabled, the linked product will be loaded upon the value selection on the front-end. The value should be linked to existing product to enable this feature.<br />
+                       Attention: works only with swatch options.","If enabled, the linked product will be loaded upon the value selection on the front-end. The value should be linked to existing product to enable this feature.<br />
+                       Attention: works only with swatch options."

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mageworx" sortOrder="2001">
+            <label>MageWorx</label>
+        </tab>
+        <section id="mageworx_apo" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label><![CDATA[Advanced Product Options]]></label>
+            <tab>mageworx</tab>
+            <resource>MageWorx_OptionLink::config_optionlink</resource>
+            <group id="optionlink" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label><![CDATA[Option Link]]></label>
+                <field id="linked_product_attributes" translate="label" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Link Assigned Product's Attributes to Option via SKU]]></label>
+                    <source_model>MageWorx\OptionBase\Model\Source\LinkedProductAttributes</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

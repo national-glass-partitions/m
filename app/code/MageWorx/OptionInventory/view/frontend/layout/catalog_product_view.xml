@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.options.wrapper">
+            <container name="mageworx.option.inventory.container" after="product.info.options">
+                <block class="MageWorx\OptionInventory\Block\Inventory"
+                       name="mageworx.option.inventory"
+                       template="MageWorx_OptionInventory::catalog/product/options.phtml"
+                       ifconfig="mageworx_apo/optioninventory/enable"
+                />
+            </container>
+        </referenceBlock>
+    </body>
+</page>

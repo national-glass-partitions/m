@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See https://www.mageworx.com/terms-and-conditions for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="mw_optionlink_helper_attribute_prepare_fields_map">
+        <observer name="mageworx_optionadvancedpricing_update_fields_map" instance="MageWorx\OptionAdvancedPricing\Observer\UpdateFieldsMapObserver"/>
+    </event>
+    <event name="mw_optionlink_helper_data_prepare_linked_product_attributes">
+        <observer name="mageworx_optionadvancedpricing_filter_linked_product_attributes" instance="MageWorx\OptionAdvancedPricing\Observer\FilterLinkedProductAttributesObserver"/>
+    </event>
+</config>

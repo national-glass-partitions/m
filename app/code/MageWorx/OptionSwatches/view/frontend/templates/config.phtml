@@ -1,0 +1,29 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+?>
+<?php
+/** @var \MageWorx\OptionSwatches\Block\Swatches $block */
+$jsonData = $block->getJsonData();
+?>
+<script>
+    require([
+        'jquery',
+        'optionSwatches',
+        'uiRegistry'
+    ], function ($, optionSwatches, registry) {
+        var optionBase = registry.get('mageworxOptionBase');
+        if (optionBase) {
+            optionBase.addUpdater(20, optionSwatches(<?= /* @noEscape */ $jsonData ?>));
+        } else {
+            var updaters = registry.get('mageworxOptionUpdaters');
+            if (!updaters) {
+                updaters = {};
+            }
+            updaters[20] = optionSwatches(<?= /* @noEscape */ $jsonData ?>);
+            registry.set('mageworxOptionUpdaters', updaters);
+        }
+    });
+</script>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MageWorx\OptionBase\Block\Adminhtml\Product\Edit\Tab\Options\Type\Select\Options">
+        <arguments>
+            <argument name="titles" xsi:type="array">
+                <item name="optioninventory_select_manage_stock" xsi:type="object">MageWorx\OptionInventory\Block\Adminhtml\Product\Edit\Tab\Options\Type\Select\ManageStock\Title</item>
+                <item name="optioninventory_select_quantity" xsi:type="object">MageWorx\OptionInventory\Block\Adminhtml\Product\Edit\Tab\Options\Type\Select\Quantity\Title</item>
+            </argument>
+            <argument name="options" xsi:type="array">
+                <item name="optioninventory_select_manage_stock" xsi:type="object">MageWorx\OptionInventory\Block\Adminhtml\Product\Edit\Tab\Options\Type\Select\ManageStock\Option</item>
+                <item name="optioninventory_select_quantity" xsi:type="object">MageWorx\OptionInventory\Block\Adminhtml\Product\Edit\Tab\Options\Type\Select\Quantity\Option</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="MageWorx\OptionBase\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="mageworx-option-inventory" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionInventory\Ui\DataProvider\Product\Form\Modifier\Inventory</item>
+                    <item name="sortOrder" xsi:type="number">71</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

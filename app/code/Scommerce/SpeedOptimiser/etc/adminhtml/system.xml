@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce Speed Optimiser Module configuration file for defining all configurations required for this module
+ * @category   Scommerce
+ * @package    Scommerce_SpeedOptimiser
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="scommerce" translate="label comment" sortOrder="440">
+            <label>Scommerce Configuration</label>
+        </tab>
+        <section id="speedoptimiser"
+                 translate="label comment"
+                 type="text"
+                 sortOrder="240"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <label>Speed Optimiser</label>
+            <tab>scommerce</tab>
+            <!-- resource tag name which we have to defined in the acl.xml -->
+            <resource>Scommerce_SpeedOptimiser::config_speedoptimiser</resource>
+            <group id="general"
+                   translate="label comment"
+                   type="text"
+                   sortOrder="10"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>General Setting</label>
+                <field id="enabled"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting will be used to enable or disable module]]></comment>
+                </field>
+            </group>
+            
+            
+            <group id="settings" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Settings</label>
+                <group id="html" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minify Html</label>
+                    <field id="html_setting"
+                           translate="label comment"
+                           type="select"
+                           sortOrder="10"
+                           showInDefault="1"
+                           showInWebsite="1"
+                           showInStore="1" canRestore="1">
+                        <label>Enabled</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[With 'Yes/No’ options to enable/disable the module. If set to 'Yes' then the module will remove all the unnecessary comments, line breaks, tabs and spaces from your HTML to reduce its size.]]></comment>                    
+                    </field>
+                    
+                     <field id="defer_iframe"
+                           translate="label comment"
+                           type="select"
+                           sortOrder="20"
+                           showInDefault="1"
+                           showInWebsite="1"
+                           showInStore="1" canRestore="1">
+                        <label>Defer Iframes</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[With 'Yes/No' options. If set to 'Yes' then attribute 'defer' will add all the iframe. ]]></comment>                    
+                    </field>
+                </group>
+
+                <group id="javascript" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>JavaScript Settings</label>
+                    <field id="merge_javascript_files" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Merge JavaScript Files</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[With 'Yes/No' options. If set to 'Yes' then it will merge all JS files into one to reduce the number of queries.]]></comment>
+                    </field>
+                    <field id="javascript_bundling" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Enable JavaScript Bundling</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[With 'Yes/No' options. If 'Yes' then it will combine all JS files into few bundles and download them for each page. This will save time by reducing the number of server requests.]]></comment>
+                        <tooltip>To configure JavaScript bundling, you must disable Javascript file merging. Bundling will not work as the merging of files excludes bundling.</tooltip>
+                        <depends>
+                            <field id="speedoptimiser/settings/javascript/merge_javascript_files">0</field>
+                        </depends>
+                    </field>
+                    
+                    <field id="javascript_bundling_filesize"
+                           translate="label comment"
+                           type="select"
+                           sortOrder="25"
+                           showInDefault="1"
+                           showInWebsite="1"
+                           showInStore="1">
+                        <label>Max Size of Bundle Files</label>
+                        <source_model>Scommerce\SpeedOptimiser\Model\Config\Source\BundeFileSize</source_model>
+                        <comment><![CDATA[This setting will provide option to the user to choose the max size of bundle files .]]></comment>
+                        <depends>
+                            <field id="speedoptimiser/settings/javascript/javascript_bundling">1</field>
+                            <field id="speedoptimiser/settings/javascript/merge_javascript_files">0</field>
+                        </depends>                    
+                    </field>  
+                    
+                    <field id="javascript_files_minification" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>JavaScript Files Minification</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[If set to 'Yes' then the module will remove all the unnecessary comments, line breaks, tabs and spaces from your Java Script to reduce its size.]]></comment>
+                    </field>
+                    <field id="move_javascript_to_page_bottom" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Move JavaScript To Page Bottom (footer)</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[If this is enabled then it will load all the important content before loading JS which will improve pages loading time.]]></comment>
+                    </field>
+                    
+                    <field id="exclude_pages_to_move_js_bottom"
+                           translate="label comment"
+                           type="multiselect"
+                           sortOrder="50"
+                           showInDefault="1"
+                           showInWebsite="1"
+                           showInStore="1">
+                        <label>Exclude Pages to Move JavaScript To Page Bottom</label>
+                        <source_model>Scommerce\SpeedOptimiser\Model\Config\Source\ExcludePages</source_model>
+                        <comment><![CDATA[This setting will provide option to the user to exclude pages to move javascript to page bottom.]]></comment>
+                    </field>          
+                </group>
+                
+                <group id="css" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CSS Settings</label>
+                    <field id="merge_css_files" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Merge CSS Files</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[With 'Yes/No' options. If set to 'Yes' then it will merge all CSS files into one to reduce the number of queries.]]></comment>
+                    </field>
+                    <field id="defer_fonts_loading" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Defer Fonts Loading</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <depends>
+                            <field id="merge_css_files">1</field>
+                        </depends>
+                        <comment><![CDATA[With 'Yes/No' options. If set to 'Yes' then browser will load the page with system fonts and replace them with your fonts when they are loaded. It makes store pages load faster.]]></comment>
+                    </field>  
+                    <field id="css_files_minification" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>CSS Files Minification</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[With 'Yes/No' options. If set to 'Yes' then the module will remove all the unnecessary comments, line breaks, tabs and spaces from your CSS to reduce its size.]]></comment>
+                    </field>
+   
+                </group>
+                
+                <group id="flat_tables" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Flat Tables</label>
+                    <field id="use_flat_catalog_category" translate="label comment" type="select" sortOrder="10" showInDefault="1" canRestore="1">
+                        <label>Use Flat Catalog Category</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[With 'Yes/No' options. If set to 'Yes' then it will short the query in the database. The shorter the query, the better the store performance. Pays off for large stores with massive databases.]]></comment>
+                    </field>
+                    <field id="use_flat_catalog_product" translate="label comment" type="select" sortOrder="20" showInDefault="1" canRestore="1">
+                        <label>Use Flat Catalog Product</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[With 'Yes/No' options. If set to ‘Yes’ then it will short the query in the database.]]></comment>
+                    </field>    
+                </group>
+                <depends>
+                    <field id="speedoptimiser/general/enabled">1</field>
+                </depends>
+            </group> 
+        </section>
+    </system>
+</config>

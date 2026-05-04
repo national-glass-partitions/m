@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MageWorx\OptionBase\Model\Product\Option\CollectionUpdaters">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="customer_group" xsi:type="object">MageWorx\OptionVisibility\Model\CollectionUpdater\Option\CustomerGroup</item>
+                <item name="store_view" xsi:type="object">MageWorx\OptionVisibility\Model\CollectionUpdater\Option\StoreView</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="MageWorx\OptionBase\Model\Product\Option\Attributes">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="customer_group" xsi:type="object">MageWorx\OptionVisibility\Model\Attribute\Option\CustomerGroup</item>
+                <item name="store_view" xsi:type="object">MageWorx\OptionVisibility\Model\Attribute\Option\StoreView</item>
+                <item name="all_customer_group" xsi:type="object">MageWorx\OptionVisibility\Model\Attribute\Option\AllCustomerGroups</item>
+                <item name="all_store_view" xsi:type="object">MageWorx\OptionVisibility\Model\Attribute\Option\AllStoreViews</item>
+                <item name="disabled" xsi:type="object">MageWorx\OptionVisibility\Model\Attribute\Option\Disabled</item>
+                <item name="disabled_by_values" xsi:type="object">MageWorx\OptionVisibility\Model\Attribute\Option\DisabledByValues</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\Option\Value\Attributes">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="disabled" xsi:type="object">MageWorx\OptionVisibility\Model\Attribute\OptionValue\Disabled</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Config param injection -->
+    <type name="MageWorx\OptionBase\Helper\Data">
+        <arguments>
+            <argument name="isDisabledConfigPath" xsi:type="string">mageworx_apo/optionvisibility/use_is_disabled</argument>
+            <argument name="isEnabledVisibilityPerCustomerGroup" xsi:type="string">mageworx_apo/optionvisibility/enable_visibility_customer_group</argument>
+            <argument name="isEnabledVisibilityPerStoreView" xsi:type="string">mageworx_apo/optionvisibility/enable_visibility_store_view</argument>
+        </arguments>
+    </type>
+
+    <!-- validation -->
+    <type name="MageWorx\OptionBase\Model\ValidationResolver">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="option_visibility" xsi:type="object">MageWorx\OptionVisibility\Model\Validator</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

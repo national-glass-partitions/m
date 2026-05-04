@@ -1,0 +1,21 @@
+{
+    "mageworx_dynamic_options": {
+        "column": {
+            "id": true,
+            "product_id": true,
+            "option_id": true,
+            "step": true,
+            "min_value": true,
+            "max_value": true,
+            "measurement_unit": true
+        },
+        "index": {
+            "MAGEWORX_DYNAMIC_OPTIONS_OPTION_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_DYNAMIC_OPTS_OPT_ID_CAT_PRD_OPT_OPT_ID": true,
+            "MAGEWORX_DYNAMIC_OPTIONS_PRODUCT_ID_OPTION_ID": true
+        }
+    }
+}

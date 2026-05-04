@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- Magento Tables -->
+    <table name="catalog_product_option" resource="default" engine="innodb" comment="Magento Catalog Product Option Table">
+        <column xsi:type="boolean" name="is_all_groups" nullable="false" default="1" comment="ALL Customer Group ID (added by MageWorx Option Visibility)"/>
+        <column xsi:type="boolean" name="is_all_websites" nullable="false" default="1" comment="ALL Store ID (added by MageWorx Option Visibility)"/>
+        <column xsi:type="smallint" name="disabled" unsigned="true" nullable="false" default="0" comment="Disabled (added by MageWorx Option Visibility)"/>
+        <column xsi:type="smallint" name="disabled_by_values" unsigned="true" nullable="false" default="0" comment="Disabled by values (added by MageWorx Option Visibility)"/>
+    </table>
+    <table name="catalog_product_option_type_value" resource="default" engine="innodb" comment="Magento Catalog Product Option Value Table">
+        <column xsi:type="smallint" name="disabled" unsigned="true" nullable="false" default="0" comment="Disabled (added by MageWorx Option Visibility)"/>
+    </table>
+    <!-- MageWorx Tables -->
+    <table name="mageworx_optionvisibility_option_customer_group" resource="default" engine="innodb" comment="Mageworx OptionVisibiity Option Customer Group Table">
+        <column xsi:type="int" name="visibility_customer_group_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Visibility Customer Group Id"/>
+        <column xsi:type="int" name="option_id" padding="10" unsigned="true" nullable="false" comment="Option ID"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" comment="Customer Group ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="visibility_customer_group_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTIONVISIBILITY_OPTION_CUSTOMER_GROUP_OPTION_ID" indexType="btree">
+            <column name="option_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTIONVISIBILITY_OPTION_CUSTOMER_GROUP_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="customer_group_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONVIS_OPT_CUST_GROUP_CUST_GROUP_ID_CAST_GROUP_CAST_GROUP_ID" table="mageworx_optionvisibility_option_customer_group" column="customer_group_id" referenceTable="customer_group" referenceColumn="customer_group_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MW_OPTIONVIS_OPT_CUST_GROUP_OPT_ID_CAT_PROD_OPT_OPT_OPT_ID" table="mageworx_optionvisibility_option_customer_group" column="option_id" referenceTable="catalog_product_option" referenceColumn="option_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optionvisibility_option_store_view" resource="default" engine="innodb" comment="Mageworx OptionVisibiity Option Store View Table">
+        <column xsi:type="int" name="visibility_store_view_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Visibility Customer Store View Id"/>
+        <column xsi:type="int" name="option_id" padding="10" unsigned="true" nullable="false" comment="Option ID"/>
+        <column xsi:type="smallint" name="customer_store_id" unsigned="true" nullable="false" default="0" comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="visibility_store_view_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTIONVISIBILITY_OPTION_STORE_VIEW_OPTION_ID" indexType="btree">
+            <column name="option_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTIONVISIBILITY_OPTION_STORE_VIEW_CUSTOMER_STORE_ID" indexType="btree">
+            <column name="customer_store_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONVIS_OPT_STORE_VIEW_STORE_STORE_ID" table="mageworx_optionvisibility_option_store_view" column="customer_store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MW_OPTIONVIS_OPT_STORE_VIEW_OPT_ID_CAT_PROD_OPT_OPT_OPT_ID" table="mageworx_optionvisibility_option_store_view" column="option_id" referenceTable="catalog_product_option" referenceColumn="option_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_customer_group" resource="default" engine="innodb" comment="Mageworx OptionVisibiity Option Customer Group Table">
+        <column xsi:type="int" name="visibility_customer_group_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Visibility Customer Group Id"/>
+        <column xsi:type="int" name="option_id" padding="10" unsigned="true" nullable="false" comment="Option ID"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" comment="Customer Group ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="visibility_customer_group_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_CUSTOMER_GROUP_OPTION_ID" indexType="btree">
+            <column name="option_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_CUSTOMER_GROUP_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="customer_group_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTTEMP_GR_OPT_CUST_GROUP_CUST_GROUP_ID_CAST_GROUP_CAST_GROUP_ID" table="mageworx_optiontemplates_group_option_customer_group" column="customer_group_id" referenceTable="customer_group" referenceColumn="customer_group_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MW_OPTTEMPL_GR_OPT_CUST_GROUP_OPT_ID_MW_OPTTEMPL_GR_OPT_OPT_ID" table="mageworx_optiontemplates_group_option_customer_group" column="option_id" referenceTable="mageworx_optiontemplates_group_option" referenceColumn="option_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageworx_optiontemplates_group_option_store_view" resource="default" engine="innodb" comment="Mageworx OptionVisibiity Option Store View Table">
+        <column xsi:type="int" name="visibility_store_view_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Option Visibility Customer Store View Id"/>
+        <column xsi:type="int" name="option_id" padding="10" unsigned="true" nullable="false" comment="Option ID"/>
+        <column xsi:type="smallint" name="customer_store_id" unsigned="true" nullable="false" default="0" comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="visibility_store_view_id"/>
+        </constraint>
+        <index referenceId="MAGEWORX_OPTIONTEMPLATES_GR_OPTION_STORE_VIEW_OPTION_ID" indexType="btree">
+            <column name="option_id"/>
+        </index>
+        <index referenceId="MAGEWORX_OPTIONTEMPLATES_GR_OPTION_STORE_VIEW_CUSTOMER_STORE_ID" indexType="btree">
+            <column name="customer_store_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="MAGEWORX_OPTIONTEMPLATES_GR_OPT_STORE_VIEW_STORE_STORE_ID" table="mageworx_optiontemplates_group_option_store_view" column="customer_store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MW_OPTTEMPL_GR_OPT_STORE_VIEW_OPT_ID_MW_OPTTEMPL_GR_OPT_OPT_ID" table="mageworx_optiontemplates_group_option_store_view" column="option_id" referenceTable="mageworx_optiontemplates_group_option" referenceColumn="option_id" onDelete="CASCADE"/>
+    </table>
+</schema>

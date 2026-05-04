@@ -1,0 +1,152 @@
+
+& when (@media-target = 'desktop'){
+// Main Styles
+    .navigation.tm-navigation {
+        li.level-top,
+        a.level-top {
+            position: static;
+
+            .submenu .submenu-reverse {
+                right: auto;
+            }
+
+            .mm-label {
+                position: absolute;
+                top: -10px;
+                left: -5px;
+                padding: 3px 7px;
+                text-transform: uppercase;
+                font-size: @mega-menu_label-font-size;
+                line-height: @mega-menu_label-font-size * 1.2;
+                color: @mega-menu_label-color;
+                background-color: @mega-menu_label-bg;
+                display: none;
+
+                @media (min-width: @screen__m) {
+                    display: block;
+                }
+            }
+
+            li {
+                position: relative;
+            }
+
+            .mm-image {
+                display: none;
+                margin-bottom: 10px;
+
+                @media (min-width: @screen__m) {
+                    display: inline-block;
+                }
+
+                img {
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+
+            .megamenu-wrapper {
+                top: 100% !important;
+                left: 20px !important;
+                width: ~'calc(100% - 40px) !important';
+                padding: 20px 0;
+                background: @mega-menu_menu-bg;
+                box-shadow: @mega-menu_shadow-medium;
+            }
+
+            ul.mm-submenu {
+                display: block;
+                padding: 0;
+
+                @media (max-width: (@screen__m - 1)) {
+                    &.level1 li a {
+                        padding-left: 15px;
+                        padding-right: 0;
+                    }
+
+                    .mm-submenu {
+                        padding-left: 15px;
+                    }
+                }
+            }
+
+            .tm-megamenu {
+                // FIRST level
+                ul.level1 > li > a {
+                    font-weight: 600;
+                    position: relative;
+
+                    @media (min-width: @screen__m) {
+                        text-transform: uppercase;
+                    }
+                }
+
+                // Product
+                .product {
+                    display: none;
+
+                    .product-image {
+                        margin-bottom: 10px;
+
+                        a {
+                            display: block;
+                            border: solid 1px @mega-menu_menu-border;
+                            background: none;
+                        }
+                    }
+                    .product-name {
+                        text-transform: uppercase;
+                        display: block;
+                        margin-bottom: 5px;
+                        a {
+                            padding: 0;
+                            color: @mega-menu_name-color;
+
+                            &:hover {
+                                background: none;
+                                color: @mega-menu_name-color-hover;
+                            }
+                        }
+                    }
+                    .price-box {
+                        font-weight: bold;
+
+                        .price {
+                            font-size: 1.2em;
+                            line-height: 1.2em;
+                        }
+                        .old-price {
+                            font-size: 1em;
+                            text-decoration: line-through;
+                        }
+                        .special-price {
+                            font-size: 1.2em;
+                        }
+                    }
+
+                    @media (min-width: @screen__m) {
+                        display: block;
+                    }
+                }
+
+                // Static Blocks
+                .widget,
+                .video,
+                .static-block {
+                    display: none;
+
+                    @media (min-width: @screen__m) {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+
+    //Hide ::before for products only megamenu on mobile
+    .rd-navbar-nav li.rd-navbar--has-megamenu.products-only > .rd-navbar-submenu-toggle {
+        @media (max-width: @screen__m) {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,182 @@
+{
+    "catalog_product_option": {
+        "column": {
+            "qty_input": true,
+            "one_time": true,
+            "div_class": true,
+            "mageworx_option_gallery": true,
+            "mageworx_option_image_mode": true,
+            "selection_limit_from": true,
+            "selection_limit_to": true,
+            "is_hidden": true,
+            "hide_product_page_value_price": true
+        }
+    },
+    "catalog_product_option_type_value": {
+        "column": {
+            "is_default": true,
+            "cost": true,
+            "weight": true,
+            "weight_type": true,
+            "qty_multiplier": true,
+            "load_linked_product": true
+        }
+    },
+    "mageworx_optionfeatures_option_type_description": {
+        "column": {
+            "option_type_description_id": true,
+            "option_type_id": true,
+            "store_id": true,
+            "description": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONFEATURES_OPTION_TYPE_DESCRIPTION_STORE_ID": true,
+            "MAGEWORX_OPTIONFEATURES_OPTION_TYPE_DESCRIPTION_OPTION_TYPE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_OPTFEATURES_OPT_TYPE_DESCRIPTION_OPT_TYPE_ID_STORE_ID": true,
+            "FK_2C15EADD1DD5D6C5E0E61DDFB5C2981B": true,
+            "FK_316CA178C7252B45EA5232F8B6DD4437": true
+        }
+    },
+    "mageworx_optionfeatures_option_type_image": {
+        "column": {
+            "option_type_id": true,
+            "option_type_image_id": true,
+            "media_type": true,
+            "value": true,
+            "title_text": true,
+            "sort_order": true,
+            "base_image": true,
+            "tooltip_image": true,
+            "overlay_image": true,
+            "color": true,
+            "replace_main_gallery_image": true,
+            "disabled": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONFEATURES_OPTION_TYPE_IMAGE_OPTION_TYPE_ID": true,
+            "MAGEWORX_OPTFEATURES_OPT_TYPE_IMAGE_OPT_TYPE_ID_TOOLTIP_IMAGE": true,
+            "MAGEWORX_OPTFEATURES_OPT_TYPE_IMAGE_OPT_TYPE_ID_BASE_IMAGE": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_5DE1F80CFFC2267A0C0FCAF990DCFFBE": true
+        }
+    },
+    "mageworx_optionfeatures_option_description": {
+        "column": {
+            "option_description_id": true,
+            "option_id": true,
+            "store_id": true,
+            "description": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONFEATURES_OPTION_DESCRIPTION_STORE_ID": true,
+            "MAGEWORX_OPTIONFEATURES_OPTION_DESCRIPTION_OPTION_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_OPTIONFEATURES_OPTION_DESCRIPTION_OPTION_ID_STORE_ID": true,
+            "MAGEWORX_OPTFEATURES_OPT_DESCRIPTION_STORE_ID_STORE_STORE_ID": true,
+            "MAGEWORX_OPTFEATURES_OPT_DESCRIPTION_OPT_ID_CAT_PRD_OPT_OPT_ID": true
+        }
+    },
+    "mageworx_optionfeatures_option_type_is_default": {
+        "column": {
+            "option_type_id": true,
+            "option_type_is_default_id": true,
+            "store_id": true,
+            "is_default": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONFEATURES_OPTION_TYPE_IS_DEFAULT_OPTION_TYPE_ID": true,
+            "MAGEWORX_OPTIONFEATURES_OPTION_TYPE_IS_DEFAULT_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_OPTFEATURES_OPT_TYPE_IS_DEFAULT_OPT_TYPE_ID_STORE_ID": true,
+            "MAGEWORX_OPTFEATURES_OPT_TYPE_IS_DEFAULT_STORE_ID_STORE_STORE_ID": true,
+            "FK_DA48580A57EF3BBF8C9869E3ACE0E38A": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_description": {
+        "column": {
+            "option_description_id": true,
+            "option_id": true,
+            "store_id": true,
+            "description": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_DESCRIPTION_STORE_ID": true,
+            "MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_DESCRIPTION_OPTION_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_DESCRIPTION_OPT_ID_STORE_ID": true,
+            "FK_2884BAC1F673B5DF1ED4C8215B62AA3C": true,
+            "FK_800FAB6FDCF4333C814626331172D2FC": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_type_description": {
+        "column": {
+            "option_type_description_id": true,
+            "option_type_id": true,
+            "store_id": true,
+            "description": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_TYPE_DESCRIPTION_STORE_ID": true,
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_TYPE_DESCRIPTION_OPT_TYPE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "UNQ_560609FCF73D09F50F60F68EA57409CB": true,
+            "FK_E3A8F608DAF40C59653BFE8D3EAAB55B": true,
+            "FK_BF65877C6389E239BB64912F69C7B6BF": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_type_image": {
+        "column": {
+            "option_type_id": true,
+            "option_type_image_id": true,
+            "media_type": true,
+            "value": true,
+            "title_text": true,
+            "sort_order": true,
+            "base_image": true,
+            "tooltip_image": true,
+            "overlay_image": true,
+            "color": true,
+            "replace_main_gallery_image": true,
+            "disabled": true
+        },
+        "index": {
+            "MAGEWORX_OPTIONTEMPLATES_GROUP_OPTION_TYPE_IMAGE_OPTION_TYPE_ID": true,
+            "IDX_4E59E98E8571D1EA41ECFA6F5E4F3C8E": true,
+            "IDX_482108B2DF793B7997DBFE07E76B3640": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_F4DBA4CB917B82187359E4224CEF536E": true
+        }
+    },
+    "mageworx_optiontemplates_group_option_type_is_default": {
+        "column": {
+            "option_type_id": true,
+            "option_type_is_default_id": true,
+            "store_id": true,
+            "is_default": true
+        },
+        "index": {
+            "MAGEWORX_OPTTEMPLATES_GROUP_OPT_TYPE_IS_DEFAULT_OPT_TYPE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "UNQ_B5FAE5E8F28BC20FA3A148DDBA244953": true,
+            "FK_EFC9D6E5DEC2DE48973499377E932B7B": true,
+            "FK_45B50DCDC4F73ADB5D432A6CAA99CCAD": true
+        }
+    }
+}

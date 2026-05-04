@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce Cache Warmer Module default configuration file for setting all default values
+ * @category   Scommerce
+ * @package    Scommerce_CacheWarmer
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <cachewarmer>
+            <general>
+                <enabled>0</enabled>
+                <regenerate_cache_after_page_update>0</regenerate_cache_after_page_update>
+                <can_regenerate_cache_manually>0</can_regenerate_cache_manually>
+                <generate_log>0</generate_log>
+            </general>
+            <cronsetting>
+                <cache_cron_schedule>0 0 * * *</cache_cron_schedule>
+                <concurrent_regeneration_request>1000</concurrent_regeneration_request>
+            </cronsetting>
+        </cachewarmer>
+    </default>
+</config>

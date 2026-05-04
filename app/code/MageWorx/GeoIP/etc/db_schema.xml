@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="maxmind_country_regions" resource="default" engine="innodb" comment="Maxmind Country Regions Table">
+      <column xsi:type="int" name="relation_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Relation ID"/>
+      <column xsi:type="varchar" name="region_id" nullable="true" length="255" comment="Region ID"/>
+      <column xsi:type="varchar" name="country_id" nullable="false" length="3" comment="Country ID"/>
+      <column xsi:type="varchar" name="country_name" nullable="true" length="255" comment="Country Name"/>
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+          <column name="relation_id"/>
+      </constraint>
+      <constraint xsi:type="unique" referenceId="MAGEWORX_GEOIP_COUNTRY_REGIONS_RELATION_REGION_ID_COUNTRY_ID">
+          <column name="region_id"/>
+          <column name="country_id"/>
+      </constraint>
+  </table>
+</schema>

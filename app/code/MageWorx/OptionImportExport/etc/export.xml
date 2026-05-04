@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/export.xsd">
+    <entity name="catalog_product_with_apo"
+            label="Products + Advanced Product Options"
+            model="MageWorx\OptionImportExport\Model\MageTwo\Export\Product"
+            entityAttributeFilterType="catalog_product"
+    />
+    <entityType entity="catalog_product_with_apo" name="simple" model="Magento\CatalogImportExport\Model\Export\Product\Type\Simple" />
+    <entityType entity="catalog_product_with_apo" name="virtual" model="Magento\CatalogImportExport\Model\Export\Product\Type\Simple" />
+    <entityType entity="catalog_product_with_apo" name="configurable" model="Magento\ConfigurableImportExport\Model\Export\Product\Type\Configurable" />
+    <entityType entity="catalog_product_with_apo" name="bundle" model="Magento\BundleImportExport\Model\Export\Product\Type\Bundle" />
+    <entityType entity="catalog_product_with_apo" name="downloadable" model="Magento\DownloadableImportExport\Model\Export\Product\Type\Downloadable" />
+    <entityType entity="catalog_product_with_apo" name="grouped" model="Magento\GroupedImportExport\Model\Export\Product\Type\Grouped" />
+</config>

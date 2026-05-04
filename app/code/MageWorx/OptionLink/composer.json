@@ -1,0 +1,26 @@
+{
+    "name": "mageworx/module-optionlink",
+    "description": "Link product attributes to options by SKU.",
+    "require": {
+        "magento/framework"             : ">=101.0.0 <104",
+        "magento/module-catalog"        : ">=103.0.3 <105",
+        "magento/module-store"          : ">=101.0.3 <102",
+        "magento/module-ui"             : ">=101.1.3 <102",
+        "mageworx/module-optionfeatures": ">=2.20.0",
+        "mageworx/module-optionbase"    : ">=2.17.0"
+    },
+    "type": "magento2-module",
+    "version": "2.3.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MageWorx\\OptionLink\\": ""
+        }
+    }
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce Speed Optimiser Module default configuration file for setting all default values
+ * @category   Scommerce
+ * @package    Scommerce_SpeedOptimiser
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <speedoptimiser>
+            <general>
+                <enabled>0</enabled>
+            </general>
+            <settings>
+                <html>
+                    <html_setting>0</html_setting>
+                    <defer_iframe>0</defer_iframe>
+                </html>
+                <javascript>
+                    <merge_javascript_files>0</merge_javascript_files>
+                    <javascript_bundling>0</javascript_bundling>
+                    <javascript_bundling_filesize>300</javascript_bundling_filesize>
+                    <javascript_files_minification>0</javascript_files_minification>
+                    <move_javascript_to_page_bottom>0</move_javascript_to_page_bottom>
+                    <exclude_pages_to_move_js_bottom>0</exclude_pages_to_move_js_bottom>
+                </javascript>
+                <css>
+                    <merge_css_files>0</merge_css_files>
+                    <css_files_minification>0</css_files_minification>
+                    <defer_fonts_loading>0</defer_fonts_loading>
+                </css>
+                <flat_tables>
+                    <use_flat_catalog_category>0</use_flat_catalog_category>
+                    <use_flat_catalog_product>0</use_flat_catalog_product>
+                </flat_tables>
+            </settings>
+        </speedoptimiser>
+    </default>
+</config>

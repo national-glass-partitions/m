@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce LazyLoading Module configuration file for defining all configurations required for this module
+ * @category   Scommerce
+ * @package    Scommerce_LazyLoading
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="scommerce" translate="label comment" sortOrder="400">
+            <label>Scommerce Configuration</label>
+        </tab>
+        <section id="scommerce_lazyloading"
+                 translate="label"
+                 type="text"
+                 sortOrder="230"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <label>Lazy Loading</label>
+            <tab>scommerce</tab>
+            <!-- resource tag name which we have to defined in the acl.xml -->
+            <resource>Scommerce_LazyLoading::config_lazyloading</resource>
+            <group id="general"
+                   translate="label"
+                   type="text"
+                   sortOrder="10"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>General</label>
+                <field id="enabled"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="10"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting will be used to enable or disable module]]></comment>
+                </field>
+                
+                <field id="preload_image"
+                       translate="label comment"
+                       type="select"
+                       sortOrder="20"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1"
+                       canRestore="1">
+                    <label>Preload Images </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting will be used to preload images or load them from scratch when they appear on the screen.]]></comment>
+                </field>
+                <field id="loading" translate="label comment" type="image" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Loading Icon</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">lazyimage</upload_dir>
+                    <base_url type="media" scope_info="1">lazyimage</base_url>
+                    <comment><![CDATA[Show a preview image before the real image loads.]]></comment>
+                </field>                
+                <field id="skip_image"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="30"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Skip Images Count</label>
+                    <validate>validate-number</validate>
+                    <comment><![CDATA[This setting will be used to exclude the X number of images from Lazy Load. Based on count this option will decide how many images to load without lazy loading. For example: 3]]></comment>
+                </field>
+                
+                <field id="skip_images_tag"
+                       type="text"
+                       translate="label comment"
+                       sortOrder="40"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Ignore Images that Contain </label>
+                    <frontend_model>Scommerce\LazyLoading\Block\System\Form\IgnoreImages</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <comment><![CDATA[This feature will be used when there will be a compatibility issue with image loading. Provide a part of an image tag content into the field and all images containing the inserted lines in their tags will be excluded from the extension's Lazy Load. For example: owl]]></comment>
+                </field>
+                
+                <field id="exclude_pages"
+                       translate="label comment"
+                       type="multiselect"
+                       sortOrder="50"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Exclude Pages</label>
+                    <source_model>Scommerce\LazyLoading\Model\Config\Source\ExcludePages</source_model>
+                    <comment><![CDATA[This setting will provide option to the user to exclude pages from Lazy Load.]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

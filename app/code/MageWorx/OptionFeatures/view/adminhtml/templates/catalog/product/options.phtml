@@ -1,0 +1,37 @@
+<?php
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+/** @var \MageWorx\OptionFeatures\Block\Features $block */
+$jsonData = $block->getJsonData();
+$isDefaultJsonData = $block->getIsDefaultJsonData();
+?>
+<script>
+    require([
+        'jquery',
+        'optionFeatures',
+        'optionFeaturesIsDefault',
+        'uiRegistry'
+    ], function ($, optionFeatures, optionFeaturesIsDefault, registry) {
+        var optionBase = registry.get('mageworxOptionBase');
+        if (optionBase) {
+            optionBase.addUpdater(
+                10,
+                optionFeatures(<?= /* @noEscape */ $jsonData;?>)
+            );
+            optionBase.addUpdater(
+                50,
+                optionFeaturesIsDefault(<?= /* @noEscape */ $isDefaultJsonData;?>)
+            );
+        } else {
+            var updaters = registry.get('mageworxOptionUpdaters');
+            if (!updaters) {
+                updaters = {};
+            }
+            updaters[10] = optionFeatures(<?= /* @noEscape */ $jsonData;?>);
+            updaters[50] = optionFeaturesIsDefault(<?= /* @noEscape */ $isDefaultJsonData;?>);
+            registry.set('mageworxOptionUpdaters', updaters);
+        }
+    });
+</script>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Scommerce optimiserbase Module default configuration file for setting all default values
+ * @category   Scommerce
+ * @package    Scommerce_OptimiserBase
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Core/etc/config.xsd">
+    <default>
+        <scommerce_optimiserbase>
+            <general>
+                <enabled>0</enabled>
+                <license_key>[CHECK YOUR ORDER CONFIRMATION EMAIL FOR LICENSE KEY]</license_key>
+            </general>			
+        </scommerce_optimiserbase>
+    </default>
+</config>

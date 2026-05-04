@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2018 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mageworx" sortOrder="2001">
+            <label>MageWorx</label>
+        </tab>
+        <section id="mageworx_apo" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label><![CDATA[Advanced Product Options]]></label>
+            <tab>mageworx</tab>
+            <resource>MageWorx_OptionFeatures::config_optionfeatures</resource>
+            <group id="optionfeatures" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label><![CDATA[Option Features]]></label>
+                <field id="product_price_display_mode" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Product Price Display Mode]]></label>
+                    <source_model>MageWorx\OptionFeatures\Model\Config\Source\ProductPriceDisplayMode</source_model>
+                    <comment><![CDATA[This setting allows you to choose how the price of the main product is shown on the product page.<br />
+                        "Disabled" - disable any product price updates if product Qty is changed.<br />
+                        "Per Item" - display the price per 1 item, including the product tier prices.<br />
+                        "Final Price" - display the final product price, multiplying the product price by the added Qty.<br />
+                        Note: Does not work for Configurable and Bundle products]]>
+                    </comment>
+                </field>
+                <field id="use_additional_product_price_field" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Add Total Product Price Field]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If enabled, the additional total product price will be shown above the “add-to-cart” button.]]></comment>
+                </field>
+                <field id="additional_product_price_field_label" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Total Product Price Field Label]]></label>
+                    <depends>
+                        <field id="mageworx_apo/optionfeatures/use_additional_product_price_field">1</field>
+                    </depends>
+                </field>
+                <field id="additional_product_price_field_mode" translate="label comment" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Total Product Price Field Mode]]></label>
+                    <source_model>MageWorx\OptionFeatures\Model\Config\Source\AdditionalProductPriceDisplayMode</source_model>
+                    <depends>
+                        <field id="mageworx_apo/optionfeatures/use_additional_product_price_field">1</field>
+                    </depends>
+                    <comment><![CDATA[The additional price can show the final product price including selected custom options, tier & special prices, added product & options quantity.<br />
+                        The "Per Item" mode will show the final product price per 1 item including selected custom options, tier & special prices.<br />
+                        Note: Does not work for Configurable and Bundle products]]>
+                    </comment>
+                </field>
+                <field id="use_weight" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable Custom Options Weight]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_absolute_weight" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable Custom Options Absolute Weight]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_cost" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable Custom Options Cost]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_absolute_cost" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable Custom Options Absolute Cost]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_absolute_price" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable Custom Options Absolute Price]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_absolute_price_by_default" translate="label" type="select" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable Absolute Price By Default]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_one_time" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable One Time Custom Options]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_qty_input" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable Custom Options Quantity Input]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_qty_label" translate="label" type="text" sortOrder="72" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Default Option Qty Field Label]]></label>
+                    <depends>
+                        <field id="mageworx_apo/optionfeatures/use_qty_input">1</field>
+                    </depends>
+                </field>
+                <field id="use_description" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable Option's Value Description]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_option_description" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable Option Description]]></label>
+                    <source_model>MageWorx\OptionFeatures\Model\Config\Source\OptionDescription</source_model>
+                </field>
+                <field id="use_wysiwyg_for_description" translate="label" type="select" sortOrder="91" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label><![CDATA[Enable WYSIWYG Editor For Descriptions]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="selection_limit_message_from_to" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Selection Limit From-To Message Template]]></label>
+                </field>
+                <field id="selection_limit_message_from" translate="label" type="text" sortOrder="111" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Selection Limit From Message Template]]></label>
+                </field>
+                <field id="selection_limit_message_to" translate="label" type="text" sortOrder="112" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Selection Limit To Message Template]]></label>
+                </field>
+                <field id="base_image_thumbnail_height_size" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Option Gallery Thumbnail Image Height]]></label>
+                    <validate>validate-zero-or-greater</validate>
+                </field>
+                <field id="base_image_thumbnail_width_size" translate="label" type="text" sortOrder="125" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Option Gallery Thumbnail Image Width]]></label>
+                    <comment><![CDATA[Hint: If set to 0, the height will be equal to the width value.]]></comment>
+                    <validate>validate-zero-or-greater</validate>
+                </field>
+                <field id="tooltip_image_thumbnail_size" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Option Value Tooltip Image Size]]></label>
+                </field>
+                <field id="enable_shareable_link" translate="label comment" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable Shareable Link]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[This setting allows you to display the shareable link on the product pages on the front-end and to allow your customers to get the product links with selected options.<br />
+                        These links will open the products with pre-selected options. The existing links will be still available even if this setting is disabled.]]>
+                    </comment>
+                </field>
+                <field id="shareable_link_text" translate="label comment" type="text" sortOrder="141" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Shareable Link Title]]></label>
+                    <depends>
+                        <field id="mageworx_apo/optionfeatures/enable_shareable_link">1</field>
+                    </depends>
+                    <comment><![CDATA[This setting allows you to change the title of the link visible for your customers.]]></comment>
+                </field>
+                <field id="shareable_link_hint_text" translate="label comment" type="text" sortOrder="142" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Shareable Link Description]]></label>
+                    <depends>
+                        <field id="mageworx_apo/optionfeatures/enable_shareable_link">1</field>
+                    </depends>
+                    <comment><![CDATA[This setting allows you to specify the text, which appears in the tooltip.]]></comment>
+                </field>
+                <field id="shareable_link_success_text" translate="label comment" type="text" sortOrder="143" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Shareable Link Success Message]]></label>
+                    <depends>
+                        <field id="mageworx_apo/optionfeatures/enable_shareable_link">1</field>
+                    </depends>
+                    <comment><![CDATA[This setting allows you to change the text, which appears when the link is copied to the clipboard.]]></comment>
+                </field>
+                <field id="use_load_linked_product" translate="label" type="select" sortOrder="144" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable Load Linked Product]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[If enabled, the linked product will be loaded upon the value selection on the front-end. The value should be linked to existing product to enable this feature.<br />
+                       Note: this feature supports the swatch options only.]]>
+                    </comment>
+                </field>
+                <field id="enable_hide_value_price" translate="label" type="select" sortOrder="145" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable Hide Value Price]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="hide_product_page_value_price" translate="label" type="select" sortOrder="146" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Hide Value Price On Product Page]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="mageworx_apo/optionfeatures/enable_hide_value_price">1</field>
+                    </depends>
+                </field>
+                <field id="enable_customize_and_add_to_cart_button" translate="label" type="select" sortOrder="147" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Enable 'Customize and Add to cart' button]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[Is used for Hyva theme only.]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

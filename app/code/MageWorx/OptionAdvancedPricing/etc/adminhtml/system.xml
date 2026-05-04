@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mageworx" sortOrder="2001">
+            <label>MageWorx</label>
+        </tab>
+        <section id="mageworx_apo" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label><![CDATA[Advanced Product Options]]></label>
+            <tab>mageworx</tab>
+            <resource>MageWorx_OptionAdvancedPricing::config_optionadvancedpricing</resource>
+            <group id="option_advanced_pricing" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label><![CDATA[Option Advanced Pricing]]></label>
+                <field id="enable_special_price" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label><![CDATA[Enable Special Price]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="option_special_price_display_template" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Option Special Price Display Template]]></label>
+                    <comment>
+                        <![CDATA[Possible variables: {special_price}, {special_price_excl_tax}, {price}, {price_excl_tax}, {special_price_comment}<br /><br />
+                        For "Including and Excluding Tax" price display mode (Sales -> Tax -> Price Display Settings -> Display Product Prices In Catalog -> "Including and Excluding Tax"), we recommend to use template "+{special_price} (Excl. tax: {special_price_excl_tax}) (Regular Price: {price}. {special_price_comment})".]]>
+                    </comment>
+                </field>
+                <field id="enable_tier_price" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label><![CDATA[Enable Tier Price]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="display_tier_price_table" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label><![CDATA[Display Tier Price Table]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="mageworx_apo/option_advanced_pricing/enable_tier_price">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

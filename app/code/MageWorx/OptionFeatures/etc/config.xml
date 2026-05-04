@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mageworx_apo>
+            <optionfeatures>
+                <product_price_display_mode>disabled</product_price_display_mode>
+                <use_additional_product_price_field>0</use_additional_product_price_field>
+                <additional_product_price_field_label>Total Price:</additional_product_price_field_label>
+                <additional_product_price_field_mode>final_price</additional_product_price_field_mode>
+                <use_weight>1</use_weight>
+                <use_absolute_weight>1</use_absolute_weight>
+                <use_cost>1</use_cost>
+                <use_absolute_cost>1</use_absolute_cost>
+                <use_absolute_price>1</use_absolute_price>
+                <use_load_linked_product>0</use_load_linked_product>
+                <use_absolute_price_by_default>0</use_absolute_price_by_default>
+                <use_one_time>1</use_one_time>
+                <use_qty_input>0</use_qty_input>
+                <default_qty_label>Qty: </default_qty_label>
+                <use_description>1</use_description>
+                <use_option_description>1</use_option_description>
+                <use_wysiwyg_for_description>0</use_wysiwyg_for_description>
+                <base_image_thumbnail_height_size>35</base_image_thumbnail_height_size>
+                <base_image_thumbnail_width_size>0</base_image_thumbnail_width_size>
+                <tooltip_image_thumbnail_size>130</tooltip_image_thumbnail_size>
+                <selection_limit_message_from_to>Please choose from {selection_limit_from} to {selection_limit_to} values</selection_limit_message_from_to>
+                <selection_limit_message_from>Please choose {selection_limit_from} values at least</selection_limit_message_from>
+                <selection_limit_message_to>Please choose {selection_limit_to} values max</selection_limit_message_to>
+                <enable_shareable_link>0</enable_shareable_link>
+                <shareable_link_text>Get shareable link</shareable_link_text>
+                <shareable_link_success_text>Link copied to clipboard</shareable_link_success_text>
+                <shareable_link_hint_text>Get the link to the product with selected options</shareable_link_hint_text>
+                <enable_hide_value_price>0</enable_hide_value_price>
+                <enable_customize_and_add_to_cart_button>0</enable_customize_and_add_to_cart_button>
+            </optionfeatures>
+        </mageworx_apo>
+    </default>
+</config>

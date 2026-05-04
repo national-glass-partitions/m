@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Cache Warmer
+ * @category   Scommerce
+ * @package    Scommerce_CacheWarmer
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Scommerce_CacheWarmer::cachewarmer" 
+             title="Manage Cache Warmer" 
+             module="Scommerce_CacheWarmer" 
+             sortOrder="30" 
+             parent="Magento_Backend::system" 
+             resource="Scommerce_CacheWarmer::cachewarmer"  
+             dependsOnConfig="cachewarmer/general/enabled" />
+        <add id="Scommerce_CacheWarmer::manage" 
+             title="Cache Warmer" 
+             module="Scommerce_CacheWarmer" 
+             sortOrder="50" 
+             parent="Scommerce_CacheWarmer::cachewarmer" 
+             action="cachewarmer/index/index" 
+             resource="Scommerce_CacheWarmer::cachewarmer"
+             dependsOnConfig="cachewarmer/general/enabled"/>   
+    </menu>
+
+</config>
+

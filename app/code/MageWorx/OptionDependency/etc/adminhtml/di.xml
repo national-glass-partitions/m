@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Plugins -->
+    <type name="Magento\Catalog\Model\Product\Copier">
+        <plugin name="duplicateDependency" type="MageWorx\OptionDependency\Plugin\Adminhtml\DuplicateDependency" sortOrder="1" disabled="false"/>
+    </type>
+    <type name="MageWorx\OptionTemplates\Model\Group\Copier">
+        <plugin name="duplicateDependency" type="MageWorx\OptionDependency\Plugin\Adminhtml\DuplicateDependency" sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Sales\Controller\Adminhtml\Order\Create\ConfigureQuoteItems">
+        <plugin name="mageworx-optiondependency-admin-order-create-configure-quote-items"
+                type="MageWorx\OptionDependency\Plugin\Adminhtml\OrderCreateConfigureQuoteItems"
+                sortOrder="10"
+                disabled="false"
+        />
+    </type>
+
+    <virtualType name="MageWorx\OptionBase\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="mageworx-optiondependency" xsi:type="array">
+                    <item name="class" xsi:type="string">MageWorx\OptionDependency\Ui\DataProvider\Product\Form\Modifier\Dependency</item>
+                    <item name="sortOrder" xsi:type="number">210</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

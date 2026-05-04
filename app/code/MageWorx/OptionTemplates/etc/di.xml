@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MageWorx\OptionBase\Observer\ApplyAttributesOnGroup">
+        <arguments>
+            <argument name="groupModel" xsi:type="object">MageWorx\OptionTemplates\Model\Group</argument>
+            <argument name="optionValueCollection" xsi:type="object">MageWorx\OptionTemplates\Model\ResourceModel\Group\Option\Value\Collection</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="MageWorxOptionTemplatesGroupGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">MageWorx\OptionTemplates\Model\ResourceModel\Group\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">MageWorxOptionTemplatesGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="MageWorxOptionTemplatesGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="MageWorx\OptionTemplates\Model\ResourceModel\Group\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">mageworx_optiontemplates_group</argument>
+            <argument name="eventPrefix" xsi:type="string">mageworx_optiontemplates_group_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">group_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MageWorx\OptionTemplates\Model\ResourceModel\Group</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mageworx_optiontemplates_group_listing_data_source" xsi:type="string">MageWorx\OptionTemplates\Model\ResourceModel\Group\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionTemplates\Model\Group\Source\SystemAttributes">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="group_id" xsi:type="string">group_id</item>
+                <item name="title" xsi:type="string">title</item>
+                <item name="updated_at" xsi:type="string">updated_at</item>
+                <item name="is_active" xsi:type="string">is_active</item>
+                <item name="products" xsi:type="string">products</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Plugins duplicate pager -->
+    <type name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions">
+        <plugin name="mageworx_optiontemplates_modifymeta"
+                type="MageWorx\OptionTemplates\Plugin\DuplicatePager"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Api\Data\ProductCustomOptionValuesInterfaceFactory">
+        <plugin name="mageworx_optiontemplates_option_value_factory_resolver"
+                type="MageWorx\OptionTemplates\Plugin\OptionValueFactoryResolver"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+</config>

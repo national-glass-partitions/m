@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MageWorx_OptionFeatures::css/swatches.css"/>
+        <css src="MageWorx_OptionFeatures::css/jquery.qtip.css"/>
+        <css src="MageWorx_OptionFeatures::css/style.css"/>
+    </head>
+    <body>
+        <referenceBlock name="product.info.options.wrapper">
+            <container name="mageworx.option.features.container" after="product.info.options">
+                <block class="MageWorx\OptionFeatures\Block\Features"
+                       name="mageworx.option.features"
+                       template="MageWorx_OptionFeatures::catalog/product/options.phtml"/>
+            </container>
+        </referenceBlock>
+        <referenceBlock name="product.info.options.wrapper">
+            <container name="mageworx.optionfeatures.additional.images" after="product.info.options">
+                <block class="MageWorx\OptionFeatures\Block\Product\View\Wrapper"
+                       name="mageworx_optionfeatures_additional_wrapper"
+                       template="MageWorx_OptionFeatures::additional_wrapper.phtml"/>
+            </container>
+        </referenceBlock>
+    </body>
+</page>

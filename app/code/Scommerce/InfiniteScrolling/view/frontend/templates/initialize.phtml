@@ -1,0 +1,45 @@
+<?php
+/**
+ * Scommerce InfiniteScrolling view template 
+ * 
+ * @category   Scommerce
+ * @package    Scommerce_InfiniteScrolling
+ * @author     Scommerce Mage <core@scommerce-mage.com>
+ */
+/**
+ * @var Scommerce\InfiniteScrolling\Block\Initialize  $block
+ */
+?>
+
+<?php
+$helper = $this->helper('Scommerce\InfiniteScrolling\Helper\Data');
+$labelColor = $helper->buttonLabelFontColor();
+$offset = empty($helper->loadingType()) ? 9999 : 0;
+?>
+<?php if ($this->helper->isEnabled()) : ?>
+    <script>
+        window.iasConfig = {
+            mode: '<?php echo $block->getModeClass(); ?>',
+            debug: false,
+            container: '.main',
+            pagination: '.toolbar .pages, .pager',
+            spinnerHtml: '<div class="ias-spinner" style="text-align: center;"><img style="display:inline" src="{src}"/>Please wait...</div>',
+            trigger: {
+                text: '<?php echo $helper->buttonLabel(); ?>',
+                html: '<div class="ias-trigger ias-trigger-next" style="text-align: center; cursor: pointer; background-color: <?php echo $helper->buttonLabelBackground(); ?>"><a class="button-label" style= "color: <?php echo $labelColor; ?>; font-size: <?php echo $helper->buttonLabelSize(); ?>" >{text}</a></div>',
+                textPrev: '<?php echo $helper->buttonLabel(); ?>',
+                htmlPrev: '<div class="ias-trigger ias-trigger-prev" style="text-align: center; cursor: pointer;"><a>{text}</a></div>',
+                offset: '<?php echo $offset ?>'
+            },
+            memoryActive: false,
+            buttonLabelBackground: '<?php echo $helper->buttonLabelBackground(); ?>',
+            labelColor: '<?php echo $labelColor; ?>'
+
+        };
+        require(['jquery', 'infinitescrolling'], function ($) {
+            $(function ($) {
+                SgyIAS.init();
+            });
+        });
+    </script>
+<?php endif; ?>

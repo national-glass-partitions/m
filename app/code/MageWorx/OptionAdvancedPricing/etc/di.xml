@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Class preferences -->
+    <preference for="MageWorx\OptionAdvancedPricing\Api\SpecialPriceStorageInterface" type="MageWorx\OptionAdvancedPricing\Model\SpecialPriceStorage"/>
+    <preference for="MageWorx\OptionAdvancedPricing\Api\TierPriceStorageInterface" type="MageWorx\OptionAdvancedPricing\Model\TierPriceStorage"/>
+    <!-- Installation -->
+    <type name="MageWorx\OptionBase\Model\Product\Option\Value\CollectionUpdaters">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="special_price" xsi:type="object">MageWorx\OptionAdvancedPricing\Model\CollectionUpdater\Option\Value\SpecialPrice</item>
+                <item name="tier_price" xsi:type="object">MageWorx\OptionAdvancedPricing\Model\CollectionUpdater\Option\Value\TierPrice</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\Option\Value\Attributes">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="special_price" xsi:type="object">MageWorx\OptionAdvancedPricing\Model\Attribute\Option\Value\SpecialPrice</item>
+                <item name="tier_price" xsi:type="object">MageWorx\OptionAdvancedPricing\Model\Attribute\Option\Value\TierPrice</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\Option\AdditionalHtmlData">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="price_per_character" xsi:type="object">MageWorx\OptionAdvancedPricing\Model\Product\Option\AdditionalHtml</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\Option\Value\AdditionalHtmlData">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="tier_price" xsi:type="object">MageWorx\OptionAdvancedPricing\Model\Product\Option\Value\AdditionalHtml</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionFeatures\Model\Price">
+        <arguments>
+            <argument name="specialPriceModel" xsi:type="object">MageWorx\OptionAdvancedPricing\Model\SpecialPrice</argument>
+            <argument name="tierPriceModel" xsi:type="object">MageWorx\OptionAdvancedPricing\Model\TierPrice</argument>
+        </arguments>
+    </type>
+
+    <type name="MageWorx\OptionBase\Model\Source\LinkedProductAttributes">
+        <arguments>
+            <argument name="linkedAttributes" xsi:type="array">
+                <item name="special_price" xsi:type="string">special_price</item>
+                <item name="tier_price" xsi:type="string">tier_price</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Helper\Data">
+        <arguments>
+            <argument name="linkedAttributes" xsi:type="array">
+                <item name="special_price" xsi:type="string">special_price</item>
+                <item name="tier_price" xsi:type="string">tier_price</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionLink\Model\ResourceModel\Product\Option\Value\FieldFactory">
+        <arguments>
+            <argument name="fieldMap" xsi:type="array">
+                <item name="special_price" xsi:type="string">MageWorx\OptionAdvancedPricing\Model\ResourceModel\Product\Option\Value\Fields\SpecialPrice</item>
+                <item name="tier_price" xsi:type="string">MageWorx\OptionAdvancedPricing\Model\ResourceModel\Product\Option\Value\Fields\TierPrice</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionLink\Ui\DataProvider\Product\Form\Modifier\DisableFields">
+        <arguments>
+            <argument name="ignoredFields" xsi:type="array">
+                <item name="special_price" xsi:type="string">special_price</item>
+                <item name="tier_price" xsi:type="string">tier_price</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionLink\Observer\UpdatePriceTypeOptionValueAttributesObserver">
+        <arguments>
+            <argument name="attributeUpdaters" xsi:type="array">
+                <item name="special_price" xsi:type="object">MageWorx\OptionAdvancedPricing\Model\OptionValueAttributeUpdater\SpecialPrice</item>
+                <item name="tier_price" xsi:type="object">MageWorx\OptionAdvancedPricing\Model\OptionValueAttributeUpdater\TierPrice</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Indexer\Price\BasePriceModifier">
+        <arguments>
+            <argument name="priceModifiers" xsi:type="array">
+                <item name="customOptionPriceModifier" xsi:type="object">MageWorx\OptionAdvancedPricing\Model\ResourceModel\Product\Indexer\Price\CustomOptionPriceModifier</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionAdvancedPricing\Model\ResourceModel\Product\Indexer\Price\CustomOptionPriceModifier">
+        <arguments>
+            <argument name="tableStrategy" xsi:type="object">Magento\Catalog\Model\ResourceModel\Product\Indexer\TemporaryTableStrategy</argument>
+        </arguments>
+    </type>
+
+    <type name="MageWorx\OptionGraphQl\Model\Resolver\AdvancedProductOptionsSettings">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="advanced_pricing_helper" xsi:type="object">MageWorx\OptionAdvancedPricing\Helper\Data</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Plugins -->
+    <type name="MageWorx\OptionBase\Plugin\ExtendPriceConfig">
+        <plugin name="mageworx_optionadvancedpricing_extend_price_config"
+                type="MageWorx\OptionAdvancedPricing\Plugin\AfterExtendPriceConfig"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+
+    <type name="Magento\Catalog\Model\Config\Source\Product\Options\Price">
+        <plugin name="mageworx_optionadvancedpricing_add_price_type"
+                type="MageWorx\OptionAdvancedPricing\Plugin\AddPriceTypePlugin"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Api\Data\ProductCustomOptionInterface">
+        <plugin name="mageworx_price_per_character_plugin" type="MageWorx\OptionAdvancedPricing\Plugin\CalculatePricePerCharacterOptionPlugin"/>
+    </type>
+</config>

@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Data -->
+    <type name="MageWorx\OptionBase\Model\Product\Option\Attributes">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="option_title_id" xsi:type="object">MageWorx\OptionDependency\Model\Attribute\Option\TitleId</item>
+                <item name="dependency" xsi:type="object">MageWorx\OptionDependency\Model\Attribute\Option\Dependency</item>
+                <item name="dependency_type" xsi:type="object">MageWorx\OptionDependency\Model\Attribute\Option\DependencyType</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\Attributes">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="dependency_rules" xsi:type="object">MageWorx\OptionDependency\Model\Attribute\Product\DependencyRules</item>
+                <item name="hidden_dependents" xsi:type="object">MageWorx\OptionDependency\Model\Attribute\Product\HiddenDependents</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\Option\Value\Attributes">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="option_type_title_id" xsi:type="object">MageWorx\OptionDependency\Model\Attribute\OptionValue\TitleId</item>
+                <item name="dependency" xsi:type="object">MageWorx\OptionDependency\Model\Attribute\OptionValue\Dependency</item>
+                <item name="dependency_type" xsi:type="object">MageWorx\OptionDependency\Model\Attribute\OptionValue\DependencyType</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\Option\AdditionalHtmlData">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="dependency" xsi:type="object">MageWorx\OptionDependency\Model\Product\Option\AdditionalHtml</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\Option\Value\AdditionalHtmlData">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="dependency" xsi:type="object">MageWorx\OptionDependency\Model\Product\Option\Value\AdditionalHtml</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\CollectionUpdaters">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="dependency" xsi:type="object">MageWorx\OptionDependency\Model\CollectionUpdater\Dependency</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\Option\CollectionUpdaters">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="dependency" xsi:type="object">MageWorx\OptionDependency\Model\CollectionUpdater\Option\Dependency</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorx\OptionBase\Model\Product\Option\Value\CollectionUpdaters">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="dependency" xsi:type="object">MageWorx\OptionDependency\Model\CollectionUpdater\Option\Value\Dependency</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- validate dependencies -->
+    <type name="MageWorx\OptionBase\Model\ValidationResolver">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="option_dependency" xsi:type="object">MageWorx\OptionDependency\Model\Validator</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Plugins -->
+    <type name="Magento\Checkout\Controller\Cart\Configure">
+        <plugin name="mageworx-optiondependency-checkout-cart-configure-quote-items"
+                type="MageWorx\OptionDependency\Plugin\CheckoutCartConfigureQuoteItems"
+                sortOrder="10"
+                disabled="false"
+        />
+    </type>
+
+    <!-- Class injection -->
+    <type name="MageWorx\OptionBase\Model\InjectedClasses">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="hidden_dependents" xsi:type="object">MageWorx\OptionDependency\Model\HiddenDependents</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
