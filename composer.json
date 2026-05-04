@@ -66,10 +66,7 @@
             "type": "composer",
             "url": "https://repo.magento.com/"
         },
-        "amasty": {
-            "type": "composer",
-            "url": "https://composer.amasty.com/community/"
-        },
+        "amasty": false,
         "mageworx": {
             "type": "composer",
             "url": "https://packages.mageworx.com/"
