@@ -64,3 +64,13 @@
 # 2) "How to fix the «Invalid template file» / «require_js.phtml» failure for Magento ≥ 2.4.5 in Windows?"
 # https://mage2.pro/t/6339
 !/vendor/magento/framework/View/Element/Template/File/Validator.php
+# 2026-05-04 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+# 1) "Adapt the website to Windows-based servers": https://github.com/nationalglasspartitions/m/issues/2
+# 2) "How to fix URLs of catalog images in Windows for Magento ≥ 2.3.0?": https://mage2.pro/t/6413
+# 3.1) "The `Swissup_Pagespeed` module breaks URLs of images in Windows":
+# https://github.com/mydreamday-fi/site/issues/19
+# 3.2) "The `Swissup_Pagespeed` module breaks URLs of products' images in Windows":
+# https://github.com/mydreamday-fi/site/issues/18
+# 3.3) "The `Swissup_Pagespeed` module breaks URLs of categories' images in Windows":
+# https://github.com/mydreamday-fi/site/issues/17
+!/vendor/magento/module-catalog/Model/View/Asset/Image.php
