@@ -1,0 +1,917 @@
+############################################
+## Optional override of deployment mode. We recommend you use the
+## command bin/magento deploy:mode:set to switch modes instead
+
+# Options are default, production, or developer
+#   SetEnv MAGE_MODE default
+
+############################################
+## Uncomment these lines for CGI mode.
+## Make sure to specify the correct cgi php binary file name
+## it might be /cgi-bin/php-cgi
+
+#    Action php5-cgi /cgi-bin/php5-cgi
+#    AddHandler php5-cgi .php
+
+############################################
+## GoDaddy specific options
+
+#   Options -MultiViews
+
+## You might also need to add this line to php.ini
+##     cgi.fix_pathinfo = 1
+## If it still doesn't work, rename php.ini to php5.ini
+
+############################################
+## Enable usage of methods arguments in backtrace
+
+    #SetEnv MAGE_DEBUG_SHOW_ARGS 1
+
+############################################
+## This line is specific for 1and1 hosting
+
+    #AddType x-mapp-php5 .php
+    #AddHandler x-mapp-php5 .php
+
+############################################
+## Default index file
+
+    DirectoryIndex index.php
+
+<IfModule mod_php7.c>
+############################################
+## Adjust memory limit
+
+    php_value memory_limit 756M
+    php_value max_execution_time 18000
+
+############################################
+## Disable automatic session start
+## before autoload was initialized
+
+    php_flag session.auto_start off
+
+############################################
+## Enable resulting html compression
+
+    #php_flag zlib.output_compression on
+
+###########################################
+# Disable user agent verification to not break multiple image upload
+
+    php_flag suhosin.session.cryptua off
+</IfModule>
+
+<IfModule mod_php.c>
+############################################
+## Adjust memory limit
+
+    php_value memory_limit 756M
+    php_value max_execution_time 18000
+
+############################################
+## Disable automatic session start
+## before autoload was initialized
+
+    php_flag session.auto_start off
+
+############################################
+## Enable resulting html compression
+
+    #php_flag zlib.output_compression on
+</IfModule>
+
+<IfModule mod_security.c>
+###########################################
+# Disable POST processing to not break multiple image upload
+
+    SecFilterEngine Off
+    SecFilterScanPOST Off
+</IfModule>
+
+<IfModule mod_deflate.c>
+
+############################################
+## Enable apache served files compression
+## http://developer.yahoo.com/performance/rules.html#gzip
+
+    # Insert filter on all content
+    ###SetOutputFilter DEFLATE
+    # Insert filter on selected content types only
+    #AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json image/svg+xml
+
+    # Netscape 4.x has some problems...
+    #BrowserMatch ^Mozilla/4 gzip-only-text/html
+
+    # Netscape 4.06-4.08 have some more problems
+    #BrowserMatch ^Mozilla/4\.0[678] no-gzip
+
+    # MSIE masquerades as Netscape, but it is fine
+    #BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+
+    # Don't compress images
+    #SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary
+
+    # Make sure proxies don't deliver the wrong content
+    #Header append Vary User-Agent env=!dont-vary
+
+</IfModule>
+
+<IfModule mod_ssl.c>
+
+############################################
+## Make HTTPS env vars available for CGI mode
+
+    SSLOptions StdEnvVars
+
+</IfModule>
+
+############################################
+## Workaround for Apache 2.4.6 CentOS build when working via ProxyPassMatch with HHVM (or any other)
+## Please, set it on virtual host configuration level
+
+##    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+############################################
+
+<IfModule mod_rewrite.c>
+
+############################################
+## Enable rewrites
+
+    Options +FollowSymLinks
+    RewriteEngine on
+
+############################################
+## You can put here your magento root folder
+## path relative to web root
+
+    #RewriteBase /magento/
+
+############################################
+## Workaround for HTTP authorization
+## in CGI environment
+
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+############################################
+## TRACE and TRACK HTTP methods disabled to prevent XSS attacks
+
+    RewriteCond %{REQUEST_METHOD} ^TRAC[EK]
+    RewriteRule .* - [L,R=405]
+
+############################################
+## Redirect for mobile user agents
+
+    #RewriteCond %{REQUEST_URI} !^/mobiledirectoryhere/.*$
+    #RewriteCond %{HTTP_USER_AGENT} "android|blackberry|ipad|iphone|ipod|iemobile|opera mobile|palmos|webos|googlebot-mobile" [NC]
+    #RewriteRule ^(.*)$ /mobiledirectoryhere/ [L,R=302]
+
+############################################
+## 301 Redirects: Old SP height-specific pages to new consolidated pages
+
+    RewriteRule ^glass-partition-kit-2050mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-offfice-partition-2450mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-1430mm-w\.html$ https://nationalglasspartitions.co.uk/1430mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-1830mm-w\.html$ https://nationalglasspartitions.co.uk/1830mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-2730mm-w\.html$ https://nationalglasspartitions.co.uk/2730mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-2335mm-w\.html$ https://nationalglasspartitions.co.uk/2335mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-2735mm-w\.html$ https://nationalglasspartitions.co.uk/2735mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-3635mm-w\.html$ https://nationalglasspartitions.co.uk/3635mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-4145mm-w\.html$ https://nationalglasspartitions.co.uk/4145mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-4545mm-w\.html$ https://nationalglasspartitions.co.uk/4545mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-5955mm-w\.html$ https://nationalglasspartitions.co.uk/5955mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-6355mm-w\.html$ https://nationalglasspartitions.co.uk/6355mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-5445mm-w\.html$ https://nationalglasspartitions.co.uk/5445mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-7255mm-w\.html$ https://nationalglasspartitions.co.uk/7255mm-glass-partition-kit-double-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-2985mm-w\.html$ https://nationalglasspartitions.co.uk/2985mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-3890mm-w\.html$ https://nationalglasspartitions.co.uk/3890mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-4795mm-w\.html$ https://nationalglasspartitions.co.uk/4795mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-system-2200mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-5700mm-w\.html$ https://nationalglasspartitions.co.uk/5700mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-system-2200mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-6605mm-w\.html$ https://nationalglasspartitions.co.uk/6605mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-system-2200mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-7510mm-w\.html$ https://nationalglasspartitions.co.uk/7510mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-system-2200mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-8415mm-w\.html$ https://nationalglasspartitions.co.uk/8415mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-system-2200mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-9320mm-w\.html$ https://nationalglasspartitions.co.uk/9320mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-system-2200mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-3185mm-w\.html$ https://nationalglasspartitions.co.uk/3185mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-system-2200mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-4090mm-w\.html$ https://nationalglasspartitions.co.uk/4090mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-system-2200mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-4995mm-w\.html$ https://nationalglasspartitions.co.uk/4995mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-system-2200mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-5900mm-w\.html$ https://nationalglasspartitions.co.uk/5900mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-system-2200mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-6805mm-w\.html$ https://nationalglasspartitions.co.uk/6805mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-wall-kit-2200mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-7710mm-w\.html$ https://nationalglasspartitions.co.uk/7710mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-wall-kit-2200mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2700mm-h-x-8615mm-w\.html$ https://nationalglasspartitions.co.uk/8615mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-wall-kit-2200mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2250mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-offices-2300mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2350mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-wall-kit-2400mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2450mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-office-partition-2500mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2550mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2600mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2650mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-9520mm-w\.html$ https://nationalglasspartitions.co.uk/9520mm-glass-partition-kit-single-door.html [R=301,L]
+
+## Total: 392 SP redirects
+
+############################################
+## 301 Redirects: Old LP corner partition pages to new consolidated pages
+
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-2730mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2450mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-2730mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2500mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-office-partitioning-2550mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-2730mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2050mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-2730mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2100mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-2730mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2150mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-2730mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2200mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-2730mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2250mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-2730mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2600mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-2730mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2650mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-2730mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-kit-2700mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-system-2250mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partition-wall-2100mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2150mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitioning-kit-2200mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-2730mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2300mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-2730mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2350mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-2730mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-2730mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-2730mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-2730mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2730mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-2985mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-2985mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-2985mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-2985mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-2985mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-3890mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-3890mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-3890mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-3890mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-3890mm-w-x-4540mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-4795mm-w-x-1825mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-1825mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-2730mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
+    RewriteRule ^glass-partitions-2400mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
+
+## Total: 223 LP redirects
+
+############################################
+## Never rewrite for existing files, directories and links
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+
+############################################
+## Rewrite everything else to index.php
+
+    RewriteRule .* index.php [L]
+
+</IfModule>
+
+
+############################################
+## Prevent character encoding issues from server overrides
+## If you still have problems, use the second line instead
+
+    AddDefaultCharset Off
+    #AddDefaultCharset UTF-8
+    AddType 'text/html; charset=UTF-8' html
+
+<IfModule mod_expires.c>
+
+############################################
+## Add default Expires header
+## http://developer.yahoo.com/performance/rules.html#expires
+
+    ExpiresDefault "access plus 1 year"
+    ExpiresByType text/html A0
+    ExpiresByType text/plain A0
+
+</IfModule>
+
+###########################################
+## Deny access to release notes to prevent disclosure of the installed Magento version
+
+    <Files RELEASE_NOTES.txt>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files .htaccess>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+## Deny access  to cron.php
+    <Files cron.php>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+## Deny access  to .user.ini
+    <Files .user.ini>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+
+# For 404s and 403s that aren't handled by the application, show plain 404 response
+ErrorDocument 404 /errors/404.php
+ErrorDocument 403 /errors/404.php
+
+################################
+## If running in cluster environment, uncomment this
+## http://developer.yahoo.com/performance/rules.html#etags
+
+    #FileETag none
+
+# ######################################################################
+# # INTERNET EXPLORER                                                  #
+# ######################################################################
+
+# ----------------------------------------------------------------------
+# | Document modes                                                     |
+# ----------------------------------------------------------------------
+
+# Force Internet Explorer 8/9/10 to render pages in the highest mode
+# available in the various cases when it may not.
+#
+# https://hsivonen.fi/doctype/#ie8
+#
+# (!) Starting with Internet Explorer 11, document modes are deprecated.
+# If your business still relies on older web apps and services that were
+# designed for older versions of Internet Explorer, you might want to
+# consider enabling `Enterprise Mode` throughout your company.
+#
+# https://msdn.microsoft.com/en-us/library/ie/bg182625.aspx#docmode
+# http://blogs.msdn.com/b/ie/archive/2014/04/02/stay-up-to-date-with-enterprise-mode-for-internet-explorer-11.aspx
+
+<IfModule mod_headers.c>
+    ############################################
+    Header set X-UA-Compatible "IE=edge"
+
+    # `mod_headers` cannot match based on the content-type, however,
+    # the `X-UA-Compatible` response header should be send only for
+    # HTML documents and not for the other resources.
+    <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
+        Header unset X-UA-Compatible
+    </FilesMatch>
+
+    ## Prevent clickjacking
+    Header set X-Frame-Options SAMEORIGIN
+</IfModule>
