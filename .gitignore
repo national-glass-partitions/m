@@ -75,4 +75,6 @@
 # https://github.com/mydreamday-fi/site/issues/17
 !/vendor/magento/module-catalog/Model/View/Asset/Image.php
 # 2026-05-05 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+# "Add the modified `vendor/magento/module-email/Model/Template/Filter.php` to source control":
+# https://github.com/national-glass-partitions/m/issues/8
 !/vendor/magento/module-email/Model/Template/Filter.php
