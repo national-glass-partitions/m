@@ -77,8 +77,13 @@
 # 2026-05-05 Dmitrii Fediuk https://upwork.com/fl/mage2pro
 # "Add the modified `vendor/magento/module-checkout/view/frontend/templates/success.phtml`
 # to source control": https://github.com/national-glass-partitions/m/issues/9
-!vendor/magento/module-checkout/view/frontend/templates/success.phtml
+!/vendor/magento/module-checkout/view/frontend/templates/success.phtml
 # 2026-05-05 Dmitrii Fediuk https://upwork.com/fl/mage2pro
 # "Add the modified `vendor/magento/module-email/Model/Template/Filter.php` to source control":
 # https://github.com/national-glass-partitions/m/issues/8
 !/vendor/magento/module-email/Model/Template/Filter.php
+# 2026-05-05 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+# "Add the modified
+# `vendor/magento/module-inventory-in-store-pickup-frontend/view/frontend/templates/success.phtml`
+# to source control": https://github.com/national-glass-partitions/m/issues/10
+!/vendor/magento/module-inventory-in-store-pickup-frontend/view/frontend/templates/success.phtml
