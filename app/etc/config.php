@@ -434,6 +434,7 @@ return [
         'Mageplaza_AjaxLayer' => 1,
         'Mageplaza_LayeredNavigation' => 0,
         'Mageplaza_Search' => 1,
+        'NGP_Core' => 1,
         'OlegKoval_RegenerateUrlRewrites' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeCustomerBalance' => 1,
