@@ -16,6 +16,8 @@ RewriteRule ^ - [G,L]
 
 # Dmitrii Fediuk https://upwork.com/fl/mage2pro
 # "Correct `.htaccess` for Google crawler": https://github.com/national-glass-partitions/core/issues/3
+RewriteCond %{QUERY_STRING} ^amp=1$ [NC]
+RewriteRule ^ %{REQUEST_URI} [R=301,L,QSD]
 
 RewriteCond %{REQUEST_URI} !^/pub/
 RewriteCond %{REQUEST_URI} !^/setup/
