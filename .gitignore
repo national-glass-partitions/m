@@ -38,6 +38,9 @@
 /vendor/mage2pro
 /vendor/magento/framework/Test
 /vendor/magento/magento2-base
+# 2026-05-07 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+# https://github.com/national-glass-partitions/core
+/vendor/ngp
 /vendor/tubalmartin
 # 2026-05-05 Dmitrii Fediuk https://upwork.com/fl/mage2pro
 # "Add the modified `.htaccess` to source control":
