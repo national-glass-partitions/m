@@ -791,8 +791,9 @@ RewriteRule ^glass-partitions-2400mm-h-x-4795mm-w-x-2730mm-d\.html$ https://nati
 RewriteRule ^glass-partitions-2400mm-h-x-4795mm-w-x-3635mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-3635mm-d.html [R=301,L]
 RewriteRule ^glass-partitions-2400mm-h-x-4795mm-w-x-4540mm-d\.html$ https://nationalglasspartitions.co.uk/corner-glass-partition-kit-4795mm-w-x-4540mm-d.html [R=301,L]
 ## Total: 223 LP redirects
-
-
+# 2026-05-07 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+RewriteRule ^clear-gasket-glazing-gasket-for-clip-in-side-double-and-single-glazed-channel-10mm-glass\.html$ /glass-partition-gasket.html [R=301,L]
+RewriteRule ^STUB\.html$ https://nationalglasspartitions.co.uk/STUB [R=301,L]
 ############################################
 ## Never rewrite for existing files, directories and links
 
