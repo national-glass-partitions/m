@@ -14,10 +14,8 @@ RewriteRule ^ - [G,L]
 RewriteCond %{REQUEST_URI} ^/customer/account/login/referer/ [NC]
 RewriteRule ^ - [G,L]
 
-# Block category pages with excessive filter parameters - return 410 Gone
-RewriteCond %{QUERY_STRING} (depth|panel_height|door_height|width|colour|price|glass_type|partition_type)= [NC]
-RewriteCond %{QUERY_STRING} .{100,}
-RewriteRule ^ - [G,L]
+# Dmitrii Fediuk https://upwork.com/fl/mage2pro
+# "Correct `.htaccess` for Google crawler": https://github.com/national-glass-partitions/core/issues/3
 
 RewriteCond %{REQUEST_URI} !^/pub/
 RewriteCond %{REQUEST_URI} !^/setup/
