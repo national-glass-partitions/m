@@ -63,4 +63,3 @@ Crawl-delay: 0
 
 # Sitemap
 Sitemap: https://nationalglasspartitions.co.uk/pub/sitemap.xml
-Sitemap: https://localhost.com/pub/sitemap.xml
