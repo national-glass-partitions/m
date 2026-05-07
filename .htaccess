@@ -1,9 +1,5 @@
 RewriteEngine on
 
-# Block fake AMP URLs - return 410 Gone
-RewriteCond %{QUERY_STRING} ^amp=1$ [NC]
-RewriteRule ^ - [G,L]
-
 # Block spam searches (foreign characters, forex spam) - allow legitimate searches
 RewriteCond %{REQUEST_URI} ^/catalogsearch/result/ [NC]
 RewriteCond %{QUERY_STRING} q=.*(%D|%E|%F|%B|%C|%A|\[Tg:) [NC,OR]
