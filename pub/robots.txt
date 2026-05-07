@@ -1,0 +1,66 @@
+# Googlebot - with crawl blocks applied
+User-agent: Googlebot
+Disallow: /checkout/
+Disallow: /onestepcheckout/
+Disallow: /customer/
+Disallow: /index.php/
+Disallow: /*?search=
+Disallow: /*?q=
+Disallow: /*%
+Disallow: /*?p=
+Disallow: /*&p=
+Disallow: /*?SID=
+Disallow: /*&SID=
+
+# Bingbot - same rules
+User-agent: Bingbot
+Disallow: /checkout/
+Disallow: /onestepcheckout/
+Disallow: /customer/
+Disallow: /index.php/
+Disallow: /*?search=
+Disallow: /*?q=
+Disallow: /*%
+Disallow: /*?p=
+Disallow: /*&p=
+Disallow: /*?SID=
+Disallow: /*&SID=
+
+# Block known spam bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SEMrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: serpstatbot
+Disallow: /
+
+# All other bots
+User-agent: *
+Disallow: /checkout/
+Disallow: /onestepcheckout/
+Disallow: /customer/
+Disallow: /index.php/
+Disallow: /*?search=
+Disallow: /*?q=
+Disallow: /*%
+Disallow: /*?p=
+Disallow: /*&p=
+Disallow: /*?SID=
+Disallow: /*&SID=
+Crawl-delay: 1
+
+# Cache Warmer Configuration
+User-agent: CacheWarmer
+Crawl-delay: 0
+
+# Sitemap
+Sitemap: https://nationalglasspartitions.co.uk/pub/sitemap.xml
+Sitemap: https://localhost.com/pub/sitemap.xml
