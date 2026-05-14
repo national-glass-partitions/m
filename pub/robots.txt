@@ -12,4 +12,4 @@ Disallow: /*?p=
 Disallow: /*&p=
 Disallow: /*?SID=
 Disallow: /*&SID=
-Sitemap: https://nationalglasspartitions.co.uk/pub/sitemap.xml
+Sitemap: https://nationalglasspartitions.co.uk/sitemap.xml
