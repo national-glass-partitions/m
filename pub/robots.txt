@@ -1,15 +1,15 @@
 # 2026-05-14 Dmitrii Fediuk https://upwork.com/fl/mage2pro
 # "Refactor `robots.txt`": https://github.com/national-glass-partitions/m/issues/26
 User-agent: *
-Disallow: /checkout/
-Disallow: /onestepcheckout/
-Disallow: /customer/
-Disallow: /index.php/
-Disallow: /*?search=
-Disallow: /*?q=
 Disallow: /*%
-Disallow: /*?p=
+Disallow: /*&SID=
 Disallow: /*&p=
 Disallow: /*?SID=
-Disallow: /*&SID=
+Disallow: /*?p=
+Disallow: /*?q=
+Disallow: /*?search=
+Disallow: /checkout/
+Disallow: /customer/
+Disallow: /index.php/
+Disallow: /onestepcheckout/
 Sitemap: https://nationalglasspartitions.co.uk/sitemap.xml
