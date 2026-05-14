@@ -11,5 +11,4 @@ Disallow: /*?search=
 Disallow: /checkout/
 Disallow: /customer/
 Disallow: /index.php/
-Disallow: /onestepcheckout/
 Sitemap: https://nationalglasspartitions.co.uk/sitemap.xml
