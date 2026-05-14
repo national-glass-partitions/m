@@ -3,9 +3,7 @@
 User-agent: *
 Disallow: /*%
 Disallow: /*&SID=
-Disallow: /*&p=
 Disallow: /*?SID=
-Disallow: /*?p=
 Disallow: /checkout/
 Disallow: /customer/
 Disallow: /index.php/
