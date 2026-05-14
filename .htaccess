@@ -10,8 +10,8 @@ RewriteRule ^ - [G,L]
 RewriteCond %{REQUEST_URI} ^/customer/account/login/referer/ [NC]
 RewriteRule ^ - [G,L]
 
-# Dmitrii Fediuk https://upwork.com/fl/mage2pro
-# "Correct `.htaccess` for Google crawler": https://github.com/national-glass-partitions/core/issues/3
+# 2026-05-07 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+# "Correct `.htaccess` for Google crawler": https://github.com/national-glass-partitions/core/issues/27
 RewriteCond %{QUERY_STRING} ^(.*&)?amp=1(?:&(.*))?$ [NC]
 RewriteRule ^ %{REQUEST_URI}?%1%2 [R=301,L]
 
