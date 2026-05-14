@@ -6,8 +6,6 @@ Disallow: /*&SID=
 Disallow: /*&p=
 Disallow: /*?SID=
 Disallow: /*?p=
-Disallow: /*?q=
-Disallow: /*?search=
 Disallow: /checkout/
 Disallow: /customer/
 Disallow: /index.php/
