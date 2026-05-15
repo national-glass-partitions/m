@@ -842,6 +842,15 @@ RewriteRule ^glass-partitions/all-glass-partition-products/glass-partition-kit-2
 
 	# 2026-05-15 Dmitrii Fediuk https://upwork.com/fl/mage2pro
 	# "Google Search Console: «Not found (404)»
+	# for `/glass-partitions/glass-partition-accessories/joining-strips.html?glass_type=85":
+	# https://github.com/national-glass-partitions/m/issues/24
+	RewriteRule \
+		^glass-partitions/glass-partition-accessories/joining-strips\.html$ \
+		 /glass-partition-parts/gaskets.html \
+		 [R=301,L,QSA]
+
+	# 2026-05-15 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+	# "Google Search Console: «Not found (404)»
 	# for `/glass-partition-ironmongery/door-frames.html?colour=4":
 	# https://github.com/national-glass-partitions/m/issues/25
 	RewriteRule \
