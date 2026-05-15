@@ -845,7 +845,6 @@ RewriteRule ^glass-partitions/all-glass-partition-products/glass-partition-kit-2
 		/glass-partition-parts/glass-door-parts/glass-door-frames.html
 </IfModule>
 
-
 ############################################
 ## Prevent character encoding issues from server overrides
 ## If you still have problems, use the second line instead
