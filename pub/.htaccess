@@ -831,6 +831,16 @@ RewriteRule ^glass-partitions/all-glass-partition-products/glass-partitioning-of
 RewriteRule ^byo4\.html$ /diy-glass-partition.html [R=301,L]
 RewriteRule ^glass-partitions/all-glass-partition-products/glass-partition-kit-2200mm-h-x-3890mm-w-x-1825mm-d\.html$ /corner-glass-partition-kit-3890mm-w-x-1825mm-d.html [R=301,L]
 RewriteRule ^glass-partitions/all-glass-partition-products/glass-partition-kit-2100mm-h-x-2730mm-w-x-2730mm-d\.html$ /corner-glass-partition-kit-2730mm-w-x-2730mm-d.html [R=301,L]
+
+	# 2026-05-15 Dmitrii Fediuk https://upwork.com/fl/mage2pro
+	# "Google Search Console: «Not found (404)»
+	# for `/glass-partitions/glass-partition-accessories/hinges.html?colour=4`":
+	# https://github.com/national-glass-partitions/m/issues/22
+	RewriteRule \
+		^/?glass-partition-ironmongery/door-frames\.html$ \
+		 /glass-partition-parts/glass-door-parts/glass-door-frames.html \
+		 [R=301,L,QSA]	
+
 ############################################
 ## Never rewrite for existing files, directories and links
 
