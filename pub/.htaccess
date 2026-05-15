@@ -133,16 +133,6 @@
 ##    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
 ############################################
 
-<IfModule mod_alias.c>
-	# 2026-05-15 Dmitrii Fediuk https://upwork.com/fl/mage2pro
-	# "Google Search Console: «Not found (404)»
-	# for `/glass-partitions/glass-partition-accessories/hinges.html?colour=4`":
-	# https://github.com/national-glass-partitions/m/issues/22
-	Redirect 301 \
-		/glass-partition-ironmongery/door-frames.html \
-		/glass-partition-parts/glass-door-parts/glass-door-frames.html
-</IfModule>
-
 <IfModule mod_rewrite.c>
 
 ############################################
@@ -839,7 +829,7 @@ RewriteRule ^glass-partitions/all-glass-partition-products/glass-partition-kit-2
 	RewriteRule \
 		^/?glass-partition-ironmongery/door-frames\.html$ \
 		 /glass-partition-parts/glass-door-parts/glass-door-frames.html \
-		 [R=301,L,QSA]	
+		 [R=301,L,QSA]
 
 ############################################
 ## Never rewrite for existing files, directories and links
