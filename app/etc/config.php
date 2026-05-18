@@ -413,6 +413,7 @@ return [
         'Df_Wishlist' => 1,
         'Df_Xml' => 1,
         'Df_Zf' => 1,
+        'Elgentos_ServerSideAnalytics' => 1,
         'MageWorx_OptionBase' => 1,
         'MageWorx_GeoIP' => 1,
         'MageWorx_GeoLock' => 1,
