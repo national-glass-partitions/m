@@ -336,7 +336,7 @@ return [
         'Magento_ThemeGraphQl' => 1,
         'Magento_Translation' => 1,
         'Magento_AdminAdobeImsTwoFactorAuth' => 1,
-        'Magento_GoogleOptimizer' => 1,
+        'Magento_GoogleOptimizer' => 0,
         'Magento_Ups' => 1,
         'Magento_SampleData' => 1,
         'Magento_CatalogUrlRewriteGraphQl' => 1,
