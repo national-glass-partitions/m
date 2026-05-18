@@ -95,7 +95,7 @@ return [
         'Magento_GiftMessage' => 1,
         'Magento_GiftMessageGraphQl' => 1,
         'Magento_GoogleAdwords' => 1,
-        'Magento_GoogleAnalytics' => 1,
+        'Magento_GoogleAnalytics' => 0,
         'Magento_GoogleGtag' => 0,
         'Magento_Ui' => 1,
         'Magento_BundleGraphQl' => 1,
