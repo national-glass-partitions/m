@@ -4,6 +4,7 @@
 # 1) «Robots Exclusion Protocol»: https://datatracker.ietf.org/doc/html/rfc9309
 # 2.1) https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt
 # 2.2) https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Robots_txt
+# 3) https://developers.google.com/search/docs/crawling-indexing
 User-agent: *
 Disallow: /*&SID=
 Disallow: /*?SID=
