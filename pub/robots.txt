@@ -1,16 +1,19 @@
 # 2026-05-14 Dmitrii Fediuk https://upwork.com/fl/mage2pro
 # "Refactor `robots.txt`": https://github.com/national-glass-partitions/m/issues/26
 # 2026-06-01
-# 1) «Robots Exclusion Protocol»: https://datatracker.ietf.org/doc/html/rfc9309
-# 2) https://developers.google.com/crawling/docs/robots-txt/robots-txt-spec
-# 3.1) https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt
-# 3.2) https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Robots_txt
-# 4) https://developers.google.com/search/docs/crawling-indexing
-# 5) @todo "Replace `<meta name='robots' content='NOINDEX,FOLLOW'/>` with `robots.txt` rules":
+# 1) "Improve `robots.txt`": https://github.com/national-glass-partitions/m/issues/46
+# 2) «Robots Exclusion Protocol»: https://datatracker.ietf.org/doc/html/rfc9309
+# 3) https://developers.google.com/crawling/docs/robots-txt/robots-txt-spec
+# 4.1) https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt
+# 4.2) https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/Robots_txt
+# 5) https://developers.google.com/search/docs/crawling-indexing
+# 6) @todo "Replace `<meta name='robots' content='NOINDEX,FOLLOW'/>` with `robots.txt` rules":
 # https://github.com/national-glass-partitions/core/issues/11
 User-agent: *
 Disallow: /*&SID=
 Disallow: /*?SID=
+# 2026-06-01 https://gemini.google.com/share/63d8f7b527da
+Disallow: /catalogsearch/
 Disallow: /checkout/
 Disallow: /customer/
 Disallow: /index.php/
